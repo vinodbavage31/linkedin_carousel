@@ -741,3 +741,32 @@ html, body {
   color: var(--text);
   line-height: 1.4;
 }
+
+/* ============================================================
+   PRINT STYLES (PDF Generation Fixes)
+   ============================================================ */
+@media print {
+  @page {
+    size: 1080px 1080px;
+    margin: 0;
+  }
+  
+  html, body {
+    background: #080C14 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .slide {
+    margin: 0 !important;
+    page-break-after: always !important;
+    page-break-inside: avoid !important;
+    break-after: page !important;
+    break-inside: avoid !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+}
+

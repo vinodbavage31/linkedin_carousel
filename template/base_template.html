@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Base Template — Vinod Bavage ML Carousel</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+<!--
+  ================================================================
+  VINOD BAVAGE — ML LINKEDIN CAROUSEL
+  BASE TEMPLATE — Annotated Master Structure
+  ================================================================
+
+  HOW TO USE:
+  - Copy this file to your day folder (e.g., posts/day_01/slides.html)
+  - Update the <link> href to: ../../template/styles.css
+  - Fill in topic-specific content for each of the 6 slides
+  - Remove these HTML comments in your final output
+
+  SLIDE STRUCTURE (repeat this pattern every day):
+    Slide 1 → Hook/Cover
+    Slide 2 → Why It Matters
+    Slide 3 → Core Concept Visual
+    Slide 4 → Visual Breakdown
+    Slide 5 → Key Takeaways
+    Slide 6 → CTA / Recap
+
+  BRANDING RULE: Every slide MUST end with:
+  <div class="brand-badge">Vinod Bavage</div>
+
+  ================================================================
+-->
+
+<!-- ============================================================
+     SLIDE 1 — Hook / Cover
+     Classes: slide slide-cover
+     Required: day-badge, headline-xl, subtitle, accent-line, brand-badge
+     ============================================================ -->
+<div class="slide slide-cover">
+
+  <!-- Day badge — top left -->
+  <div class="day-badge">Day 00</div>
+
+  <!-- Spacer to push headline to center -->
+  <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+
+    <!-- Main headline — 2 lines max, bold geometric font -->
+    <h1 class="headline-xl">
+      Your Slide<br>
+      <span class="text-blue">Headline Here</span>
+    </h1>
+
+    <!-- Subtitle — one line, what the reader learns -->
+    <p class="subtitle mt-md">Your one-line subtitle explaining what readers will learn.</p>
+
+  </div>
+
+  <!-- Accent line — thin horizontal, blue gradient, near bottom -->
+  <div class="accent-line"></div>
+
+  <!-- Brand badge — MANDATORY on every slide -->
+  <div class="brand-badge">Vinod Bavage</div>
+
+</div><!-- end slide 1 -->
+
+
+<!-- ============================================================
+     SLIDE 2 — Why It Matters
+     Classes: slide
+     Required: section-label, card-highlight, bullet-list, brand-badge
+     ============================================================ -->
+<div class="slide">
+
+  <!-- Section label — top left, small caps, gold -->
+  <div class="section-label">Why It Matters</div>
+
+  <!-- Hook stat / big statement in highlighted card -->
+  <div class="card-highlight mt-sm">
+    <p class="headline-md text-gold">Big stat or hook statement here</p>
+    <p class="body-sm mt-sm">Short supporting context — 1 sentence max.</p>
+  </div>
+
+  <!-- 2–3 bullet points explaining the problem -->
+  <ul class="bullet-list mt-lg">
+    <li>First problem or context point — keep it concise and punchy.</li>
+    <li>Second point that builds on the first — why this concept matters.</li>
+    <li>Third point — the "so what" — link to real-world impact or job relevance.</li>
+  </ul>
+
+  <!-- Brand badge — MANDATORY -->
+  <div class="brand-badge">Vinod Bavage</div>
+
+</div><!-- end slide 2 -->
+
+
+<!-- ============================================================
+     SLIDE 3 — Core Concept Visual
+     Classes: slide
+     Required: section-label, one visual component, brand-badge
+     Choose ONE visual: bar-chart | compare-table | flow-steps |
+                        formula-box | analogy-grid | timeline
+     ============================================================ -->
+<div class="slide">
+
+  <div class="section-label">The Concept</div>
+  <h2 class="headline-md mb-md">Concept Headline</h2>
+
+  <!-- OPTION A: BAR CHART (use for algorithm comparison, skill levels, etc.) -->
+  <div class="bar-chart">
+
+    <div class="bar-row">
+      <div class="bar-label-row">
+        <span class="bar-label">Label One</span>
+        <span class="bar-value">85%</span>
+      </div>
+      <div class="bar-track"><div class="bar-fill" style="width:85%"></div></div>
+    </div>
+
+    <div class="bar-row">
+      <div class="bar-label-row">
+        <span class="bar-label">Label Two</span>
+        <span class="bar-value">62%</span>
+      </div>
+      <div class="bar-track"><div class="bar-fill gold" style="width:62%"></div></div>
+    </div>
+
+    <div class="bar-row">
+      <div class="bar-label-row">
+        <span class="bar-label">Label Three</span>
+        <span class="bar-value">40%</span>
+      </div>
+      <div class="bar-track"><div class="bar-fill green" style="width:40%"></div></div>
+    </div>
+
+  </div>
+
+  <!-- OPTION B: COMPARISON TABLE (comment out A, uncomment B) -->
+  <!--
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Traditional</th>
+        <th>Machine Learning</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="cross">✗</span> Manual rules</td>
+        <td><span class="check">✓</span> Learned from data</td>
+      </tr>
+      <tr>
+        <td><span class="cross">✗</span> Brittle to change</td>
+        <td><span class="check">✓</span> Adapts automatically</td>
+      </tr>
+    </tbody>
+  </table>
+  -->
+
+  <!-- OPTION C: PROCESS FLOW (comment out A, uncomment C) -->
+  <!--
+  <div class="flow-steps">
+    <div class="flow-step">
+      <div class="flow-step-num">1</div>
+      <div class="flow-step-body">
+        <div class="flow-step-title">Step Title</div>
+        <div class="flow-step-desc">One sentence description of what happens here.</div>
+      </div>
+    </div>
+    <div class="flow-connector"></div>
+    <div class="flow-step">
+      <div class="flow-step-num">2</div>
+      <div class="flow-step-body">
+        <div class="flow-step-title">Step Two</div>
+        <div class="flow-step-desc">Description of step two.</div>
+      </div>
+    </div>
+  </div>
+  -->
+
+  <!-- OPTION D: FORMULA BOX (comment out A, uncomment D) -->
+  <!--
+  <div class="formula-box">
+    <div class="formula">
+      y = mx + b
+    </div>
+    <p class="body-sm text-secondary mt-md">Where: y = output, m = slope (weight), x = input, b = bias</p>
+  </div>
+  -->
+
+  <!-- OPTION E: ANALOGY DIAGRAM -->
+  <!--
+  <div class="analogy-grid">
+    <div class="analogy-box">
+      <div class="analogy-box-label real">Real World</div>
+      <div class="analogy-item">Concept A</div>
+      <div class="analogy-item">Concept B</div>
+    </div>
+    <div class="analogy-arrow">→</div>
+    <div class="analogy-box">
+      <div class="analogy-box-label ml">ML World</div>
+      <div class="analogy-item">ML Equivalent A</div>
+      <div class="analogy-item">ML Equivalent B</div>
+    </div>
+  </div>
+  -->
+
+  <!-- Brand badge — MANDATORY -->
+  <div class="brand-badge">Vinod Bavage</div>
+
+</div><!-- end slide 3 -->
+
+
+<!-- ============================================================
+     SLIDE 4 — Deep Dive / Visual Breakdown
+     Classes: slide
+     Required: section-label, detailed diagram or code block, brand-badge
+     Use: --accent-green for wins, --accent-red for errors, --accent-gold for warnings
+     ============================================================ -->
+<div class="slide">
+
+  <div class="section-label">Visual Breakdown</div>
+  <h2 class="headline-md mb-md">Breakdown Headline</h2>
+
+  <!-- Stat boxes row -->
+  <div class="stat-row mb-md">
+    <div class="stat-box">
+      <span class="stat-number text-green">94%</span>
+      <span class="stat-label">Positive Outcome</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-number text-red">6%</span>
+      <span class="stat-label">Error Rate</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-number text-gold">10x</span>
+      <span class="stat-label">Speed Gain</span>
+    </div>
+  </div>
+
+  <!-- Annotated code block example -->
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-dot red"></span>
+      <span class="code-dot yellow"></span>
+      <span class="code-dot green"></span>
+      <span class="code-filename">example.py</span>
+    </div>
+    <pre class="code-content"><code><span class="code-kw">from</span> <span class="code-cls">sklearn</span> <span class="code-kw">import</span> linear_model
+
+<span class="code-cmt"># Create and train model</span>
+model = <span class="code-cls">linear_model</span>.<span class="code-fn">LinearRegression</span>()
+model.<span class="code-fn">fit</span>(X_train, y_train)  <span class="code-cmt"># ← learning happens here</span>
+</code></pre>
+  </div>
+
+  <!-- Brand badge — MANDATORY -->
+  <div class="brand-badge">Vinod Bavage</div>
+
+</div><!-- end slide 4 -->
+
+
+<!-- ============================================================
+     SLIDE 5 — Key Takeaways
+     Classes: slide
+     Required: section-label, takeaway-list (3–5 items), brand-badge
+     ============================================================ -->
+<div class="slide">
+
+  <div class="section-label">Key Takeaways</div>
+
+  <div class="takeaway-list mt-sm">
+
+    <div class="takeaway-card">
+      <div class="takeaway-num">01</div>
+      <div class="takeaway-content">
+        <div class="takeaway-title">First Takeaway Title</div>
+        <div class="takeaway-desc">One-line description reinforcing the first key point from today.</div>
+      </div>
+    </div>
+
+    <div class="takeaway-card">
+      <div class="takeaway-num">02</div>
+      <div class="takeaway-content">
+        <div class="takeaway-title">Second Takeaway Title</div>
+        <div class="takeaway-desc">One-line reinforcement of the second key concept taught today.</div>
+      </div>
+    </div>
+
+    <div class="takeaway-card">
+      <div class="takeaway-num">03</div>
+      <div class="takeaway-content">
+        <div class="takeaway-title">Third Takeaway Title</div>
+        <div class="takeaway-desc">Practical application or next step the reader should take.</div>
+      </div>
+    </div>
+
+    <div class="takeaway-card">
+      <div class="takeaway-num">04</div>
+      <div class="takeaway-content">
+        <div class="takeaway-title">Fourth Takeaway (optional)</div>
+        <div class="takeaway-desc">If there's a fourth key lesson — include it here.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Brand badge — MANDATORY -->
+  <div class="brand-badge">Vinod Bavage</div>
+
+</div><!-- end slide 5 -->
+
+
+<!-- ============================================================
+     SLIDE 6 — CTA / Recap
+     Classes: slide
+     Required: cta-main, cta-next, hashtag-row, cta-brand-name,
+               cta-gradient-bar, brand-badge
+     ============================================================ -->
+<div class="slide" style="align-items: center; justify-content: center; text-align: center;">
+
+  <!-- Follow prompt -->
+  <p class="cta-main">
+    Follow <span class="highlight">Vinod Bavage</span><br>
+    for Day <span class="highlight">01</span> →
+  </p>
+
+  <!-- Next day teaser -->
+  <p class="cta-next mt-sm">
+    🔜 Tomorrow: <strong>Next Day Topic Title Here</strong>
+  </p>
+
+  <!-- Hashtag pills -->
+  <div class="hashtag-row">
+    <span class="hashtag-pill">#MachineLearning</span>
+    <span class="hashtag-pill">#VinodBavage</span>
+    <span class="hashtag-pill">#DataScience</span>
+  </div>
+
+  <!-- Brand closer — large Syne font -->
+  <div class="cta-brand-name">Vinod Bavage</div>
+
+  <!-- Gradient bar — full-width bottom decoration -->
+  <div class="cta-gradient-bar"></div>
+
+  <!-- Brand badge — MANDATORY -->
+  <div class="brand-badge">Vinod Bavage</div>
+
+</div><!-- end slide 6 -->
+
+</body>
+</html>

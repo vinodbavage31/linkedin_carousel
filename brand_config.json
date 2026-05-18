@@ -1,0 +1,67 @@
+{
+  "author": "Vinod Bavage",
+  "niche": "Machine Learning Education",
+  "audience": "Beginners to intermediate ML learners, job seekers, tech professionals",
+  "slide_size": {
+    "width": 1080,
+    "height": 1080,
+    "unit": "px",
+    "format": "LinkedIn Square"
+  },
+  "colors": {
+    "--bg-primary": "#0D1117",
+    "--bg-surface": "#161B22",
+    "--bg-card": "#1C2333",
+    "--accent-blue": "#2D9CDB",
+    "--accent-gold": "#F2C94C",
+    "--accent-green": "#2ECC71",
+    "--accent-red": "#E74C3C",
+    "--text-primary": "#FFFFFF",
+    "--text-secondary": "#A0AEC0",
+    "--text-muted": "#4A5568",
+    "--border": "rgba(255,255,255,0.08)"
+  },
+  "typography": {
+    "heading": {
+      "family": "Syne",
+      "weights": [400, 700, 800],
+      "usage": "All headings, brand name, day numbers"
+    },
+    "body": {
+      "family": "DM Sans",
+      "weights": [400, 500, 600],
+      "usage": "Body text, bullet points, descriptions"
+    },
+    "mono": {
+      "family": "JetBrains Mono",
+      "weights": [400, 600],
+      "usage": "Code snippets, stats, formulas, numbers"
+    }
+  },
+  "branding": {
+    "badge_text": "Vinod Bavage",
+    "badge_bg": "#2D9CDB",
+    "badge_color": "#FFFFFF",
+    "badge_font": "Syne",
+    "badge_position": "bottom-right",
+    "badge_required": "every slide, no exceptions"
+  },
+  "slides_per_post": 6,
+  "total_days": 60,
+  "hashtags_core": [
+    "#MachineLearning",
+    "#VinodBavage",
+    "#MLForBeginners",
+    "#DataScience",
+    "#AIEducation"
+  ],
+  "google_fonts_url": "https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap",
+  "slide_structure": {
+    "slide_1": "Hook/Cover",
+    "slide_2": "Why It Matters",
+    "slide_3": "Core Concept Visual",
+    "slide_4": "Visual Breakdown",
+    "slide_5": "Key Takeaways",
+    "slide_6": "CTA / Recap"
+  }
+}

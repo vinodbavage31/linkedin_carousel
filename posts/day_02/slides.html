@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 02 — Traditional Programming vs ML | Vinod Bavage</title>
+  <meta name="description" content="Traditional Programming vs Machine Learning: The Mindset Shift That Changes Software Forever. Day 02 of 60-day ML series by Vinod Bavage.">
+  <link rel="stylesheet" href="../../template/styles.css">
+  <style>
+    /* ── Slide-level layout helpers ─────────────────────────── */
+    .zone-top    { flex-shrink: 0; }
+    .zone-mid    { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .zone-bottom { flex-shrink: 0; padding-bottom: 72px; } /* room for brand strip */
+
+    /* ── Cover headline sizes ──────────────────────────────── */
+    .cover-line-sm  { font-family:'Syne',sans-serif; font-size:58px; font-weight:800; color:var(--text-sub); line-height:1.05; }
+    .cover-line-xl  { font-family:'Syne',sans-serif; font-size:72px; font-weight:800; line-height:1.0; }
+    .cover-line-xxl { font-family:'Syne',sans-serif; font-size:92px; font-weight:800; line-height:1.0; }
+
+    /* ── Accent underline strip ────────────────────────────── */
+    .accent-underline {
+      display: block; width: 80px; height: 2px; margin-top: 10px;
+      background: linear-gradient(90deg, var(--blue), transparent);
+    }
+
+    /* ── Mini stat pills row ───────────────────────────────── */
+    .stat-pills { display:flex; gap:14px; justify-content:center; }
+    .stat-pill  {
+      display:inline-flex; align-items:center; gap:8px;
+      background:var(--card); border:1px solid var(--border);
+      border-radius:24px; padding:10px 20px;
+      font-family:'Inter',sans-serif; font-size:14px; font-weight:500; color:var(--text);
+    }
+
+    /* ── Cover preview boxes ───────────────────────────────── */
+    .preview-row { display:flex; gap:14px; }
+    .preview-box {
+      flex:1; background:var(--card); border-radius:8px; padding:16px 18px;
+      border-left:3px solid var(--blue);
+    }
+    .preview-box-title {
+      font-family:'Inter',sans-serif; font-size:14px; font-weight:600; color:var(--text); margin-bottom:6px;
+    }
+    .preview-box-body {
+      font-family:'Inter',sans-serif; font-size:13px; color:var(--text-sub); line-height:1.5;
+    }
+
+    /* ── Separator ─────────────────────────────────────────── */
+    .sep { width:100%; height:1px; background:var(--border); margin:14px 0; }
+
+    /* ── Flow diagram ──────────────────────────────────────── */
+    .flow-row { display:flex; align-items:stretch; gap:0; }
+    .fbox {
+      flex:1; background:var(--card); border:1px solid var(--border);
+      border-radius:12px; padding:16px 14px;
+      display:flex; flex-direction:column; align-items:center; text-align:center; gap:8px;
+      min-width:0;
+    }
+    .fbox-icon  {
+      width:38px; height:38px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center; font-size:17px; flex-shrink:0;
+    }
+    .fbox-title { font-family:'Syne',sans-serif; font-size:16px; font-weight:700; color:var(--text); }
+    .fbox-body  { font-family:'Inter',sans-serif; font-size:12px; color:var(--text-sub); line-height:1.5; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 1 — COVER
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-1">
+  <!-- Background Decor -->
+  <div class="bg-circle bg-circle-1"></div>
+  <div class="bg-circle bg-circle-2"></div>
+  <div class="bg-diagonal-lines"></div>
+
+  <!-- TOP ZONE -->
+  <div class="zone-top">
+    <div class="label-section">ML Mindset &amp; Paradigm Shifts</div>
+    <span class="accent-underline"></span>
+  </div>
+
+  <!-- MIDDLE ZONE -->
+  <div class="zone-mid" style="gap:20px;">
+    <div style="display:flex; justify-content:center;">
+      <span class="badge-day">Day 02 of 60</span>
+    </div>
+    <div style="text-align:center;">
+      <div class="cover-line-sm">Traditional</div>
+      <div class="cover-line-xl" style="color:var(--red);">Programming</div>
+      <div class="cover-line-xxl" style="color:var(--blue);">vs. ML</div>
+    </div>
+    <p style="font-family:'Inter',sans-serif; font-size:18px; color:var(--text-sub); text-align:center; max-width:620px; margin:0 auto; line-height:1.7;">
+      The ultimate paradigm shift: how to stop writing static rules and start curating dynamic data systems.
+    </p>
+    <div class="stat-pills">
+      <span class="stat-pill">🗂 6 Slides</span>
+      <span class="stat-pill">⏱ 3 Min Read</span>
+      <span class="stat-pill">⚡ Mindset Shift</span>
+    </div>
+  </div>
+
+  <!-- BOTTOM ZONE -->
+  <div class="zone-bottom" style="display:flex; flex-direction:column; gap:14px;">
+    <div class="sep"></div>
+    <div class="preview-row">
+      <div class="preview-box" style="border-left-color:var(--red);">
+        <div class="preview-box-title">1. Traditional Flow</div>
+        <div class="preview-box-body">The rule-based logic developers have built for decades. Predictable but brittle.</div>
+      </div>
+      <div class="preview-box" style="border-left-color:var(--blue);">
+        <div class="preview-box-title">2. The ML Flow</div>
+        <div class="preview-box-body">How training algorithms discover optimal logic automatically from your example data.</div>
+      </div>
+      <div class="preview-box" style="border-left-color:var(--gold);">
+        <div class="preview-box-title">3. Curator Mindset</div>
+        <div class="preview-box-body">How your day-to-day engineering job shifts from writing if-else rules to managing dataset quality.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BRANDING STRIP -->
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter">Day 02 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 2 — TRADITIONAL PROGRAMMING
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-2">
+  <div class="bg-diagonal-lines"></div>
+  <!-- Top decorative gradient to support red themed slide -->
+  <div class="bg-circle" style="width:400px; height:400px; top:-150px; right:-150px; background:radial-gradient(circle, rgba(255,92,106,0.06) 0%, transparent 70%);"></div>
+
+  <!-- TOP ZONE -->
+  <div class="zone-top">
+    <div class="section-header">
+      <div class="label-section">Part 1 — The Historical Way</div>
+      <div class="section-underline section-underline-red"></div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div style="flex:1; display:flex; flex-direction:column; gap:16px; justify-content:center;">
+    
+    <!-- Formula Card -->
+    <div class="card card-accent-red" style="background:var(--red-dim); border:1px solid rgba(255,92,106,0.25);">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:600; color:var(--red); margin-bottom:8px;">
+        Data + Hand-coded Rules = Output
+      </div>
+      <p style="font-family:'Inter',sans-serif; font-size:16px; color:var(--text-sub); line-height:1.6;">
+        Traditional software engineering relies on humans writing every single condition. The developer creates the logic, compiles the code, and processes the inputs to yield an output.
+      </p>
+    </div>
+
+    <!-- Visual Flow -->
+    <div style="display:flex; flex-direction:column; gap:8px;">
+      <div class="label-section" style="text-align:center;">Traditional Flow</div>
+      <div class="flow-row" style="gap:4px;">
+        <div class="fbox" style="border-color:rgba(255,92,106,0.15);">
+          <div class="fbox-icon" style="background:var(--red-dim); color:var(--red);">📊</div>
+          <div class="fbox-title">Input Data</div>
+          <div class="fbox-body">Incoming variables (e.g., email text, user attributes)</div>
+        </div>
+        <div class="arrow-right" style="align-self:center; border-left-color:var(--red);"></div>
+        <div class="fbox" style="background:var(--surface); border-color:var(--red);">
+          <div class="fbox-icon" style="background:var(--red-dim); color:var(--red);">🔧</div>
+          <div class="fbox-title" style="color:var(--red);">Your Code</div>
+          <div class="fbox-body">Thousands of nested human-written if-else statements</div>
+        </div>
+        <div class="arrow-right" style="align-self:center; border-left-color:var(--red);"></div>
+        <div class="fbox" style="border-color:rgba(255,92,106,0.15);">
+          <div class="fbox-icon" style="background:var(--red-dim); color:var(--red);">🎯</div>
+          <div class="fbox-title">Output</div>
+          <div class="fbox-body">The decision made by the deterministic program</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Code Block -->
+    <div class="code-block" style="border-color:rgba(255,92,106,0.25);">
+      <div style="font-family:'Inter',sans-serif; font-size:13px; color:var(--text-muted); margin-bottom:8px; display:flex; justify-content:space-between;">
+        <span>traditional_spam_filter.py</span>
+        <span style="color:var(--red);">Deterministic &amp; Brittle</span>
+      </div>
+      <div class="code-content">
+        <span class="code-kw">def</span> <span class="code-fn">is_spam</span>(email):<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-cmt"># If you miss an edgecase or a keyword, the system fails completely</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-kw">if</span> <span class="code-str">"free money"</span> <span class="code-kw">in</span> email.text.lower() <span class="code-kw">or</span> <span class="code-str">"winner"</span> <span class="code-kw">in</span> email.text.lower():<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-kw">return</span> <span class="code-kw">True</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-kw">return</span> <span class="code-kw">False</span>
+      </div>
+    </div>
+
+    <p style="font-family:'Inter',sans-serif; font-size:14px; color:var(--text-sub); text-align:center;">
+      ❌ Spammers adapt by changing spelling (<span class="code-str">"fr3e m0ney"</span>). You are forced to write new rules forever.
+    </p>
+
+  </div>
+
+  <!-- BRANDING STRIP -->
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter">Day 02 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 3 — THE ML PARADIGM
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-3">
+  <div class="bg-diagonal-lines"></div>
+  <!-- Top decorative gradient to support blue themed slide -->
+  <div class="bg-circle" style="width:400px; height:400px; top:-150px; right:-150px; background:radial-gradient(circle, rgba(59,158,255,0.06) 0%, transparent 70%);"></div>
+
+  <!-- TOP ZONE -->
+  <div class="zone-top">
+    <div class="section-header">
+      <div class="label-section">Part 2 — The Modern Way</div>
+      <div class="section-underline section-underline-blue"></div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div style="flex:1; display:flex; flex-direction:column; gap:16px; justify-content:center;">
+    
+    <!-- Formula Card -->
+    <div class="card card-accent-blue" style="background:var(--blue-dim); border:1px solid rgba(59,158,255,0.25);">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:600; color:var(--blue); margin-bottom:8px;">
+        Data + Expected Output = Learned Rules
+      </div>
+      <p style="font-family:'Inter',sans-serif; font-size:16px; color:var(--text-sub); line-height:1.6;">
+        Instead of hand-coding rules, you show the computer thousands of examples (labeled data). The training algorithm automatically finds the patterns and creates a model that generalizes to new inputs.
+      </p>
+    </div>
+
+    <!-- Visual Flow -->
+    <div style="display:flex; flex-direction:column; gap:8px;">
+      <div class="label-section" style="text-align:center;">Machine Learning Flow</div>
+      <div class="flow-row" style="gap:4px;">
+        <div class="fbox" style="border-color:rgba(59,158,255,0.15);">
+          <div class="fbox-icon" style="background:var(--blue-dim); color:var(--blue);">📊</div>
+          <div class="fbox-title">Historical Data</div>
+          <div class="fbox-body">10,000 spam &amp; clean emails with their classifications</div>
+        </div>
+        <div class="arrow-right" style="align-self:center; border-left-color:var(--blue);"></div>
+        <div class="fbox" style="background:var(--surface); border-color:var(--blue);">
+          <div class="fbox-icon" style="background:var(--blue-dim); color:var(--blue);">⚙️</div>
+          <div class="fbox-title" style="color:var(--blue);">ML Algorithm</div>
+          <div class="fbox-body">Discovers language features &amp; statistical relationships</div>
+        </div>
+        <div class="arrow-right" style="align-self:center; border-left-color:var(--blue);"></div>
+        <div class="fbox" style="border-color:rgba(59,158,255,0.15);">
+          <div class="fbox-icon" style="background:var(--blue-dim); color:var(--blue);">🧠</div>
+          <div class="fbox-title">Trained Model</div>
+          <div class="fbox-body">A robust function ready to accurately classify new emails</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Code Block -->
+    <div class="code-block" style="border-color:rgba(59,158,255,0.25);">
+      <div style="font-family:'Inter',sans-serif; font-size:13px; color:var(--text-muted); margin-bottom:8px; display:flex; justify-content:space-between;">
+        <span>ml_spam_filter.py</span>
+        <span style="color:var(--blue);">Statistical &amp; Adaptive</span>
+      </div>
+      <div class="code-content">
+        <span class="code-cmt"># The system learns the optimal math equations automatically</span><br>
+        vectorizer = TfidfVectorizer()<br>
+        X = vectorizer.fit_transform(email_datasets)<br>
+        model = LogisticRegression()<br>
+        model.<span class="code-fn">fit</span>(X, labels) &nbsp;<span class="code-cmt"># Finds optimal coefficients</span><br>
+        prediction = model.<span class="code-fn">predict</span>(vectorizer.transform([new_email]))
+      </div>
+    </div>
+
+    <p style="font-family:'Inter',sans-serif; font-size:14px; color:var(--text-sub); text-align:center;">
+      ✅ The system learns words, context, spelling tricks, and metadata signals dynamically without coding them.
+    </p>
+
+  </div>
+
+  <!-- BRANDING STRIP -->
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter">Day 02 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 4 — VISUAL COMPARISON
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-4">
+  <div class="bg-diagonal-lines"></div>
+  <style>
+    .vs-header-row   { display:flex; flex-shrink:0; }
+    .vs-header-left  { flex:1; background:var(--red-dim); border-bottom:3px solid var(--red); padding:18px 28px; border-radius:12px 0 0 0; }
+    .vs-header-right { flex:1; background:var(--blue-dim); border-bottom:3px solid var(--blue); padding:18px 28px; border-radius:0 12px 0 0; }
+    .vs-header-sub   { font-family:'Inter',sans-serif; font-size:14px; margin-top:4px; }
+    .vs-table        { flex:1; display:flex; flex-direction:column; overflow:hidden; }
+    .vs-row          { display:flex; border-bottom:1px solid var(--border); }
+    .vs-row:nth-child(even) .vs-cell { background:rgba(255,255,255,0.018); }
+    .vs-cell         { flex:1; padding:13px 20px; font-family:'Inter',sans-serif; font-size:14px; color:var(--text-sub); line-height:1.5; }
+    .vs-cell-left    { border-right:2px solid var(--border); }
+    .vs-row-hdr .vs-cell {
+      font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
+      color:var(--text-muted); background:var(--surface); padding:9px 20px;
+    }
+    .vs-insight {
+      background:var(--gold-dim); border:1px solid rgba(255,184,48,0.25);
+      border-left:4px solid var(--gold); border-radius:12px; padding:20px 26px; flex-shrink:0;
+    }
+  </style>
+
+  <!-- TOP -->
+  <div class="zone-top" style="display:flex; flex-direction:column; gap:6px;">
+    <div class="section-header">
+      <div class="label-section">Part 3 — The Complete Comparison</div>
+      <div class="section-underline section-underline-blue"></div>
+    </div>
+    <p style="font-family:'Inter',sans-serif; font-size:15px; color:var(--text-sub);">
+      Rule-Writer vs. Data Curator
+    </p>
+  </div>
+
+  <!-- HEADER BOXES -->
+  <div class="vs-header-row" style="margin-top:14px;">
+    <div class="vs-header-left">
+      <div style="font-family:'Syne',sans-serif; font-size:22px; font-weight:700; color:var(--text);">🔧 Traditional</div>
+      <div class="vs-header-sub" style="color:var(--red);">Explicit Instructions</div>
+    </div>
+    <div class="vs-header-right">
+      <div style="font-family:'Syne',sans-serif; font-size:22px; font-weight:700; color:var(--text);">🧠 Machine Learning</div>
+      <div class="vs-header-sub" style="color:var(--blue);">Pattern Inferences</div>
+    </div>
+  </div>
+
+  <!-- TABLE -->
+  <div class="vs-table">
+    <div class="vs-row vs-row-hdr">
+      <div class="vs-cell vs-cell-left">Dimension</div>
+      <div class="vs-cell">Traditional Development</div>
+      <div class="vs-cell" style="border-left:2px solid var(--border);">Machine Learning</div>
+    </div>
+    <div class="vs-row">
+      <div class="vs-cell vs-cell-left" style="color:var(--text-muted); font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">Logic Creator</div>
+      <div class="vs-cell">Human Developer (explicit code)</div>
+      <div class="vs-cell" style="border-left:2px solid var(--border); color:var(--blue);">ML Training Algorithm</div>
+    </div>
+    <div class="vs-row">
+      <div class="vs-cell vs-cell-left" style="color:var(--text-muted); font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">Edge Cases</div>
+      <div class="vs-cell" style="color:var(--red);">Must be manually predicted &amp; coded</div>
+      <div class="vs-cell" style="border-left:2px solid var(--border); color:var(--green);">Discovered automatically from data examples</div>
+    </div>
+    <div class="vs-row">
+      <div class="vs-cell vs-cell-left" style="color:var(--text-muted); font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">Effort</div>
+      <div class="vs-cell">Writing logic &amp; fixing syntax</div>
+      <div class="vs-cell" style="border-left:2px solid var(--border);">Collecting, labeling &amp; cleaning datasets</div>
+    </div>
+    <div class="vs-row">
+      <div class="vs-cell vs-cell-left" style="color:var(--text-muted); font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">Maintenance</div>
+      <div class="vs-cell">High. Manually update code rules</div>
+      <div class="vs-cell" style="border-left:2px solid var(--border);">Low. Automatically retrain on new data</div>
+    </div>
+    <div class="vs-row">
+      <div class="vs-cell vs-cell-left" style="color:var(--text-muted); font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">Limits</div>
+      <div class="vs-cell">Capped by human cognitive capacity</div>
+      <div class="vs-cell" style="border-left:2px solid var(--border); color:var(--green);">Scales infinitely with compute &amp; data volume</div>
+    </div>
+    <div class="vs-row" style="border-bottom:none;">
+      <div class="vs-cell vs-cell-left" style="color:var(--text-muted); font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">Use Case</div>
+      <div class="vs-cell">Clear, deterministic business rules</div>
+      <div class="vs-cell" style="border-left:2px solid var(--border); color:var(--purple);">Complex patterns (vision, audio, natural language)</div>
+    </div>
+  </div>
+
+  <!-- INSIGHT CARD -->
+  <div class="vs-insight" style="margin-bottom:72px; margin-top:14px;">
+    <div style="font-family:'Inter',sans-serif; font-size:12px; font-weight:600; color:var(--gold); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:8px;">💡 The Mindset Shift</div>
+    <div style="font-family:'Inter',sans-serif; font-size:16px; color:var(--text-sub); line-height:1.7;">
+      Stop asking <strong style="color:var(--red);">"What is the exact rule I need to code?"</strong> and start asking <strong style="color:var(--blue);">"Where can I find data to show the algorithm examples of this pattern?"</strong>
+    </div>
+  </div>
+
+  <!-- BRANDING STRIP -->
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter">Day 02 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 5 — KEY TAKEAWAYS
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-5">
+  <div class="bg-diagonal-lines"></div>
+  <style>
+    .tk-card {
+      display:flex; align-items:flex-start; gap:16px;
+      border-radius:12px; padding:14px 18px; border:1px solid var(--border);
+      background:var(--card);
+    }
+    .tk-hex {
+      width:48px; height:48px; flex-shrink:0;
+      clip-path: polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+      background:linear-gradient(135deg,var(--blue),var(--purple));
+      display:flex; align-items:center; justify-content:center;
+      font-family:'Syne',sans-serif; font-size:18px; font-weight:800; color:#fff;
+    }
+    .tk-body { flex:1; }
+    .tk-title { font-family:'Inter',sans-serif; font-size:15px; font-weight:600; color:var(--text); margin-bottom:4px; line-height:1.3; }
+    .tk-desc  { font-family:'Inter',sans-serif; font-size:13px; color:var(--text-sub); line-height:1.6; }
+  </style>
+
+  <!-- TOP -->
+  <div class="zone-top">
+    <div class="section-header">
+      <div class="label-section">Part 4 — Key Takeaways</div>
+      <div class="section-underline section-underline-purple"></div>
+    </div>
+    <p style="font-family:'Inter',sans-serif; font-size:14px; color:var(--text-sub); margin-top:6px;">
+      Pin this. The ML mindset shift boils down to these 5 essential engineering truths.
+    </p>
+  </div>
+
+  <!-- CARDS -->
+  <div style="flex:1; display:flex; flex-direction:column; gap:12px; justify-content:center; padding-bottom:72px; margin-top:16px;">
+
+    <div class="tk-card" style="border-left:3px solid var(--blue);">
+      <div class="tk-hex">01</div>
+      <div class="tk-body">
+        <div class="tk-title">You are a Data Curator, not a Rule-Writer</div>
+        <div class="tk-desc">Your ultimate engineering leverage shifts from writing optimal algorithms to collecting, labeling, cleaning, and managing high-quality datasets. Data quality is code quality.</div>
+      </div>
+    </div>
+
+    <div class="tk-card" style="border-left:3px solid var(--gold);">
+      <div class="tk-hex" style="background:linear-gradient(135deg,var(--gold),#FF8C42);">02</div>
+      <div class="tk-body">
+        <div class="tk-title">Code is dynamic, not static</div>
+        <div class="tk-desc">Traditional code works forever until you modify it. ML models are dynamic — they drift as real-world data patterns change. Continual monitoring and retraining are mandatory.</div>
+      </div>
+    </div>
+
+    <div class="tk-card" style="border-left:3px solid var(--green);">
+      <div class="tk-hex" style="background:linear-gradient(135deg,var(--green),#00A86B);">03</div>
+      <div class="tk-body">
+        <div class="tk-title">Start simple — don't use ML if simple rules work</div>
+        <div class="tk-desc">If you can solve your engineering problem with five explicit if-else statements, do it. Avoid the complexity and compute overhead of ML unless patterns are too complex to hand-code.</div>
+      </div>
+    </div>
+
+    <div class="tk-card" style="border-left:3px solid var(--purple);">
+      <div class="tk-hex" style="background:linear-gradient(135deg,var(--purple),#7C3AED);">04</div>
+      <div class="tk-body">
+        <div class="tk-title">Failure modes are statistical, not absolute</div>
+        <div class="tk-desc">Traditional code either compiles or throws a clear runtime error. ML models fail silently with probabilities. You must design fallback systems for when your model makes a wrong guess.</div>
+      </div>
+    </div>
+
+    <div class="tk-card" style="border-left:3px solid var(--red);">
+      <div class="tk-hex" style="background:linear-gradient(135deg,var(--red),#C0392B);">05</div>
+      <div class="tk-body">
+        <div class="tk-title">Generalization is the ultimate validation metric</div>
+        <div class="tk-desc">Traditional testing checks if code works for pre-defined inputs. ML testing checks if the model works on totally unseen, fresh data. That generalization is the true benchmark of success.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BRANDING STRIP -->
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter">Day 02 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 6 — CTA / CLOSE
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-6" style="justify-content:space-between;">
+  <!-- Mirrored bg circles -->
+  <div class="bg-circle bg-circle-1-mirror"></div>
+  <div class="bg-circle bg-circle-2-mirror"></div>
+  <div class="bg-diagonal-lines"></div>
+  <!-- Large decorative "02" -->
+  <div style="position:absolute; top:60px; left:50%; transform:translateX(-50%); font-family:'Syne',sans-serif; font-size:200px; font-weight:800; color:rgba(255,255,255,0.03); line-height:1; pointer-events:none; z-index:0; white-space:nowrap;">02</div>
+
+  <!-- TOP ZONE -->
+  <div class="zone-top" style="position:relative; z-index:1;">
+    <div class="section-header">
+      <div class="label-section">What's Next</div>
+      <div class="section-underline section-underline-green"></div>
+    </div>
+  </div>
+
+  <!-- CENTER ZONE -->
+  <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px; text-align:center; position:relative; z-index:1;">
+
+    <span style="display:inline-flex; align-items:center; gap:8px; background:var(--green-dim); border:1px solid rgba(0,214,143,0.3); border-radius:20px; padding:8px 20px; font-family:'Inter',sans-serif; font-size:13px; font-weight:600; color:var(--green);">
+      ✓ Day 02 Complete
+    </span>
+
+    <div>
+      <div style="font-family:'Inter',sans-serif; font-size:15px; color:var(--text-muted); margin-bottom:14px;">Tomorrow on Day 03:</div>
+      <div style="background:var(--surface); border:1px solid var(--border-blue); border-radius:14px; padding:22px 40px; max-width:680px;">
+        <div style="font-family:'Syne',sans-serif; font-size:30px; font-weight:700; color:var(--text); line-height:1.2; margin-bottom:10px;">The Three Main Types of ML</div>
+        <div style="font-family:'Inter',sans-serif; font-size:16px; color:var(--text-sub); line-height:1.6;">Supervised vs. Unsupervised vs. Reinforcement — visual breakdown</div>
+      </div>
+    </div>
+
+    <div style="width:100%; height:1px; background:var(--border);"></div>
+
+    <div>
+      <div style="font-family:'Inter',sans-serif; font-size:17px; color:var(--text-sub); margin-bottom:14px;">Follow for the full 60-day ML series</div>
+      <div style="font-family:'Syne',sans-serif; font-size:52px; font-weight:800; background:linear-gradient(135deg,var(--blue),var(--purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1.05;">Vinod Bavage</div>
+      <div style="font-family:'Inter',sans-serif; font-size:14px; color:var(--text-muted); margin-top:8px;">Building in public · Machine Learning · 60 days</div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM ZONE -->
+  <div style="display:flex; flex-direction:column; align-items:center; gap:18px; padding-bottom:72px; position:relative; z-index:1;">
+    <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
+      <span class="hashtag-pill">#MachineLearning</span>
+      <span class="hashtag-pill">#VinodBavage</span>
+      <span class="hashtag-pill">#MLIn60Days</span>
+    </div>
+    <div class="gradient-bar"></div>
+  </div>
+
+  <!-- BRANDING STRIP -->
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter">Day 02 / 60</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+

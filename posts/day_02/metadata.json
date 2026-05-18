@@ -1,0 +1,10 @@
+{
+  "day": 2,
+  "date_label": "Day 02",
+  "topic": "ML vs Traditional Programming",
+  "headline": "Traditional Programming vs Machine Learning: The Mindset Shift That Changes Software Forever",
+  "category": "ML Mindset",
+  "caption": "If you are a developer, transitioning to AI requires a major brain reset.\n\nIn traditional software, you are the logic creator. You write the rules, compile the code, and get the output.\n\nIn Machine Learning, you are the data curator. You feed the system examples, and the algorithm discovers the logic for you.\n\nToday, I break down this massive paradigm shift visually so you can adapt your coding mindset for the AI era.\n\nAre you still writing manual rules for complex problems? Drop a comment 👇",
+  "hashtags": ["#MachineLearning", "#VinodBavage", "#SoftwareEngineering", "#AIEducation", "#TechMindset"],
+  "next_day_teaser": "The Three Main Types of ML — Supervised, Unsupervised & Reinforcement"
+}

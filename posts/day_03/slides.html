@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 03 — The Ultimate ML Roadmap | Vinod Bavage</title>
+  <meta name="description" content="No fluff. Here's the exact path I'd follow if I started today. Day 03 of 60-day ML series by Vinod Bavage.">
+  <link rel="stylesheet" href="../../template/styles.css">
+  <style>
+    /* ── Slide-level layout helpers ─────────────────────────── */
+    .zone-top    { flex-shrink: 0; }
+    .zone-mid    { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .zone-bottom { flex-shrink: 0; padding-bottom: 72px; }
+
+    /* ── Cover headline sizes ──────────────────────────────── */
+    .cover-line-sm  { font-family:'Syne',sans-serif; font-size:48px; font-weight:800; color:var(--text-sub); line-height:1.1; }
+    .cover-line-xl  { font-family:'Syne',sans-serif; font-size:80px; font-weight:800; line-height:1.0; }
+    
+    /* ── Accent underline strip ────────────────────────────── */
+    .accent-underline {
+      display: block; width: 80px; height: 2px; margin-top: 10px;
+      background: linear-gradient(90deg, var(--blue), transparent);
+    }
+
+    /* ── Mini stat pills row ───────────────────────────────── */
+    .stat-pills { display:flex; gap:14px; justify-content:center; }
+    .stat-pill  {
+      display:inline-flex; align-items:center; gap:8px;
+      background:var(--card); border:1px solid var(--border);
+      border-radius:24px; padding:10px 20px;
+      font-family:'Inter',sans-serif; font-size:14px; font-weight:500; color:var(--text);
+    }
+
+    /* ── Cover preview boxes ───────────────────────────────── */
+    .preview-row { display:flex; gap:14px; }
+    .preview-box {
+      flex:1; background:var(--card); border-radius:8px; padding:16px 18px;
+      border-left:3px solid var(--blue);
+    }
+    .preview-box-title {
+      font-family:'Inter',sans-serif; font-size:14px; font-weight:600; color:var(--text); margin-bottom:6px;
+    }
+    .preview-box-body {
+      font-family:'Inter',sans-serif; font-size:13px; color:var(--text-sub); line-height:1.5;
+    }
+
+    /* ── Separator ─────────────────────────────────────────── */
+    .sep { width:100%; height:1px; background:var(--border); margin:14px 0; }
+
+    /* ── Timeline styles (new for day 3) ────────────────────── */
+    .timeline { position:relative; margin:10px 0; padding-left:36px; display:flex; flex-direction:column; gap:16px; }
+    .timeline::before { content:''; position:absolute; left:14px; top:12px; bottom:12px; width:4px; background:var(--border-blue); border-radius:4px; }
+    .timeline-item { position:relative; }
+    .timeline-dot { position:absolute; left:-36px; top:14px; width:20px; height:20px; border-radius:50%; border:4px solid var(--surface); box-shadow:0 0 0 1px var(--border); }
+    .timeline-content { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 20px; border-left:4px solid var(--blue); }
+    .timeline-title { font-family:'Syne',sans-serif; font-size:18px; font-weight:700; color:var(--text); margin-bottom:4px; }
+    .timeline-desc { font-family:'Inter',sans-serif; font-size:14px; color:var(--text-sub); line-height:1.5; }
+    
+    /* ── Phase grid ────────────────────────────────────────── */
+    .phase-grid { display:flex; gap:14px; }
+    .phase-col { flex:1; background:var(--card); border-radius:12px; padding:20px 18px; display:flex; flex-direction:column; gap:10px; border:1px solid var(--border); border-top:4px solid var(--blue); }
+    .phase-badge { align-self:flex-start; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:4px 12px; font-family:'Inter',sans-serif; font-size:12px; font-weight:600; color:var(--text-muted); }
+    .phase-title { font-family:'Syne',sans-serif; font-size:20px; font-weight:700; color:var(--text); }
+    .phase-desc { font-family:'Inter',sans-serif; font-size:14px; color:var(--text-sub); line-height:1.6; }
+    
+    /* ── Tools Matrix ──────────────────────────────────────── */
+    .tools-matrix { display:flex; flex-direction:column; gap:12px; }
+    .tool-row { display:flex; align-items:center; gap:16px; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; }
+    .tool-label { width:140px; font-family:'Syne',sans-serif; font-size:16px; font-weight:700; color:var(--text); flex-shrink:0; }
+    .tool-items { display:flex; flex-wrap:wrap; gap:8px; }
+    .tool-pill { background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:6px 12px; font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--blue); }
+    
+    /* ── Takeaways cards (reused from day 2) ───────────────── */
+    .tk-card {
+      display:flex; align-items:flex-start; gap:16px;
+      border-radius:12px; padding:14px 18px; border:1px solid var(--border);
+      background:var(--card);
+    }
+    .tk-hex {
+      width:48px; height:48px; flex-shrink:0;
+      clip-path: polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+      background:linear-gradient(135deg,var(--blue),var(--purple));
+      display:flex; align-items:center; justify-content:center;
+      font-family:'Syne',sans-serif; font-size:18px; font-weight:800; color:#fff;
+    }
+    .tk-body { flex:1; }
+    .tk-title { font-family:'Inter',sans-serif; font-size:15px; font-weight:600; color:var(--text); margin-bottom:4px; line-height:1.3; }
+    .tk-desc  { font-family:'Inter',sans-serif; font-size:13px; color:var(--text-sub); line-height:1.6; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 1 — COVER
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-1">
+  <div class="bg-circle bg-circle-1"></div>
+  <div class="bg-circle bg-circle-2"></div>
+  <div class="bg-diagonal-lines"></div>
+
+  <!-- TOP ZONE -->
+  <div class="zone-top">
+    <div class="label-section">Career & Roadmap</div>
+    <span class="accent-underline"></span>
+  </div>
+
+  <!-- MIDDLE ZONE -->
+  <div class="zone-mid" style="gap:20px;">
+    <div style="display:flex; justify-content:center;">
+      <span class="badge-day">Day 03 of 60</span>
+    </div>
+    <div style="text-align:center;">
+      <div class="cover-line-sm">The Exact Path</div>
+      <div class="cover-line-xl" style="color:var(--text);">To Learn <span style="color:var(--blue);">ML</span></div>
+      <div class="cover-line-xl" style="color:var(--text);">From Scratch</div>
+    </div>
+    <p style="font-family:'Inter',sans-serif; font-size:18px; color:var(--text-sub); text-align:center; max-width:620px; margin:0 auto; line-height:1.7;">
+      No fluff. Here's the lean, practical 6-month roadmap I'd follow if I had to start over today.
+    </p>
+    <div class="stat-pills">
+      <span class="stat-pill">🗂 6 Slides</span>
+      <span class="stat-pill">⏱ 3 Min Read</span>
+      <span class="stat-pill">⚡ Roadmap</span>
+    </div>
+  </div>
+
+  <!-- BOTTOM ZONE -->
+  <div class="zone-bottom" style="display:flex; flex-direction:column; gap:14px;">
+    <div class="sep"></div>
+    <div class="preview-row">
+      <div class="preview-box" style="border-left-color:var(--blue);">
+        <div class="preview-box-title">Visual Roadmap</div>
+        <div class="preview-box-body">The step-by-step path from basic Python to model deployment.</div>
+      </div>
+      <div class="preview-box" style="border-left-color:var(--purple);">
+        <div class="preview-box-title">Lean Tool Stack</div>
+        <div class="preview-box-body">Skip the bloat. Only learn the tools that matter in production.</div>
+      </div>
+      <div class="preview-box" style="border-left-color:var(--red);">
+        <div class="preview-box-title">Detours to Avoid</div>
+        <div class="preview-box-body">5 common beginner traps that will waste months of your time.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BRANDING STRIP -->
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter">Day 03 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 2 — VISUAL ROADMAP
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-2">
+  <div class="bg-diagonal-lines"></div>
+  
+  <div class="zone-top">
+    <div class="section-header">
+      <div class="label-section">The Visual Path</div>
+      <div class="section-underline section-underline-blue"></div>
+    </div>
+    <p style="font-family:'Inter',sans-serif; font-size:15px; color:var(--text-sub); margin-top:6px;">
+      Follow this exact sequence. Do not skip steps.
+    </p>
+  </div>
+
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+    <div class="timeline">
+      
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--blue);"></div>
+        <div class="timeline-content" style="border-left-color:var(--blue);">
+          <div class="timeline-title">1. Foundations (Code + Data)</div>
+          <div class="timeline-desc">Master Python, SQL, and Pandas. If you can't clean and manipulate data, you can't do Machine Learning. Learn basic linear algebra and statistics on the side.</div>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--gold);"></div>
+        <div class="timeline-content" style="border-left-color:var(--gold);">
+          <div class="timeline-title">2. Core Machine Learning</div>
+          <div class="timeline-desc">Dive into Scikit-Learn. Understand Supervised learning (Linear/Logistic Regression, Random Forests, XGBoost) and Unsupervised learning (K-Means). Focus on model evaluation.</div>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--purple);"></div>
+        <div class="timeline-content" style="border-left-color:var(--purple);">
+          <div class="timeline-title">3. Deep Learning</div>
+          <div class="timeline-desc">Pick PyTorch. Build Neural Networks from scratch. Move on to CNNs (Computer Vision) and Transformers (NLP/LLMs) using HuggingFace.</div>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--green);"></div>
+        <div class="timeline-content" style="border-left-color:var(--green);">
+          <div class="timeline-title">4. MLOps & Deployment</div>
+          <div class="timeline-desc">A model in a notebook is useless. Learn how to wrap models in APIs (FastAPI), containerize them (Docker), and deploy to the cloud (AWS/GCP/Render).</div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter">Day 03 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 3 — PHASE BREAKDOWN
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-3">
+  <div class="bg-diagonal-lines"></div>
+
+  <div class="zone-top">
+    <div class="section-header">
+      <div class="label-section">Time Estimates</div>
+      <div class="section-underline section-underline-gold"></div>
+    </div>
+    <p style="font-family:'Inter',sans-serif; font-size:15px; color:var(--text-sub); margin-top:6px;">
+      A realistic 6-month breakdown assuming 10-15 hours per week.
+    </p>
+  </div>
+
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:20px;">
+    
+    <div class="phase-grid">
+      <div class="phase-col" style="border-top-color:var(--blue);">
+        <div class="phase-badge">Months 1-2</div>
+        <div class="phase-title">The Setup</div>
+        <div class="phase-desc">Focus entirely on getting fluent with Python syntax and wrangling messy datasets in Pandas. If you skip this, everything else will be frustrating.</div>
+      </div>
+      
+      <div class="phase-col" style="border-top-color:var(--gold);">
+        <div class="phase-badge">Months 3-4</div>
+        <div class="phase-title">The Core Intuition</div>
+        <div class="phase-desc">Train classical models on tabular data. Learn how algorithms learn, how to detect overfitting, and how to tune hyperparameters properly.</div>
+      </div>
+      
+      <div class="phase-col" style="border-top-color:var(--purple);">
+        <div class="phase-badge">Months 5-6</div>
+        <div class="phase-title">The Advanced Shift</div>
+        <div class="phase-desc">Transition to Deep Learning architectures and MLOps. Your goal is to build an end-to-end project and deploy it so others can interact with it via API.</div>
+      </div>
+    </div>
+
+    <!-- INSIGHT CARD -->
+    <div style="background:var(--gold-dim); border:1px solid rgba(255,184,48,0.25); border-left:4px solid var(--gold); border-radius:12px; padding:20px 26px;">
+      <div style="font-family:'Inter',sans-serif; font-size:12px; font-weight:600; color:var(--gold); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:8px;">💡 Consistency over intensity</div>
+      <div style="font-family:'Inter',sans-serif; font-size:16px; color:var(--text-sub); line-height:1.7;">
+        Don't try to cram this into 30 days. Your brain needs time to build intuition for how algorithms behave on different datasets. Give it 6 months.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter">Day 03 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 4 — TOOLS PER PHASE
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-4">
+  <div class="bg-diagonal-lines"></div>
+
+  <div class="zone-top">
+    <div class="section-header">
+      <div class="label-section">The Lean Tool Stack</div>
+      <div class="section-underline section-underline-blue"></div>
+    </div>
+    <p style="font-family:'Inter',sans-serif; font-size:15px; color:var(--text-sub); margin-top:6px;">
+      Stop learning tools you won't use. This is the 80/20 stack used in production today.
+    </p>
+  </div>
+
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+    <div class="tools-matrix">
+      
+      <div class="tool-row" style="border-left:4px solid var(--blue);">
+        <div class="tool-label">Data Prep</div>
+        <div class="tool-items">
+          <span class="tool-pill">python</span>
+          <span class="tool-pill">pandas</span>
+          <span class="tool-pill">numpy</span>
+          <span class="tool-pill">sql</span>
+        </div>
+      </div>
+
+      <div class="tool-row" style="border-left:4px solid var(--gold);">
+        <div class="tool-label">Core ML</div>
+        <div class="tool-items">
+          <span class="tool-pill">scikit-learn</span>
+          <span class="tool-pill">xgboost</span>
+          <span class="tool-pill">matplotlib</span>
+        </div>
+      </div>
+
+      <div class="tool-row" style="border-left:4px solid var(--purple);">
+        <div class="tool-label">Deep Learning</div>
+        <div class="tool-items">
+          <span class="tool-pill">pytorch</span>
+          <span class="tool-pill">huggingface</span>
+          <span class="tool-pill">transformers</span>
+        </div>
+      </div>
+
+      <div class="tool-row" style="border-left:4px solid var(--green);">
+        <div class="tool-label">Deployment</div>
+        <div class="tool-items">
+          <span class="tool-pill">fastapi</span>
+          <span class="tool-pill">docker</span>
+          <span class="tool-pill">git</span>
+          <span class="tool-pill">aws/gcp</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter">Day 03 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 5 — DETOURS TO AVOID
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-5">
+  <div class="bg-diagonal-lines"></div>
+  
+  <div class="zone-top">
+    <div class="section-header">
+      <div class="label-section">5 Detours to Avoid</div>
+      <div class="section-underline section-underline-red"></div>
+    </div>
+    <p style="font-family:'Inter',sans-serif; font-size:14px; color:var(--text-sub); margin-top:6px;">
+      Avoid these beginner traps that will derail your progress.
+    </p>
+  </div>
+
+  <div style="flex:1; display:flex; flex-direction:column; gap:12px; justify-content:center; padding-bottom:72px; margin-top:16px;">
+    
+    <div class="tk-card" style="border-left:3px solid var(--red);">
+      <div class="tk-hex" style="background:linear-gradient(135deg,var(--red),#C0392B);">01</div>
+      <div class="tk-body">
+        <div class="tk-title">Starting directly with Deep Learning (LLMs)</div>
+        <div class="tk-desc">Skipping traditional ML guarantees you won't understand model evaluation, overfitting, or feature engineering. Build foundations first.</div>
+      </div>
+    </div>
+
+    <div class="tk-card" style="border-left:3px solid var(--gold);">
+      <div class="tk-hex" style="background:linear-gradient(135deg,var(--gold),#FF8C42);">02</div>
+      <div class="tk-body">
+        <div class="tk-title">Memorizing Math Proofs</div>
+        <div class="tk-desc">You don't need a PhD in math to build models. Understand the intuition behind the math, but let the code do the actual calculations.</div>
+      </div>
+    </div>
+
+    <div class="tk-card" style="border-left:3px solid var(--purple);">
+      <div class="tk-hex" style="background:linear-gradient(135deg,var(--purple),#7C3AED);">03</div>
+      <div class="tk-body">
+        <div class="tk-title">Framework Hopping</div>
+        <div class="tk-desc">"Should I learn TensorFlow or PyTorch?" Just pick PyTorch and stick with it. Switching frameworks wastes time you could spend learning concepts.</div>
+      </div>
+    </div>
+
+    <div class="tk-card" style="border-left:3px solid var(--blue);">
+      <div class="tk-hex" style="background:linear-gradient(135deg,var(--blue),var(--purple));">04</div>
+      <div class="tk-body">
+        <div class="tk-title">Ignoring Data Cleaning</div>
+        <div class="tk-desc">80% of ML is data prep. If you only train models on perfect Kaggle datasets, you will fail in the real world where data is messy.</div>
+      </div>
+    </div>
+
+    <div class="tk-card" style="border-left:3px solid var(--green);">
+      <div class="tk-hex" style="background:linear-gradient(135deg,var(--green),#00A86B);">05</div>
+      <div class="tk-body">
+        <div class="tk-title">Tutorial Hell</div>
+        <div class="tk-desc">Watching 100 hours of video without writing code is useless. Build a tiny, messy, imperfect project as soon as possible to solidify knowledge.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter">Day 03 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 6 — CTA / CLOSE
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-6" style="justify-content:space-between;">
+  <div class="bg-circle bg-circle-1-mirror"></div>
+  <div class="bg-circle bg-circle-2-mirror"></div>
+  <div class="bg-diagonal-lines"></div>
+  <div style="position:absolute; top:60px; left:50%; transform:translateX(-50%); font-family:'Syne',sans-serif; font-size:200px; font-weight:800; color:rgba(255,255,255,0.03); line-height:1; pointer-events:none; z-index:0; white-space:nowrap;">03</div>
+
+  <div class="zone-top" style="position:relative; z-index:1;">
+    <div class="section-header">
+      <div class="label-section">What's Next</div>
+      <div class="section-underline section-underline-green"></div>
+    </div>
+  </div>
+
+  <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px; text-align:center; position:relative; z-index:1;">
+
+    <span style="display:inline-flex; align-items:center; gap:8px; background:var(--green-dim); border:1px solid rgba(0,214,143,0.3); border-radius:20px; padding:8px 20px; font-family:'Inter',sans-serif; font-size:13px; font-weight:600; color:var(--green);">
+      ✓ Day 03 Complete
+    </span>
+
+    <div>
+      <div style="font-family:'Inter',sans-serif; font-size:15px; color:var(--text-muted); margin-bottom:14px;">Tomorrow on Day 04:</div>
+      <div style="background:var(--surface); border:1px solid var(--border-blue); border-radius:14px; padding:22px 40px; max-width:680px;">
+        <div style="font-family:'Syne',sans-serif; font-size:30px; font-weight:700; color:var(--text); line-height:1.2; margin-bottom:10px;">The Three Main Types of ML</div>
+        <div style="font-family:'Inter',sans-serif; font-size:16px; color:var(--text-sub); line-height:1.6;">Supervised vs. Unsupervised vs. Reinforcement — visual breakdown</div>
+      </div>
+    </div>
+
+    <div style="width:100%; height:1px; background:var(--border);"></div>
+
+    <div>
+      <div style="font-family:'Inter',sans-serif; font-size:17px; color:var(--text-sub); margin-bottom:14px;">Follow for the full 60-day ML series</div>
+      <div style="font-family:'Syne',sans-serif; font-size:52px; font-weight:800; background:linear-gradient(135deg,var(--blue),var(--purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1.05;">Vinod Bavage</div>
+      <div style="font-family:'Inter',sans-serif; font-size:14px; color:var(--text-muted); margin-top:8px;">Building in public · Machine Learning · 60 days</div>
+    </div>
+
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:18px; padding-bottom:72px; position:relative; z-index:1;">
+    <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
+      <span class="hashtag-pill">#MachineLearning</span>
+      <span class="hashtag-pill">#VinodBavage</span>
+      <span class="hashtag-pill">#MLIn60Days</span>
+      <span class="hashtag-pill">#MLRoadmap</span>
+    </div>
+    <div class="gradient-bar"></div>
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter">Day 03 / 60</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

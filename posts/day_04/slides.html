@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 04 — Python for ML | Vinod Bavage</title>
+  <meta name="description" content="You don't need to master Python. You need to master this slice. Day 04 of 60-day ML series by Vinod Bavage.">
+  <link rel="stylesheet" href="../../template/styles.css">
+  
+  <!-- Import new attractive fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ── Thematic Overrides for Day 4 (Attractive) ──────────────── */
+    :root {
+      /* Overriding fonts to make it attractive */
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      
+      /* New Vibrant Color Palette */
+      --bg: #030712;
+      --surface: #0b1121;
+      --card: #131c31;
+      
+      --blue: #00E5FF;
+      --blue-dim: rgba(0, 229, 255, 0.12);
+      --gold: #FF3366; /* Using a vibrant pink-red as "gold" replacement for impact */
+      --gold-dim: rgba(255, 51, 102, 0.12);
+      --purple: #B233FF;
+      --purple-dim: rgba(178, 51, 255, 0.12);
+      --green: #00F260;
+      
+      --text: #F8FAFC;
+      --text-sub: #94A3B8;
+      --text-muted: #475569;
+    }
+
+    /* Custom Gradient Background for Day 4 */
+    .slide {
+      background: radial-gradient(circle at 100% 0%, rgba(178, 51, 255, 0.15) 0%, transparent 40%),
+                  radial-gradient(circle at 0% 100%, rgba(0, 229, 255, 0.1) 0%, transparent 40%),
+                  var(--bg);
+    }
+
+    /* ── Slide-level layout helpers ─────────────────────────── */
+    .zone-top    { flex-shrink: 0; position: relative; z-index: 2; }
+    .zone-mid    { flex: 1; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 2; }
+    .zone-bottom { flex-shrink: 0; padding-bottom: 72px; position: relative; z-index: 2; }
+
+    /* ── Cover headline sizes ──────────────────────────────── */
+    .cover-line-sm  { font-family:var(--font-heading); font-size:42px; font-weight:800; color:var(--text-sub); line-height:1.2; text-transform:uppercase; letter-spacing: 2px;}
+    .cover-line-xl  { font-family:var(--font-heading); font-size:86px; font-weight:900; line-height:1.05; letter-spacing: -1px;}
+    
+    /* ── Accent underline strip ────────────────────────────── */
+    .accent-underline {
+      display: block; width: 100px; height: 3px; margin-top: 12px;
+      background: linear-gradient(90deg, var(--blue), var(--purple));
+      border-radius: 2px;
+    }
+
+    /* ── Stat pills row ───────────────────────────────── */
+    .stat-pills { display:flex; gap:16px; justify-content:center; }
+    .stat-pill  {
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1);
+      border-radius:30px; padding:12px 24px;
+      font-family:var(--font-body); font-size:15px; font-weight:600; color:var(--text);
+      backdrop-filter: blur(10px);
+    }
+
+    /* ── Layout Box for Code Slides ───────────────────────── */
+    .layout-split {
+      display: flex; gap: 40px; align-items: stretch; height: 100%; margin-top: 20px;
+    }
+    .layout-left {
+      flex: 1; display: flex; flex-direction: column; justify-content: center;
+    }
+    .layout-right {
+      flex: 1.2; display: flex; flex-direction: column; justify-content: center;
+    }
+
+    .tool-icon-wrapper {
+      width: 72px; height: 72px; border-radius: 20px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 24px; font-size: 32px; font-weight: 800; color: #fff;
+    }
+
+    /* ── Advanced Code Block ──────────────────────────────── */
+    .code-window {
+      background: #0D1117;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+    .code-header {
+      background: #161B22;
+      padding: 12px 20px;
+      display: flex; gap: 8px; align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .mac-dot { width: 12px; height: 12px; border-radius: 50%; }
+    .mac-red { background: #FF5F56; }
+    .mac-yellow { background: #FFBD2E; }
+    .mac-green { background: #27C93F; }
+    
+    .code-body {
+      padding: 24px;
+      font-family: var(--font-mono);
+      font-size: 16px;
+      line-height: 1.6;
+      color: #E6EDF3;
+    }
+
+    /* Syntax Highlighting overrides */
+    .syn-kw { color: #FF7B72; }
+    .syn-fn { color: #D2A8FF; }
+    .syn-str { color: #A5D6FF; }
+    .syn-cmt { color: #8B949E; font-style: italic; }
+    .syn-num { color: #79C0FF; }
+    .syn-op { color: #C9D1D9; }
+
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 1 — COVER
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-1">
+  <div class="bg-diagonal-lines"></div>
+
+  <div class="zone-top">
+    <div class="label-section">Python Foundation</div>
+    <span class="accent-underline"></span>
+  </div>
+
+  <div class="zone-mid" style="gap:24px;">
+    <div style="display:flex; justify-content:center;">
+      <span class="badge-day" style="background:var(--blue-dim); color:var(--blue); border-color:var(--blue); font-family:var(--font-heading); font-size: 14px;">Day 04 of 60</span>
+    </div>
+    
+    <div style="text-align:center;">
+      <div class="cover-line-sm">You don't need to master Python.</div>
+      <div class="cover-line-xl" style="color:var(--text); margin-top:12px;">You need to master</div>
+      <div class="cover-line-xl text-gradient">THIS SLICE.</div>
+    </div>
+    
+    <p style="font-family:var(--font-body); font-size:20px; color:var(--text-sub); text-align:center; max-width:700px; margin:0 auto; line-height:1.6;">
+      Forget building web apps and games. In Data Science & ML, we only care about the <strong style="color:var(--text);">Data Stack</strong>. 
+    </p>
+    
+    <div class="stat-pills" style="margin-top:10px;">
+      <span class="stat-pill">📊 4 Core Libraries</span>
+      <span class="stat-pill">💻 1 Snippet Each</span>
+      <span class="stat-pill">⚡ Lean Stack</span>
+    </div>
+  </div>
+
+  <div class="zone-bottom" style="display:flex; justify-content:center;">
+    <div style="display:flex; gap:16px;">
+      <div style="padding:16px 24px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:12px; border-bottom:3px solid var(--blue);">NumPy</div>
+      <div style="padding:16px 24px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:12px; border-bottom:3px solid var(--purple);">Pandas</div>
+      <div style="padding:16px 24px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:12px; border-bottom:3px solid var(--gold);">Matplotlib</div>
+      <div style="padding:16px 24px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:12px; border-bottom:3px solid var(--green);">Scikit-Learn</div>
+    </div>
+  </div>
+
+  <!-- BRANDING STRIP -->
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon" style="background: linear-gradient(135deg, var(--blue), var(--purple));">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--blue); border-color:var(--border-blue); background:var(--blue-dim);">Day 04 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 2 — NUMPY
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-2">
+  <div class="bg-diagonal-lines"></div>
+  
+  <div class="zone-top">
+    <div class="section-header">
+      <div class="label-section">Library 01</div>
+      <div class="section-underline section-underline-blue"></div>
+    </div>
+  </div>
+
+  <div class="zone-mid">
+    <div class="layout-split">
+      <div class="layout-left">
+        <div class="tool-icon-wrapper" style="background: linear-gradient(135deg, #013243, var(--blue)); box-shadow: 0 10px 30px var(--blue-dim);">
+          Nu
+        </div>
+        <div class="heading-md" style="margin-bottom:16px;">NumPy (Numerical Python)</div>
+        <p class="body-text" style="font-size:18px;">
+          The absolute foundation of all ML math. Python lists are slow. NumPy arrays are written in C and are blazingly fast.
+        </p>
+        <ul style="margin-top:24px; padding-left:20px; color:var(--text-sub); font-size:16px; line-height:1.8; font-family:var(--font-body);">
+          <li>Fast vector and matrix operations</li>
+          <li>Mathematical functions (sin, cos, exp)</li>
+          <li>Random number generation</li>
+        </ul>
+      </div>
+      
+      <div class="layout-right">
+        <div class="code-window">
+          <div class="code-header">
+            <div class="mac-dot mac-red"></div>
+            <div class="mac-dot mac-yellow"></div>
+            <div class="mac-dot mac-green"></div>
+            <div style="margin-left:auto; font-family:var(--font-mono); font-size:12px; color:rgba(255,255,255,0.3);">numpy_demo.py</div>
+          </div>
+          <div class="code-body">
+            <span class="syn-kw">import</span> numpy <span class="syn-kw">as</span> np<br><br>
+            <span class="syn-cmt"># 1. Create a 2D matrix (Features)</span><br>
+            X <span class="syn-op">=</span> np.array([[<span class="syn-num">1</span>, <span class="syn-num">2</span>], [<span class="syn-num">3</span>, <span class="syn-num">4</span>]])<br><br>
+            <span class="syn-cmt"># 2. Initialize random weights</span><br>
+            W <span class="syn-op">=</span> np.random.randn(<span class="syn-num">2</span>, <span class="syn-num">2</span>)<br><br>
+            <span class="syn-cmt"># 3. Fast matrix multiplication (Dot Product)</span><br>
+            output <span class="syn-op">=</span> np.dot(X, W)<br><br>
+            <span class="syn-fn">print</span>(output.shape) <span class="syn-cmt"># (2, 2)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--blue); border-color:var(--border-blue); background:var(--blue-dim);">Day 04 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 3 — PANDAS
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-3">
+  <div class="bg-diagonal-lines"></div>
+
+  <div class="zone-top">
+    <div class="section-header">
+      <div class="label-section">Library 02</div>
+      <div class="section-underline" style="background:var(--purple);"></div>
+    </div>
+  </div>
+
+  <div class="zone-mid">
+    <div class="layout-split">
+      <div class="layout-left">
+        <div class="tool-icon-wrapper" style="background: linear-gradient(135deg, #130638, var(--purple)); box-shadow: 0 10px 30px var(--purple-dim);">
+          Pd
+        </div>
+        <div class="heading-md" style="margin-bottom:16px;">Pandas</div>
+        <p class="body-text" style="font-size:18px;">
+          Built on top of NumPy, Pandas is the Excel of Python. It turns messy CSVs and SQL tables into clean DataFrames.
+        </p>
+        <ul style="margin-top:24px; padding-left:20px; color:var(--text-sub); font-size:16px; line-height:1.8; font-family:var(--font-body);">
+          <li>Handling missing values</li>
+          <li>Filtering, Grouping, and Merging data</li>
+          <li>Exploratory Data Analysis (EDA)</li>
+        </ul>
+      </div>
+      
+      <div class="layout-right">
+        <div class="code-window">
+          <div class="code-header">
+            <div class="mac-dot mac-red"></div>
+            <div class="mac-dot mac-yellow"></div>
+            <div class="mac-dot mac-green"></div>
+            <div style="margin-left:auto; font-family:var(--font-mono); font-size:12px; color:rgba(255,255,255,0.3);">pandas_demo.py</div>
+          </div>
+          <div class="code-body">
+            <span class="syn-kw">import</span> pandas <span class="syn-kw">as</span> pd<br><br>
+            <span class="syn-cmt"># 1. Load data from CSV</span><br>
+            df <span class="syn-op">=</span> pd.read_csv(<span class="syn-str">'sales_data.csv'</span>)<br><br>
+            <span class="syn-cmt"># 2. Clean and aggregate in one chain</span><br>
+            clean_data <span class="syn-op">=</span> (<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;df.dropna(subset<span class="syn-op">=</span>[<span class="syn-str">'price'</span>])<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.groupby(<span class="syn-str">'category'</span>)[<span class="syn-str">'revenue'</span>]<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.mean()<br>
+            )<br><br>
+            <span class="syn-fn">print</span>(clean_data.head())
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--blue); border-color:var(--border-blue); background:var(--blue-dim);">Day 04 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 4 — MATPLOTLIB
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-4">
+  <div class="bg-diagonal-lines"></div>
+  
+  <div class="zone-top">
+    <div class="section-header">
+      <div class="label-section">Library 03</div>
+      <div class="section-underline" style="background:var(--gold);"></div>
+    </div>
+  </div>
+
+  <div class="zone-mid">
+    <div class="layout-split">
+      <div class="layout-left">
+        <div class="tool-icon-wrapper" style="background: linear-gradient(135deg, #4A001F, var(--gold)); box-shadow: 0 10px 30px var(--gold-dim);">
+          Plt
+        </div>
+        <div class="heading-md" style="margin-bottom:16px;">Matplotlib</div>
+        <p class="body-text" style="font-size:18px;">
+          Numbers are hard to digest. Plots uncover trends. Matplotlib (and Seaborn) lets you visualize data distributions easily.
+        </p>
+        <ul style="margin-top:24px; padding-left:20px; color:var(--text-sub); font-size:16px; line-height:1.8; font-family:var(--font-body);">
+          <li>Scatter plots to find correlations</li>
+          <li>Histograms to see data spread</li>
+          <li>Visualizing model performance</li>
+        </ul>
+      </div>
+      
+      <div class="layout-right">
+        <div class="code-window">
+          <div class="code-header">
+            <div class="mac-dot mac-red"></div>
+            <div class="mac-dot mac-yellow"></div>
+            <div class="mac-dot mac-green"></div>
+            <div style="margin-left:auto; font-family:var(--font-mono); font-size:12px; color:rgba(255,255,255,0.3);">plot_demo.py</div>
+          </div>
+          <div class="code-body">
+            <span class="syn-kw">import</span> matplotlib.pyplot <span class="syn-kw">as</span> plt<br><br>
+            <span class="syn-cmt"># 1. Create a scatter plot</span><br>
+            plt.scatter(df[<span class="syn-str">'age'</span>], df[<span class="syn-str">'income'</span>], c<span class="syn-op">=</span><span class="syn-str">'cyan'</span>)<br><br>
+            <span class="syn-cmt"># 2. Add labels for readability</span><br>
+            plt.title(<span class="syn-str">"Age vs Income Correlation"</span>)<br>
+            plt.xlabel(<span class="syn-str">"Age (Years)"</span>)<br>
+            plt.ylabel(<span class="syn-str">"Income ($)"</span>)<br><br>
+            <span class="syn-cmt"># 3. Render the plot</span><br>
+            plt.show()
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--blue); border-color:var(--border-blue); background:var(--blue-dim);">Day 04 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 5 — SCIKIT-LEARN
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-5">
+  <div class="bg-diagonal-lines"></div>
+  
+  <div class="zone-top">
+    <div class="section-header">
+      <div class="label-section">Library 04</div>
+      <div class="section-underline" style="background:var(--green);"></div>
+    </div>
+  </div>
+
+  <div class="zone-mid">
+    <div class="layout-split">
+      <div class="layout-left">
+        <div class="tool-icon-wrapper" style="background: linear-gradient(135deg, #003318, var(--green)); box-shadow: 0 10px 30px var(--green-dim);">
+          Sk
+        </div>
+        <div class="heading-md" style="margin-bottom:16px;">Scikit-learn</div>
+        <p class="body-text" style="font-size:18px;">
+          The Swiss Army Knife of Machine Learning. It provides consistent APIs for hundreds of algorithms out of the box.
+        </p>
+        <ul style="margin-top:24px; padding-left:20px; color:var(--text-sub); font-size:16px; line-height:1.8; font-family:var(--font-body);">
+          <li>Regression, Classification, Clustering</li>
+          <li>Data preprocessing & scaling</li>
+          <li>Model evaluation metrics</li>
+        </ul>
+      </div>
+      
+      <div class="layout-right">
+        <div class="code-window">
+          <div class="code-header">
+            <div class="mac-dot mac-red"></div>
+            <div class="mac-dot mac-yellow"></div>
+            <div class="mac-dot mac-green"></div>
+            <div style="margin-left:auto; font-family:var(--font-mono); font-size:12px; color:rgba(255,255,255,0.3);">model_demo.py</div>
+          </div>
+          <div class="code-body">
+            <span class="syn-kw">from</span> sklearn.ensemble <span class="syn-kw">import</span> RandomForestClassifier<br><br>
+            <span class="syn-cmt"># 1. Initialize the model</span><br>
+            model <span class="syn-op">=</span> RandomForestClassifier(n_estimators<span class="syn-op">=</span><span class="syn-num">100</span>)<br><br>
+            <span class="syn-cmt"># 2. Train the model on data</span><br>
+            model.fit(X_train, y_train)<br><br>
+            <span class="syn-cmt"># 3. Predict on unseen data</span><br>
+            predictions <span class="syn-op">=</span> model.predict(X_test)<br><br>
+            <span class="syn-cmt"># Machine Learning in 4 lines!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--blue); border-color:var(--border-blue); background:var(--blue-dim);">Day 04 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 6 — CTA / CLOSE
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-6" style="justify-content:space-between;">
+  <div class="bg-diagonal-lines"></div>
+  <div style="position:absolute; top:60px; left:50%; transform:translateX(-50%); font-family:var(--font-heading); font-size:200px; font-weight:900; color:rgba(255,255,255,0.02); line-height:1; pointer-events:none; z-index:0; white-space:nowrap;">04</div>
+
+  <div class="zone-top" style="position:relative; z-index:1;">
+    <div class="section-header">
+      <div class="label-section">What's Next</div>
+      <div class="section-underline section-underline-green"></div>
+    </div>
+  </div>
+
+  <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px; text-align:center; position:relative; z-index:1;">
+
+    <span style="display:inline-flex; align-items:center; gap:8px; background:var(--green-dim); border:1px solid rgba(0,242,96,0.3); border-radius:20px; padding:10px 24px; font-family:var(--font-body); font-size:14px; font-weight:600; color:var(--green);">
+      ✓ Day 04 Complete
+    </span>
+
+    <div>
+      <div style="font-family:var(--font-body); font-size:16px; color:var(--text-muted); margin-bottom:14px;">Tomorrow on Day 05:</div>
+      <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:28px 48px; max-width:720px; backdrop-filter: blur(10px);">
+        <div style="font-family:var(--font-heading); font-size:32px; font-weight:800; color:var(--text); line-height:1.2; margin-bottom:12px;">Linear Regression Intuition</div>
+        <div style="font-family:var(--font-body); font-size:17px; color:var(--text-sub); line-height:1.6;">How the simplest ML model works under the hood — without complex math.</div>
+      </div>
+    </div>
+
+    <div style="width:100%; height:1px; background:rgba(255,255,255,0.05); margin: 10px 0;"></div>
+
+    <div>
+      <div style="font-family:var(--font-body); font-size:17px; color:var(--text-sub); margin-bottom:14px;">Follow for the full 60-day ML series</div>
+      <div style="font-family:var(--font-heading); font-size:56px; font-weight:900; background:linear-gradient(135deg,var(--blue),var(--purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1.1; letter-spacing: -1px;">Vinod Bavage</div>
+      <div style="font-family:var(--font-body); font-size:15px; color:var(--text-muted); margin-top:8px;">Building in public · Machine Learning · 60 days</div>
+    </div>
+
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:20px; padding-bottom:72px; position:relative; z-index:1;">
+    <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
+      <span class="hashtag-pill">#Python</span>
+      <span class="hashtag-pill">#MachineLearning</span>
+      <span class="hashtag-pill">#DataScience</span>
+      <span class="hashtag-pill">#VinodBavage</span>
+    </div>
+    <div class="gradient-bar"></div>
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--blue); border-color:var(--border-blue); background:var(--blue-dim);">Day 04 / 60</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

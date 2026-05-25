@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 06 — Types of ML | Vinod Bavage</title>
+  <meta name="description" content="3 buckets. Everything ML falls into one of them. Day 06 of 60-day ML series by Vinod Bavage.">
+  <link rel="stylesheet" href="../../template/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ── Thematic Overrides for Day 6 (Attractive) ──────────────── */
+    :root {
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      
+      --bg: #030712;
+      --surface: #0b1121;
+      --card: #131c31;
+      
+      --blue: #00E5FF;
+      --blue-dim: rgba(0, 229, 255, 0.12);
+      --gold: #FFB830;
+      --gold-dim: rgba(255, 184, 48, 0.12);
+      --purple: #B233FF;
+      --purple-dim: rgba(178, 51, 255, 0.12);
+      --green: #00F260;
+      --green-dim: rgba(0, 242, 96, 0.12);
+      
+      --text: #F8FAFC;
+      --text-sub: #94A3B8;
+      --text-muted: #475569;
+    }
+
+    .slide {
+      background: radial-gradient(circle at 100% 0%, rgba(178, 51, 255, 0.1) 0%, transparent 40%),
+                  radial-gradient(circle at 0% 100%, rgba(0, 229, 255, 0.1) 0%, transparent 40%),
+                  var(--bg);
+    }
+
+    /* ── Slide-level layout helpers ─────────────────────────── */
+    .zone-top    { flex-shrink: 0; position: relative; z-index: 2; }
+    .zone-mid    { flex: 1; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 2; }
+    .zone-bottom { flex-shrink: 0; padding-bottom: 72px; position: relative; z-index: 2; }
+
+    .cover-line-sm  { font-family:var(--font-heading); font-size:40px; font-weight:800; color:var(--text-sub); line-height:1.2; text-transform:uppercase; letter-spacing: 2px;}
+    .cover-line-xl  { font-family:var(--font-heading); font-size:86px; font-weight:900; line-height:1.1; letter-spacing: -1px;}
+    
+    .accent-underline {
+      display: block; width: 100px; height: 3px; margin-top: 12px;
+      background: linear-gradient(90deg, var(--blue), var(--purple), var(--green));
+      border-radius: 2px;
+    }
+
+    .stat-pills { display:flex; gap:16px; justify-content:center; }
+    .stat-pill  {
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1);
+      border-radius:30px; padding:12px 24px;
+      font-family:var(--font-body); font-size:15px; font-weight:600; color:var(--text);
+      backdrop-filter: blur(10px);
+    }
+
+    /* Cards */
+    .type-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 32px 40px;
+      backdrop-filter: blur(10px);
+    }
+
+    .bucket-diagram {
+      display: flex; gap: 24px; justify-content: center; margin-top: 20px;
+    }
+
+    .bucket {
+      flex: 1;
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 32px 24px;
+      display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px;
+    }
+
+    .bucket-icon {
+      width: 64px; height: 64px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; font-weight: 800; color: #fff;
+    }
+    
+    .example-box {
+      display: flex; align-items: center; gap: 16px;
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 16px;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 1 — COVER
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-1">
+  <div class="bg-diagonal-lines"></div>
+
+  <div class="zone-top">
+    <div class="label-section">Machine Learning Ecosystem</div>
+    <span class="accent-underline"></span>
+  </div>
+
+  <div class="zone-mid" style="gap:24px;">
+    <div style="display:flex; justify-content:center;">
+      <span class="badge-day" style="background:var(--blue-dim); color:var(--blue); border-color:var(--blue); font-family:var(--font-heading); font-size: 14px;">Day 06 of 60</span>
+    </div>
+    
+    <div style="text-align:center;">
+      <div class="cover-line-sm">3 Buckets.</div>
+      <div class="cover-line-xl text-gradient" style="background: linear-gradient(135deg, var(--blue), var(--purple), var(--green)); -webkit-background-clip:text; margin-top:12px;">Everything ML falls</div>
+      <div class="cover-line-xl" style="color:var(--text);">into one of them.</div>
+    </div>
+    
+    <p style="font-family:var(--font-body); font-size:20px; color:var(--text-sub); text-align:center; max-width:700px; margin:0 auto; line-height:1.6;">
+      Before learning specific algorithms, you need to know which bucket you're operating in.
+    </p>
+    
+    <div class="stat-pills" style="margin-top:10px;">
+      <span class="stat-pill">📦 3 Core Types</span>
+      <span class="stat-pill">⏱ 4 Min Read</span>
+      <span class="stat-pill">📝 Interview Cheat Sheet</span>
+    </div>
+  </div>
+
+  <!-- BRANDING STRIP -->
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon" style="background: linear-gradient(135deg, var(--blue), var(--purple));">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--blue); border-color:var(--blue); background:var(--blue-dim);">Day 06 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 2 — VISUAL BUCKETS
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-2">
+  <div class="bg-diagonal-lines"></div>
+  
+  <div class="zone-top">
+    <div class="section-header">
+      <div class="label-section">The 10,000-Foot View</div>
+      <div class="section-underline" style="background: linear-gradient(90deg, var(--blue), var(--purple), var(--green));"></div>
+    </div>
+  </div>
+
+  <div class="zone-mid" style="gap:24px;">
+    <div class="heading-md" style="text-align: center;">The Visual Bucket Diagram</div>
+    
+    <div class="bucket-diagram">
+      <!-- Supervised -->
+      <div class="bucket" style="border-top: 4px solid var(--blue);">
+        <div class="bucket-icon" style="background: var(--blue-dim); color: var(--blue);">1</div>
+        <div style="font-family:var(--font-heading); font-size:24px; font-weight:800; color:var(--text);">Supervised</div>
+        <div style="font-size:16px; color:var(--text-sub); line-height:1.5;">
+          <strong style="color:var(--blue);">Labeled Data</strong> <br>⟶ Predict Answer
+        </div>
+        <div style="font-size:13px; color:var(--text-muted); background:rgba(255,255,255,0.05); padding:8px 16px; border-radius:10px;">"Teacher guides you"</div>
+      </div>
+
+      <!-- Unsupervised -->
+      <div class="bucket" style="border-top: 4px solid var(--purple);">
+        <div class="bucket-icon" style="background: var(--purple-dim); color: var(--purple);">2</div>
+        <div style="font-family:var(--font-heading); font-size:24px; font-weight:800; color:var(--text);">Unsupervised</div>
+        <div style="font-size:16px; color:var(--text-sub); line-height:1.5;">
+          <strong style="color:var(--purple);">Unlabeled Data</strong> <br>⟶ Find Patterns
+        </div>
+        <div style="font-size:13px; color:var(--text-muted); background:rgba(255,255,255,0.05); padding:8px 16px; border-radius:10px;">"You figure it out"</div>
+      </div>
+
+      <!-- Reinforcement -->
+      <div class="bucket" style="border-top: 4px solid var(--green);">
+        <div class="bucket-icon" style="background: var(--green-dim); color: var(--green);">3</div>
+        <div style="font-family:var(--font-heading); font-size:24px; font-weight:800; color:var(--text);">Reinforcement</div>
+        <div style="font-size:16px; color:var(--text-sub); line-height:1.5;">
+          <strong style="color:var(--green);">Actions</strong> <br>⟶ Get Reward/Penalty
+        </div>
+        <div style="font-size:13px; color:var(--text-muted); background:rgba(255,255,255,0.05); padding:8px 16px; border-radius:10px;">"Trial & error"</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--blue); border-color:var(--blue); background:var(--blue-dim);">Day 06 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 3 — SUPERVISED
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-3">
+  <div class="bg-diagonal-lines"></div>
+
+  <div class="zone-top">
+    <div class="section-header">
+      <div class="label-section">Bucket 01</div>
+      <div class="section-underline" style="background:var(--blue);"></div>
+    </div>
+  </div>
+
+  <div class="zone-mid" style="gap:24px;">
+    <div class="heading-md" style="color:var(--blue);">Supervised Learning</div>
+    
+    <div class="type-card" style="border-left: 4px solid var(--blue);">
+      <p class="body-text" style="font-size:19px;">
+        You have the answers (labels). You teach the model to map inputs to those answers so it can predict future unseen inputs. This is <strong style="color:#fff;">90% of enterprise ML</strong>.
+      </p>
+      
+      <div style="margin-top: 32px; font-family:var(--font-heading); font-size:20px; font-weight:600; color:var(--text);">Classic Examples:</div>
+      
+      <div class="example-box">
+        <div style="font-size:24px;">🏠</div>
+        <div>
+          <div style="font-weight:600; color:var(--text);">House Price Prediction (Regression)</div>
+          <div style="font-size:15px; color:var(--text-sub);">Input: Bedrooms, Square footage ⟶ Output: Price ($)</div>
+        </div>
+      </div>
+      
+      <div class="example-box">
+        <div style="font-size:24px;">📧</div>
+        <div>
+          <div style="font-weight:600; color:var(--text);">Spam Detection (Classification)</div>
+          <div style="font-size:15px; color:var(--text-sub);">Input: Email text ⟶ Output: "Spam" or "Not Spam"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--blue); border-color:var(--blue); background:var(--blue-dim);">Day 06 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 4 — UNSUPERVISED
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-4">
+  <div class="bg-diagonal-lines"></div>
+  
+  <div class="zone-top">
+    <div class="section-header">
+      <div class="label-section">Bucket 02</div>
+      <div class="section-underline" style="background:var(--purple);"></div>
+    </div>
+  </div>
+
+  <div class="zone-mid" style="gap:24px;">
+    <div class="heading-md" style="color:var(--purple);">Unsupervised Learning</div>
+    
+    <div class="type-card" style="border-left: 4px solid var(--purple);">
+      <p class="body-text" style="font-size:19px;">
+        You just have data. No answers. The model's job is to find hidden structure, groups, or anomalies inside the data entirely on its own.
+      </p>
+      
+      <div style="margin-top: 32px; font-family:var(--font-heading); font-size:20px; font-weight:600; color:var(--text);">Classic Examples:</div>
+      
+      <div class="example-box">
+        <div style="font-size:24px;">👥</div>
+        <div>
+          <div style="font-weight:600; color:var(--text);">Customer Segmentation (Clustering)</div>
+          <div style="font-size:15px; color:var(--text-sub);">Input: Purchase history ⟶ Output: Grouped into distinct buyer personas.</div>
+        </div>
+      </div>
+      
+      <div class="example-box">
+        <div style="font-size:24px;">💳</div>
+        <div>
+          <div style="font-weight:600; color:var(--text);">Fraud Detection (Anomaly Detection)</div>
+          <div style="font-size:15px; color:var(--text-sub);">Input: Millions of transactions ⟶ Output: Flag the 0.01% that look weird.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--blue); border-color:var(--blue); background:var(--blue-dim);">Day 06 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 5 — REINFORCEMENT
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-5">
+  <div class="bg-diagonal-lines"></div>
+  
+  <div class="zone-top">
+    <div class="section-header">
+      <div class="label-section">Bucket 03</div>
+      <div class="section-underline" style="background:var(--green);"></div>
+    </div>
+  </div>
+
+  <div class="zone-mid" style="gap:24px;">
+    <div class="heading-md" style="color:var(--green);">Reinforcement Learning (RL)</div>
+    
+    <div class="type-card" style="border-left: 4px solid var(--green);">
+      <p class="body-text" style="font-size:19px;">
+        Learning by trial and error. An "agent" takes actions in an environment to maximize a "reward". It learns the best strategy over time.
+      </p>
+      
+      <div style="margin-top: 32px; font-family:var(--font-heading); font-size:20px; font-weight:600; color:var(--text);">Classic Examples:</div>
+      
+      <div class="example-box">
+        <div style="font-size:24px;">🎮</div>
+        <div>
+          <div style="font-weight:600; color:var(--text);">Game Playing Agents</div>
+          <div style="font-size:15px; color:var(--text-sub);">AlphaGo beating the world champion at the game of Go.</div>
+        </div>
+      </div>
+      
+      <div class="example-box">
+        <div style="font-size:24px;">🚗</div>
+        <div>
+          <div style="font-weight:600; color:var(--text);">Self-Driving Cars & Robotics</div>
+          <div style="font-size:15px; color:var(--text-sub);">Reward: Staying on the road. Penalty: Crashing.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--blue); border-color:var(--blue); background:var(--blue-dim);">Day 06 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 6 — CHEAT SHEET
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-6">
+  <div class="bg-diagonal-lines"></div>
+  
+  <div class="zone-top">
+    <div class="section-header">
+      <div class="label-section">Save For Later</div>
+      <div class="section-underline" style="background:#FFB830;"></div>
+    </div>
+  </div>
+
+  <div class="zone-mid" style="gap:24px;">
+    <div class="heading-md">Interview Cheat Sheet</div>
+    
+    <div style="background:var(--surface); border:1px solid rgba(255,255,255,0.1); border-radius:16px; overflow:hidden; margin-top:16px;">
+      
+      <!-- Table Header -->
+      <div style="display:grid; grid-template-columns: 1fr 1fr 1fr 1.5fr; background:rgba(255,255,255,0.05); padding:16px 20px; font-family:var(--font-heading); font-size:16px; font-weight:800; color:var(--text-muted); letter-spacing:1px; text-transform:uppercase; border-bottom:1px solid rgba(255,255,255,0.1);">
+        <div>Type</div>
+        <div>Data Used</div>
+        <div>The Goal</div>
+        <div>Simple Analogy</div>
+      </div>
+
+      <!-- Row 1 -->
+      <div style="display:grid; grid-template-columns: 1fr 1fr 1fr 1.5fr; padding:20px; border-bottom:1px solid rgba(255,255,255,0.05); align-items:center; gap: 10px;">
+        <div style="font-weight:600; color:var(--blue);">Supervised</div>
+        <div style="color:var(--text); font-size:15px;">Labeled</div>
+        <div style="color:var(--text); font-size:15px;">Predict outcomes</div>
+        <div style="color:var(--text-sub); font-size:14px; font-style:italic;">"Is this a picture of a cat or a dog?"</div>
+      </div>
+
+      <!-- Row 2 -->
+      <div style="display:grid; grid-template-columns: 1fr 1fr 1fr 1.5fr; padding:20px; border-bottom:1px solid rgba(255,255,255,0.05); align-items:center; gap: 10px;">
+        <div style="font-weight:600; color:var(--purple);">Unsupervised</div>
+        <div style="color:var(--text); font-size:15px;">Unlabeled</div>
+        <div style="color:var(--text); font-size:15px;">Find hidden patterns</div>
+        <div style="color:var(--text-sub); font-size:14px; font-style:italic;">"Group these 1000 users by behavior."</div>
+      </div>
+
+      <!-- Row 3 -->
+      <div style="display:grid; grid-template-columns: 1fr 1fr 1fr 1.5fr; padding:20px; align-items:center; gap: 10px;">
+        <div style="font-weight:600; color:var(--green);">Reinforcement</div>
+        <div style="color:var(--text); font-size:15px;">No Data (Actions)</div>
+        <div style="color:var(--text); font-size:15px;">Maximize reward</div>
+        <div style="color:var(--text-sub); font-size:14px; font-style:italic;">"Figure out how to beat this video game."</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--blue); border-color:var(--blue); background:var(--blue-dim);">Day 06 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 7 — CTA / CLOSE
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-7" style="justify-content:space-between;">
+  <div class="bg-diagonal-lines"></div>
+  <div style="position:absolute; top:60px; left:50%; transform:translateX(-50%); font-family:var(--font-heading); font-size:200px; font-weight:900; color:rgba(255,255,255,0.02); line-height:1; pointer-events:none; z-index:0; white-space:nowrap;">06</div>
+
+  <div class="zone-top" style="position:relative; z-index:1;">
+    <div class="section-header">
+      <div class="label-section">What's Next</div>
+      <div class="section-underline section-underline-green"></div>
+    </div>
+  </div>
+
+  <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px; text-align:center; position:relative; z-index:1;">
+
+    <span style="display:inline-flex; align-items:center; gap:8px; background:var(--green-dim); border:1px solid rgba(0,242,96,0.3); border-radius:20px; padding:10px 24px; font-family:var(--font-body); font-size:14px; font-weight:600; color:var(--green);">
+      ✓ Day 06 Complete
+    </span>
+
+    <div>
+      <div style="font-family:var(--font-body); font-size:16px; color:var(--text-muted); margin-bottom:14px;">Tomorrow on Day 07:</div>
+      <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:28px 48px; max-width:720px; backdrop-filter: blur(10px);">
+        <div style="font-family:var(--font-heading); font-size:32px; font-weight:800; color:var(--text); line-height:1.2; margin-bottom:12px;">The Complete ML Workflow</div>
+        <div style="font-family:var(--font-body); font-size:17px; color:var(--text-sub); line-height:1.6;">From raw data collection to deploying a model to production.</div>
+      </div>
+    </div>
+
+    <div style="width:100%; height:1px; background:rgba(255,255,255,0.05); margin: 10px 0;"></div>
+
+    <div>
+      <div style="font-family:var(--font-body); font-size:17px; color:var(--text-sub); margin-bottom:14px;">Follow for the full 60-day ML series</div>
+      <div style="font-family:var(--font-heading); font-size:56px; font-weight:900; background:linear-gradient(135deg,var(--blue),var(--purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1.1; letter-spacing: -1px;">Vinod Bavage</div>
+      <div style="font-family:var(--font-body); font-size:15px; color:var(--text-muted); margin-top:8px;">Building in public · Machine Learning · 60 days</div>
+    </div>
+
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:20px; padding-bottom:72px; position:relative; z-index:1;">
+    <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
+      <span class="hashtag-pill">#MachineLearning</span>
+      <span class="hashtag-pill">#SupervisedLearning</span>
+      <span class="hashtag-pill">#AIConcepts</span>
+      <span class="hashtag-pill">#VinodBavage</span>
+    </div>
+    <div class="gradient-bar"></div>
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--blue); border-color:var(--blue); background:var(--blue-dim);">Day 06 / 60</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 05 — Math for ML | Vinod Bavage</title>
+  <meta name="description" content="Yes, you need math. No, not all of it. Here's the real list. Day 05 of 60-day ML series by Vinod Bavage.">
+  <link rel="stylesheet" href="../../template/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ── Thematic Overrides for Day 5 (Attractive) ──────────────── */
+    :root {
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      
+      --bg: #030712;
+      --surface: #0b1121;
+      --card: #131c31;
+      
+      --blue: #00E5FF;
+      --blue-dim: rgba(0, 229, 255, 0.12);
+      --gold: #FFB830; /* Returning to gold for math accents */
+      --gold-dim: rgba(255, 184, 48, 0.12);
+      --purple: #B233FF;
+      --purple-dim: rgba(178, 51, 255, 0.12);
+      --green: #00F260;
+      --green-dim: rgba(0, 242, 96, 0.12);
+      
+      --text: #F8FAFC;
+      --text-sub: #94A3B8;
+      --text-muted: #475569;
+    }
+
+    .slide {
+      background: radial-gradient(circle at 100% 0%, rgba(255, 184, 48, 0.1) 0%, transparent 40%),
+                  radial-gradient(circle at 0% 100%, rgba(0, 229, 255, 0.1) 0%, transparent 40%),
+                  var(--bg);
+    }
+
+    /* ── Slide-level layout helpers ─────────────────────────── */
+    .zone-top    { flex-shrink: 0; position: relative; z-index: 2; }
+    .zone-mid    { flex: 1; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 2; }
+    .zone-bottom { flex-shrink: 0; padding-bottom: 72px; position: relative; z-index: 2; }
+
+    .cover-line-sm  { font-family:var(--font-heading); font-size:38px; font-weight:800; color:var(--text-sub); line-height:1.2; text-transform:uppercase; letter-spacing: 2px;}
+    .cover-line-xl  { font-family:var(--font-heading); font-size:80px; font-weight:900; line-height:1.1; letter-spacing: -1px;}
+    
+    .accent-underline {
+      display: block; width: 100px; height: 3px; margin-top: 12px;
+      background: linear-gradient(90deg, var(--gold), var(--blue));
+      border-radius: 2px;
+    }
+
+    .stat-pills { display:flex; gap:16px; justify-content:center; }
+    .stat-pill  {
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1);
+      border-radius:30px; padding:12px 24px;
+      font-family:var(--font-body); font-size:15px; font-weight:600; color:var(--text);
+      backdrop-filter: blur(10px);
+    }
+
+    /* Concept Card */
+    .concept-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 24px 32px;
+      backdrop-filter: blur(10px);
+    }
+    
+    .concept-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }
+    
+    .concept-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 16px;
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 600;
+    }
+    
+    .concept-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; color: #fff;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 1 — COVER
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-1">
+  <div class="bg-diagonal-lines"></div>
+
+  <div class="zone-top">
+    <div class="label-section">ML Math Essentials</div>
+    <span class="accent-underline"></span>
+  </div>
+
+  <div class="zone-mid" style="gap:24px;">
+    <div style="display:flex; justify-content:center;">
+      <span class="badge-day" style="background:var(--gold-dim); color:var(--gold); border-color:var(--gold); font-family:var(--font-heading); font-size: 14px;">Day 05 of 60</span>
+    </div>
+    
+    <div style="text-align:center;">
+      <div class="cover-line-sm">Yes, you need math.</div>
+      <div class="cover-line-xl" style="color:var(--text); margin-top:12px;">No, not all of it.</div>
+      <div class="cover-line-xl text-gradient" style="background: linear-gradient(135deg, var(--gold), var(--blue)); -webkit-background-clip:text;">Here's the real list.</div>
+    </div>
+    
+    <p style="font-family:var(--font-body); font-size:20px; color:var(--text-sub); text-align:center; max-width:700px; margin:0 auto; line-height:1.6;">
+      Stop wasting months on college math textbooks. You only need the intuition behind these specific concepts to build models.
+    </p>
+    
+    <div class="stat-pills" style="margin-top:10px;">
+      <span class="stat-pill">🧮 3 Core Branches</span>
+      <span class="stat-pill">✅ What to learn</span>
+      <span class="stat-pill">❌ What to skip</span>
+    </div>
+  </div>
+
+  <div class="zone-bottom" style="display:flex; justify-content:center;">
+    <div style="display:flex; gap:16px;">
+      <div style="padding:16px 24px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:12px; border-bottom:3px solid var(--blue);">Linear Algebra</div>
+      <div style="padding:16px 24px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:12px; border-bottom:3px solid var(--purple);">Statistics</div>
+      <div style="padding:16px 24px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:12px; border-bottom:3px solid var(--green);">Calculus</div>
+    </div>
+  </div>
+
+  <!-- BRANDING STRIP -->
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon" style="background: linear-gradient(135deg, var(--gold), var(--blue));">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--gold); border-color:var(--gold); background:var(--gold-dim);">Day 05 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 2 — LINEAR ALGEBRA
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-2">
+  <div class="bg-diagonal-lines"></div>
+  
+  <div class="zone-top">
+    <div class="section-header">
+      <div class="label-section">Branch 01</div>
+      <div class="section-underline section-underline-blue"></div>
+    </div>
+  </div>
+
+  <div class="zone-mid" style="gap:24px;">
+    <div class="heading-md">Linear Algebra in 1 Slide</div>
+    <p class="body-text" style="font-size:18px;">
+      Everything in Machine Learning is a matrix. Datasets are matrices. Images are matrices. Neural Networks are just a series of matrix multiplications. You don't need to multiply by hand, but you <strong style="color:var(--blue);">must</strong> know how dimensions work.
+    </p>
+
+    <div class="concept-card" style="border-top: 4px solid var(--blue);">
+      <div style="font-family:var(--font-heading); font-size:22px; margin-bottom: 8px;">What you actually need:</div>
+      <div class="concept-grid">
+        <div class="concept-item">
+          <div class="concept-icon" style="background: var(--blue-dim); color: var(--blue);">1</div>
+          Vectors & Matrices
+        </div>
+        <div class="concept-item">
+          <div class="concept-icon" style="background: var(--blue-dim); color: var(--blue);">2</div>
+          Dot Products
+        </div>
+        <div class="concept-item">
+          <div class="concept-icon" style="background: var(--blue-dim); color: var(--blue);">3</div>
+          Matrix Inversion
+        </div>
+        <div class="concept-item">
+          <div class="concept-icon" style="background: var(--blue-dim); color: var(--blue);">4</div>
+          Eigenvectors / Values
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--gold); border-color:var(--gold); background:var(--gold-dim);">Day 05 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 3 — STATISTICS
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-3">
+  <div class="bg-diagonal-lines"></div>
+
+  <div class="zone-top">
+    <div class="section-header">
+      <div class="label-section">Branch 02</div>
+      <div class="section-underline" style="background:var(--purple);"></div>
+    </div>
+  </div>
+
+  <div class="zone-mid" style="gap:24px;">
+    <div class="heading-md">Statistics You Must Know</div>
+    <p class="body-text" style="font-size:18px;">
+      If you can't understand the data, you can't build a model. Statistics is the language of data. It tells you if your data is biased, how it's distributed, and whether your model's success was just luck.
+    </p>
+
+    <div class="concept-card" style="border-top: 4px solid var(--purple);">
+      <div style="font-family:var(--font-heading); font-size:22px; margin-bottom: 8px;">What you actually need:</div>
+      <div class="concept-grid">
+        <div class="concept-item">
+          <div class="concept-icon" style="background: var(--purple-dim); color: var(--purple);">1</div>
+          Mean & Variance
+        </div>
+        <div class="concept-item">
+          <div class="concept-icon" style="background: var(--purple-dim); color: var(--purple);">2</div>
+          Distributions (Normal)
+        </div>
+        <div class="concept-item">
+          <div class="concept-icon" style="background: var(--purple-dim); color: var(--purple);">3</div>
+          Bayes' Theorem
+        </div>
+        <div class="concept-item">
+          <div class="concept-icon" style="background: var(--purple-dim); color: var(--purple);">4</div>
+          Hypothesis Testing
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--gold); border-color:var(--gold); background:var(--gold-dim);">Day 05 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 4 — CALCULUS
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-4">
+  <div class="bg-diagonal-lines"></div>
+  
+  <div class="zone-top">
+    <div class="section-header">
+      <div class="label-section">Branch 03</div>
+      <div class="section-underline" style="background:var(--green);"></div>
+    </div>
+  </div>
+
+  <div class="zone-mid" style="gap:24px;">
+    <div class="heading-md">Calculus — Only This Bit</div>
+    <p class="body-text" style="font-size:18px;">
+      Models learn by minimizing error. Calculus helps us find the "bottom of the curve" (the lowest error). You don't need to solve complex integrals. You just need to understand <strong style="color:var(--green);">slopes</strong>.
+    </p>
+
+    <div class="concept-card" style="border-top: 4px solid var(--green);">
+      <div style="font-family:var(--font-heading); font-size:22px; margin-bottom: 8px;">What you actually need:</div>
+      <div class="concept-grid">
+        <div class="concept-item">
+          <div class="concept-icon" style="background: var(--green-dim); color: var(--green);">1</div>
+          Derivatives (Slopes)
+        </div>
+        <div class="concept-item">
+          <div class="concept-icon" style="background: var(--green-dim); color: var(--green);">2</div>
+          Partial Derivatives
+        </div>
+        <div class="concept-item">
+          <div class="concept-icon" style="background: var(--green-dim); color: var(--green);">3</div>
+          The Chain Rule
+        </div>
+        <div class="concept-item" style="border-color: var(--green); background: rgba(0, 242, 96, 0.05);">
+          <div class="concept-icon" style="background: var(--green); color: #000;">!</div>
+          Gradient Descent
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--gold); border-color:var(--gold); background:var(--gold-dim);">Day 05 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 5 — RESOURCES
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-5">
+  <div class="bg-diagonal-lines"></div>
+  
+  <div class="zone-top">
+    <div class="section-header">
+      <div class="label-section">Where to learn</div>
+      <div class="section-underline" style="background:var(--gold);"></div>
+    </div>
+  </div>
+
+  <div class="zone-mid" style="gap:24px;">
+    <div class="heading-md">Targeted Visual Resources</div>
+    <p class="body-text" style="font-size:18px;">
+      Don't read dense, dry textbooks. Visual intuition is 100x more valuable for applied Machine Learning.
+    </p>
+
+    <div style="display:flex; flex-direction:column; gap:16px; margin-top: 10px;">
+      <div style="display:flex; align-items:center; gap:20px; background:var(--card); padding:20px; border-radius:12px; border-left:4px solid var(--blue);">
+        <div style="font-family:var(--font-heading); font-size:24px; font-weight:800; color:var(--blue); width:160px;">Linear Algebra</div>
+        <div>
+          <div style="font-size:18px; font-weight:600; color:var(--text);">3Blue1Brown</div>
+          <div style="color:var(--text-sub); font-size:14px; margin-top:4px;">YouTube: "Essence of Linear Algebra" Playlist</div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:20px; background:var(--card); padding:20px; border-radius:12px; border-left:4px solid var(--purple);">
+        <div style="font-family:var(--font-heading); font-size:24px; font-weight:800; color:var(--purple); width:160px;">Statistics</div>
+        <div>
+          <div style="font-size:18px; font-weight:600; color:var(--text);">StatQuest with Josh Starmer</div>
+          <div style="color:var(--text-sub); font-size:14px; margin-top:4px;">YouTube: "Machine Learning Fundamentals"</div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:20px; background:var(--card); padding:20px; border-radius:12px; border-left:4px solid var(--green);">
+        <div style="font-family:var(--font-heading); font-size:24px; font-weight:800; color:var(--green); width:160px;">Calculus</div>
+        <div>
+          <div style="font-size:18px; font-weight:600; color:var(--text);">3Blue1Brown</div>
+          <div style="color:var(--text-sub); font-size:14px; margin-top:4px;">YouTube: "Essence of Calculus" Playlist</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--gold); border-color:var(--gold); background:var(--gold-dim);">Day 05 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 6 — MYTH VS TRUTH
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-6">
+  <div class="bg-diagonal-lines"></div>
+  
+  <div class="zone-top">
+    <div class="section-header">
+      <div class="label-section">Mindset Shift</div>
+      <div class="section-underline" style="background:#FF5C6A;"></div>
+    </div>
+  </div>
+
+  <div class="zone-mid" style="align-items:center; text-align:center; gap:32px;">
+    
+    <div style="background:rgba(255,92,106,0.05); border:1px solid rgba(255,92,106,0.2); border-radius:16px; padding:32px 40px; width:100%; position:relative;">
+      <div style="position:absolute; top:-16px; left:50%; transform:translateX(-50%); background:#FF5C6A; color:#fff; font-weight:800; font-family:var(--font-heading); padding:4px 16px; border-radius:20px; font-size:14px;">THE MYTH</div>
+      <div style="font-size:24px; font-weight:600; color:var(--text); line-height:1.4;">
+        "You need a PhD in Mathematics to do Machine Learning."
+      </div>
+    </div>
+
+    <div style="height: 40px; width: 2px; background: linear-gradient(to bottom, #FF5C6A, #00F260);"></div>
+
+    <div style="background:rgba(0,242,96,0.05); border:1px solid rgba(0,242,96,0.2); border-radius:16px; padding:32px 40px; width:100%; position:relative;">
+      <div style="position:absolute; top:-16px; left:50%; transform:translateX(-50%); background:#00F260; color:#000; font-weight:800; font-family:var(--font-heading); padding:4px 16px; border-radius:20px; font-size:14px;">THE TRUTH</div>
+      <div style="font-size:20px; font-weight:400; color:var(--text-sub); line-height:1.5;">
+        You need high school math intuition, and you let <span style="color:#fff; font-weight:600;">NumPy</span> and <span style="color:#fff; font-weight:600;">PyTorch</span> do the actual calculations for you.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--gold); border-color:var(--gold); background:var(--gold-dim);">Day 05 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 7 — CTA / CLOSE
+     ═══════════════════════════════════════════════════════════ -->
+<div class="slide" id="slide-7" style="justify-content:space-between;">
+  <div class="bg-diagonal-lines"></div>
+  <div style="position:absolute; top:60px; left:50%; transform:translateX(-50%); font-family:var(--font-heading); font-size:200px; font-weight:900; color:rgba(255,255,255,0.02); line-height:1; pointer-events:none; z-index:0; white-space:nowrap;">05</div>
+
+  <div class="zone-top" style="position:relative; z-index:1;">
+    <div class="section-header">
+      <div class="label-section">What's Next</div>
+      <div class="section-underline section-underline-green"></div>
+    </div>
+  </div>
+
+  <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px; text-align:center; position:relative; z-index:1;">
+
+    <span style="display:inline-flex; align-items:center; gap:8px; background:var(--green-dim); border:1px solid rgba(0,242,96,0.3); border-radius:20px; padding:10px 24px; font-family:var(--font-body); font-size:14px; font-weight:600; color:var(--green);">
+      ✓ Day 05 Complete
+    </span>
+
+    <div>
+      <div style="font-family:var(--font-body); font-size:16px; color:var(--text-muted); margin-bottom:14px;">Tomorrow on Day 06:</div>
+      <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:28px 48px; max-width:720px; backdrop-filter: blur(10px);">
+        <div style="font-family:var(--font-heading); font-size:32px; font-weight:800; color:var(--text); line-height:1.2; margin-bottom:12px;">Data Preprocessing Checklist</div>
+        <div style="font-family:var(--font-body); font-size:17px; color:var(--text-sub); line-height:1.6;">How to clean and prepare a dataset before feeding it to a model.</div>
+      </div>
+    </div>
+
+    <div style="width:100%; height:1px; background:rgba(255,255,255,0.05); margin: 10px 0;"></div>
+
+    <div>
+      <div style="font-family:var(--font-body); font-size:17px; color:var(--text-sub); margin-bottom:14px;">Follow for the full 60-day ML series</div>
+      <div style="font-family:var(--font-heading); font-size:56px; font-weight:900; background:linear-gradient(135deg,var(--gold),var(--blue)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1.1; letter-spacing: -1px;">Vinod Bavage</div>
+      <div style="font-family:var(--font-body); font-size:15px; color:var(--text-muted); margin-top:8px;">Building in public · Machine Learning · 60 days</div>
+    </div>
+
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; gap:20px; padding-bottom:72px; position:relative; z-index:1;">
+    <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
+      <span class="hashtag-pill">#MachineLearning</span>
+      <span class="hashtag-pill">#MathForML</span>
+      <span class="hashtag-pill">#DataScience</span>
+      <span class="hashtag-pill">#VinodBavage</span>
+    </div>
+    <div class="gradient-bar"></div>
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--gold); border-color:var(--gold); background:var(--gold-dim);">Day 05 / 60</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

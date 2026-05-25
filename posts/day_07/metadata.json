@@ -1,0 +1,10 @@
+{
+  "day": 7,
+  "date_label": "Day 07",
+  "topic": "Data Preparation in Machine Learning",
+  "headline": "80% of ML is data prep. Here's what that really looks like.",
+  "category": "Data Engineering",
+  "caption": "Most ML breathing room comes before the model is built.\n\nData prep is the unsung part of every successful project: collecting, cleaning, validating, and transforming data so models can actually learn.\n\nIn today’s carousel, I walk through the data lifecycle, show what 'clean data' really means, compare a before/after example, highlight the skills recruiters want, and share what to showcase in your portfolio.\n\nWhat’s one data prep task you spend the most time on? Drop it below 👇",
+  "hashtags": ["#MachineLearning", "#DataPrep", "#DataEngineering", "#VinodBavage", "#AIJobs"],
+  "next_day_teaser": "The real difference between raw data and model-ready data"
+}

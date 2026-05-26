@@ -1,0 +1,10 @@
+{
+  "day": 8,
+  "date_label": "Day 08",
+  "topic": "Building a Production-Ready ML Pipeline (Titanic Walkthrough)",
+  "headline": "Stop watching tutorials. Build THIS today.",
+  "category": "ML Projects & Portfolio",
+  "caption": "Stop watching tutorials. Build THIS today. 👇\n\nWatching tutorials gives you the illusion of progress.\n\nCopying cell after cell in a messy Jupyter Notebook might feel like you're learning, but hiring managers see right through it. They don't want notebook-copying students; they want engineers who can write robust, reproducible, and production-ready code.\n\nToday, we are breaking out of tutorial hell. We are taking the classic Titanic dataset and building a clean, end-to-end ML pipeline in Python using software engineering Best Practices.\n\nIn today's carousel, I break down:\n1️⃣ The Problem: The trap of 'Notebook spaghetti'\n2️⃣ The Data & Preprocessing Pipeline\n3️⃣ The Model: Training a Random Forest cleanly\n4️⃣ Evaluation & Serialization for production\n5️⃣ What to submit to your GitHub portfolio to stand out\n\nSwipe left to see the code and build your first real portfolio pipeline! 💻👇\n\nWhat's your go-to framework for structuring ML pipelines? Tell me below! 👇",
+  "hashtags": ["#MachineLearning", "#DataScience", "#MLPipeline", "#VinodBavage", "#AIJobs", "#GitHubPortfolio"],
+  "next_day_teaser": "Preventing Data Leakage: The silent killer in ML pipelines"
+}

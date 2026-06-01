@@ -23,7 +23,7 @@
   },
   "typography": {
     "heading": {
-      "family": "Syne",
+      "family": "Outfit",
       "weights": [400, 700, 800],
       "usage": "All headings, brand name, day numbers"
     },
@@ -55,7 +55,7 @@
     "#DataScience",
     "#AIEducation"
   ],
-  "google_fonts_url": "https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap",
+  "google_fonts_url": "https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap",
   "slide_structure": {
     "slide_1": "Hook/Cover",
     "slide_2": "Why It Matters",

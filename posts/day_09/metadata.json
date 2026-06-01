@@ -1,0 +1,10 @@
+{
+  "day": 9,
+  "date_label": "Day 09",
+  "topic": "Underfitting vs Overfitting & The Bias-Variance Tradeoff",
+  "headline": "This is the #1 concept that trips up 80% of ML beginners.",
+  "category": "Machine Learning Fundamentals",
+  "caption": "Most ML beginners can recite the textbook definition of bias and variance. But ask them how to diagnose them in a real training log, or how to fix them in their pipelines, and they struggle.\n\nThe Bias-Variance Tradeoff is the single most important concept to master if you want to build models that actually generalize to unseen data.\n\nIn today's carousel, I break down:\n1️⃣ Underfitting (High Bias) vs Overfitting (High Variance) with concrete visual analogies.\n2️⃣ The Sweet Spot of model complexity.\n3️⃣ 3 professional ways to detect model errors.\n4️⃣ A concrete engineer's playbook of fixes to tune your models.\n\nWhat is your go-to technique to fight overfitting in your models? Drop it in the comments below! 👇",
+  "hashtags": ["#MachineLearning", "#BiasVarianceTradeoff", "#AIInterviews", "#DataScience", "#VinodBavage", "#ModelTuning"],
+  "next_day_teaser": "Preventing Data Leakage: The silent killer in your pipeline"
+}

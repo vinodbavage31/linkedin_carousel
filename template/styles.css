@@ -5,7 +5,7 @@
    ============================================================ */
 
 /* ---- Google Fonts Import ---- */
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap');
 
 /* ============================================================
    DESIGN TOKENS — CSS Custom Properties
@@ -42,13 +42,29 @@
   --glow: 0 0 40px rgba(59,158,255,0.15);
 
   /* Fonts */
-  --font-heading: 'Syne', sans-serif;
+  --font-heading: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
   /* Slide dimensions */
   --slide-size: 1080px;
-  --slide-padding: 52px;
+  --slide-width: 1080px;
+  --slide-height: 1350px; /* 4:5 Portrait default */
+  --slide-padding: 64px;
+
+  /* Premium Vibrant Neon Colors */
+  --cyan-neon: #00E5FF;
+  --cyan-dim: rgba(0,229,255,0.12);
+  --green-neon: #39FF14;
+  --green-dim: rgba(57,255,20,0.10);
+  --purple-neon: #D500F9;
+  --purple-dim: rgba(213,0,249,0.10);
+  --gold-neon: #FFD600;
+  --gold-dim: rgba(255,214,0,0.12);
+  
+  --bg-premium: #090712; /* Premium Obsidian Cosmic Purple-Black */
+  --card-premium: rgba(28, 20, 52, 0.45); /* Elegant matching dark glassmorphism */
+  --border-premium: rgba(255, 255, 255, 0.08);
 }
 
 /* ============================================================
@@ -79,11 +95,106 @@ html, body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: var(--slide-padding);
+  padding: 52px;
   margin: 24px auto;
   box-shadow: 0 40px 100px rgba(0,0,0,0.8), var(--glow);
   border: 1px solid var(--border);
 }
+
+/* Portrait Modifier (1080x1350px) */
+.slide.portrait {
+  width: var(--slide-width);
+  height: var(--slide-height);
+  padding: var(--slide-padding);
+  background: var(--bg-premium);
+}
+
+/* Glassmorphism & Neon Glow UI Elements */
+.card-glass {
+  background: var(--card-premium);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-premium);
+  border-radius: 18px;
+  padding: 26px 28px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4), inset 0 1px 1px rgba(255,255,255,0.08);
+}
+
+.card-glow-cyan {
+  border: 1px solid rgba(0,229,255,0.25) !important;
+  box-shadow: 0 0 25px rgba(0,229,255,0.1), inset 0 1px 1px rgba(255,255,255,0.08) !important;
+}
+
+.card-glow-purple {
+  border: 1px solid rgba(213,0,249,0.25) !important;
+  box-shadow: 0 0 25px rgba(213,0,249,0.1), inset 0 1px 1px rgba(255,255,255,0.08) !important;
+}
+
+.card-glow-green {
+  border: 1px solid rgba(57,255,20,0.25) !important;
+  box-shadow: 0 0 25px rgba(57,255,20,0.1), inset 0 1px 1px rgba(255,255,255,0.08) !important;
+}
+
+.card-glow-gold {
+  border: 1px solid rgba(255,214,0,0.25) !important;
+  box-shadow: 0 0 25px rgba(255,214,0,0.1), inset 0 1px 1px rgba(255,255,255,0.08) !important;
+}
+
+.text-gradient-cyan {
+  background: linear-gradient(135deg, var(--cyan-neon), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-purple {
+  background: linear-gradient(135deg, var(--purple-neon), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-green {
+  background: linear-gradient(135deg, var(--green-neon), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Portrait-specific Font Scaling for Readability */
+.portrait .body-text {
+  font-size: 20px;
+  line-height: 1.75;
+}
+
+.portrait .body-small {
+  font-size: 16.5px;
+  line-height: 1.7;
+}
+
+.portrait .heading-xl {
+  font-size: 70px;
+  line-height: 1.05;
+}
+
+.portrait .heading-lg {
+  font-size: 58px;
+  line-height: 1.1;
+}
+
+.portrait .heading-md {
+  font-size: 40px;
+  line-height: 1.2;
+}
+
+.portrait .heading-sm {
+  font-size: 26px;
+}
+
+.portrait .mono-text {
+  font-size: 16px;
+}
+
 
 /* ============================================================
    BACKGROUND DECORATIONS
@@ -747,12 +858,11 @@ html, body {
    ============================================================ */
 @media print {
   @page {
-    size: 1080px 1080px;
     margin: 0;
   }
   
   html, body {
-    background: #080C14 !important;
+    background: #060913 !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
     margin: 0 !important;
@@ -760,6 +870,8 @@ html, body {
   }
 
   .slide {
+    width: 100% !important;
+    height: 100% !important;
     margin: 0 !important;
     page-break-after: always !important;
     page-break-inside: avoid !important;

@@ -55,9 +55,6 @@ const pad = (num) => String(num).padStart(2, '0');
   const browser = await puppeteer.launch({ headless: 'new' });
   const page    = await browser.newPage();
 
-  // Set viewport to 1080×1080
-  await page.setViewport({ width: 1080, height: 1080, deviceScaleFactor: 1 });
-
   for (const target of targets) {
     console.log(`\n--------------------------------------------`);
     console.log(`📦  Processing ${target.label}...`);
@@ -71,11 +68,23 @@ const pad = (num) => String(num).padStart(2, '0');
     // Let Google Fonts render
     await new Promise(r => setTimeout(r, 2000));
 
+    // Dynamically evaluate slide dimensions to support both square (1080x1080) and portrait (1080x1350)
+    const dimensions = await page.evaluate(() => {
+      const slide = document.querySelector('.slide');
+      return {
+        width: slide ? slide.offsetWidth : 1080,
+        height: slide ? slide.offsetHeight : 1080
+      };
+    });
+
+    console.log(`📐  Detected dimensions: ${dimensions.width}px × ${dimensions.height}px`);
+    await page.setViewport({ width: dimensions.width, height: dimensions.height, deviceScaleFactor: 1 });
+
     console.log(`📄  Generating PDF: ${target.pdfPath}`);
     await page.pdf({
       path: target.pdfPath,
-      width: '1080px',
-      height: '1080px',
+      width: `${dimensions.width}px`,
+      height: `${dimensions.height}px`,
       printBackground: true,
       margin: { top: 0, right: 0, bottom: 0, left: 0 }
     });

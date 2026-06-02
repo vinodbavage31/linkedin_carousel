@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 10 — 10 Things I Wish I Knew Before Starting ML | Vinod Bavage</title>
+  <meta name="description" content="10 raw, honest ML lessons for beginners and engineers. Day 10 of 60-day ML series by Vinod Bavage.">
+  <link rel="stylesheet" href="../../template/styles.css">
+  <style>
+    /* ── Day 10 Shared Overrides ── */
+    .badge-day {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 10px 20px;
+      border: 1px solid rgba(255,214,0,0.35);
+      border-radius: 999px;
+      font-family: var(--font-body); font-size: 13px; font-weight: 600;
+      color: var(--gold-neon); background: rgba(255,214,0,0.07);
+    }
+
+    .cover-line-sm {
+      font-family: var(--font-heading); font-size: 34px; font-weight: 600;
+      color: var(--text-sub); letter-spacing: 0.02em;
+    }
+    .cover-line-xl {
+      font-family: var(--font-heading); font-size: 68px; font-weight: 800;
+      line-height: 1.0; letter-spacing: -0.025em; color: var(--text);
+    }
+    .accent-bar {
+      width: 110px; height: 5px; border-radius: 999px;
+      background: linear-gradient(90deg, var(--gold-neon), var(--cyan-neon));
+    }
+
+    /* Layout zones */
+    .zone-top { display: flex; flex-direction: column; gap: 14px; margin-bottom: 18px; }
+    .zone-mid  { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 24px; margin-bottom: 20px; }
+    .zone-bottom { margin-bottom: 82px; }
+
+    /* Lesson card (used on slides 2-11) */
+    .lesson-card {
+      background: rgba(28, 20, 52, 0.55);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 22px;
+      padding: 32px 36px;
+      display: flex; flex-direction: column; gap: 20px;
+    }
+    .lesson-icon-row {
+      display: flex; align-items: center; gap: 18px;
+    }
+    .lesson-icon {
+      font-size: 52px; line-height: 1;
+      filter: drop-shadow(0 0 12px rgba(255,255,255,0.25));
+    }
+    .lesson-number {
+      font-family: var(--font-heading); font-size: 80px; font-weight: 800;
+      line-height: 1; letter-spacing: -0.04em;
+      color: rgba(255,255,255,0.06);
+      user-select: none;
+    }
+    .lesson-title {
+      font-family: var(--font-heading); font-size: 38px; font-weight: 800;
+      line-height: 1.1; letter-spacing: -0.02em; color: var(--text);
+    }
+    .lesson-story {
+      font-family: var(--font-body); font-size: 19px; font-weight: 400;
+      color: var(--text-sub); line-height: 1.75;
+    }
+    .lesson-callout {
+      display: flex; gap: 12px; align-items: flex-start;
+      background: rgba(255,255,255,0.03);
+      border-left: 3px solid var(--gold-neon);
+      border-radius: 0 12px 12px 0;
+      padding: 14px 18px;
+      font-family: var(--font-mono); font-size: 14px;
+      color: var(--gold-neon); line-height: 1.6;
+    }
+    .lesson-callout-icon { font-size: 18px; margin-top: 1px; flex-shrink: 0; }
+
+    /* Slide number pill */
+    .slide-num-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 999px; padding: 7px 16px;
+      font-family: var(--font-mono); font-size: 12px; color: var(--text-muted);
+    }
+
+    /* Audience pill row */
+    .audience-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .audience-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      border-radius: 999px; padding: 9px 16px;
+      font-family: var(--font-body); font-size: 13px; font-weight: 600;
+    }
+    .pill-beginner { background: rgba(0,229,255,0.09); border: 1px solid rgba(0,229,255,0.25); color: var(--cyan-neon); }
+    .pill-engineer { background: rgba(255,214,0,0.09); border: 1px solid rgba(255,214,0,0.25); color: var(--gold-neon); }
+
+    /* Cover stat pills */
+    .stat-pills { display: flex; flex-wrap: wrap; gap: 12px; }
+    .stat-pill {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 999px; padding: 11px 20px;
+      font-family: var(--font-body); font-size: 14px; color: var(--text);
+    }
+
+    /* CTA slide */
+    .cta-question {
+      font-family: var(--font-heading); font-size: 50px; font-weight: 800;
+      line-height: 1.15; letter-spacing: -0.02em; color: var(--text);
+    }
+
+    /* Brand strip */
+    .brand-strip { height: 72px; padding: 0 64px; }
+    .brand-strip-name-main { font-size: 20px; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 1 — Cover / Hook
+     ═══════════════════════════════════════════════ -->
+<div class="slide portrait" id="slide-1">
+  <div class="bg-circle bg-circle-1" style="background:radial-gradient(circle,rgba(255,214,0,0.07) 0%,transparent 70%);"></div>
+  <div class="bg-circle bg-circle-2" style="background:radial-gradient(circle,rgba(0,229,255,0.05) 0%,transparent 70%);"></div>
+  <div class="bg-diagonal-lines"></div>
+
+  <div class="zone-top">
+    <div class="label-section">ML Career & Mindset — Day 10 of 60</div>
+    <div class="accent-bar"></div>
+  </div>
+
+  <div class="zone-mid" style="gap:28px;">
+    <div><span class="badge-day">Day 10 of 60</span></div>
+    <div>
+      <div class="cover-line-sm">Real lessons. Not textbook advice.</div>
+      <div class="cover-line-xl" style="background:linear-gradient(135deg,#FFD600,#00E5FF); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">10 Things<br>I Wish I Knew</div>
+      <div class="cover-line-xl" style="color:var(--text); font-size:48px; margin-top:6px;">before starting ML.</div>
+    </div>
+    <div class="audience-row">
+      <span class="audience-pill pill-beginner">🎓 For Beginners</span>
+      <span class="audience-pill pill-engineer">⚙️ For Engineers</span>
+    </div>
+    <p class="body-text" style="max-width:860px; font-size:19px;">Nobody handed me these lessons. I earned them by building real projects, making real mistakes, and spending months undoing bad habits from tutorials.</p>
+    <div class="stat-pills">
+      <span class="stat-pill">📌 10 lessons</span>
+      <span class="stat-pill">💡 Real stories</span>
+      <span class="stat-pill">🧭 Both audiences</span>
+      <span class="stat-pill">💬 Drop your lesson</span>
+    </div>
+  </div>
+
+  <div class="zone-bottom">
+    <div class="card-glass card-glow-gold" style="padding:18px 24px;">
+      <div class="body-small" style="font-size:15px; color:var(--text-sub);">
+        <strong style="color:var(--gold-neon);">→ Swipe through all 10.</strong> At least one of these will change how you think about ML.
+      </div>
+    </div>
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon" style="background:linear-gradient(135deg,var(--gold-neon),var(--cyan-neon));color:#0a0a0a;">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--gold-neon);background:rgba(255,214,0,0.08);border:1px solid rgba(255,214,0,0.3);">Day 10 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 2 — Lesson 01
+     ═══════════════════════════════════════════════ -->
+<div class="slide portrait" id="slide-2">
+  <div class="bg-diagonal-lines"></div>
+  <div class="bg-circle" style="width:420px;height:420px;top:-160px;right:-160px;background:radial-gradient(circle,rgba(255,214,0,0.07) 0%,transparent 75%);"></div>
+
+  <div class="zone-top">
+    <span class="slide-num-pill">Lesson 01 / 10</span>
+    <div class="accent-bar"></div>
+  </div>
+
+  <div class="zone-mid">
+    <div class="lesson-card card-glow-gold">
+      <div class="lesson-icon-row">
+        <div class="lesson-icon">🗃️</div>
+        <div class="lesson-number">01</div>
+      </div>
+      <div class="lesson-title">Data beats algorithms — every single time.</div>
+      <div class="lesson-story">I spent weeks fine-tuning a neural network. Then I cleaned my dataset properly. Accuracy jumped by 11% — overnight. The model didn't change. The data did.<br><br>Most beginners obsess over which algorithm to use. Engineers obsess over which data to trust. That mindset shift is everything.</div>
+      <div class="lesson-callout">
+        <span class="lesson-callout-icon">💡</span>
+        Before switching models, always audit your data quality first. Bad labels beat bad algorithms every time.
+      </div>
+    </div>
+  </div>
+
+  <div class="zone-bottom">
+    <div class="audience-row">
+      <span class="audience-pill pill-beginner">🎓 Beginner: EDA before modeling</span>
+      <span class="audience-pill pill-engineer">⚙️ Engineer: Invest in pipelines</span>
+    </div>
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon" style="background:linear-gradient(135deg,var(--gold-neon),var(--cyan-neon));color:#0a0a0a;">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--gold-neon);background:rgba(255,214,0,0.08);border:1px solid rgba(255,214,0,0.3);">Day 10 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 3 — Lesson 02
+     ═══════════════════════════════════════════════ -->
+<div class="slide portrait" id="slide-3">
+  <div class="bg-diagonal-lines"></div>
+  <div class="bg-circle" style="width:380px;height:380px;bottom:-140px;left:-140px;background:radial-gradient(circle,rgba(0,229,255,0.07) 0%,transparent 75%);"></div>
+
+  <div class="zone-top">
+    <span class="slide-num-pill">Lesson 02 / 10</span>
+    <div class="accent-bar"></div>
+  </div>
+
+  <div class="zone-mid">
+    <div class="lesson-card card-glow-cyan">
+      <div class="lesson-icon-row">
+        <div class="lesson-icon">📏</div>
+        <div class="lesson-number">02</div>
+      </div>
+      <div class="lesson-title">Simple models are not stupid models.</div>
+      <div class="lesson-story">My first instinct was always: "More complexity = better performance." Wrong. A logistic regression model I built for a small classification task outperformed a deep neural net I spent 4 days tuning.<br><br>Complexity has a cost: training time, interpretability, compute, and maintenance. A model that works simply is a model that survives production.</div>
+      <div class="lesson-callout">
+        <span class="lesson-callout-icon">💡</span>
+        Start with the simplest model possible. Beat it before upgrading. This is called the "baseline-first" mindset.
+      </div>
+    </div>
+  </div>
+
+  <div class="zone-bottom">
+    <div class="audience-row">
+      <span class="audience-pill pill-beginner">🎓 Beginner: Linear models first</span>
+      <span class="audience-pill pill-engineer">⚙️ Engineer: Defend your baseline</span>
+    </div>
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon" style="background:linear-gradient(135deg,var(--gold-neon),var(--cyan-neon));color:#0a0a0a;">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--gold-neon);background:rgba(255,214,0,0.08);border:1px solid rgba(255,214,0,0.3);">Day 10 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 4 — Lesson 03
+     ═══════════════════════════════════════════════ -->
+<div class="slide portrait" id="slide-4">
+  <div class="bg-diagonal-lines"></div>
+  <div class="bg-circle" style="width:400px;height:400px;top:-150px;left:-150px;background:radial-gradient(circle,rgba(57,255,20,0.06) 0%,transparent 75%);"></div>
+
+  <div class="zone-top">
+    <span class="slide-num-pill">Lesson 03 / 10</span>
+    <div class="accent-bar"></div>
+  </div>
+
+  <div class="zone-mid">
+    <div class="lesson-card card-glow-green">
+      <div class="lesson-icon-row">
+        <div class="lesson-icon">🧹</div>
+        <div class="lesson-number">03</div>
+      </div>
+      <div class="lesson-title">80% of your time is data prep. Accept it.</div>
+      <div class="lesson-story">I used to think ML was 80% modeling, 20% everything else. Nope. It's almost the exact reverse. Missing values, inconsistent labels, duplicates, distribution drift — you will fix all of this before writing a single `.fit()` call.<br><br>The engineers who embrace data prep are the ones who build models that actually work.</div>
+      <div class="lesson-callout">
+        <span class="lesson-callout-icon">💡</span>
+        Treat data cleaning as a first-class engineering task, not a chore. Pandas + Great Expectations = power combo.
+      </div>
+    </div>
+  </div>
+
+  <div class="zone-bottom">
+    <div class="audience-row">
+      <span class="audience-pill pill-beginner">🎓 Beginner: Learn Pandas deeply</span>
+      <span class="audience-pill pill-engineer">⚙️ Engineer: Validate pipelines</span>
+    </div>
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon" style="background:linear-gradient(135deg,var(--gold-neon),var(--cyan-neon));color:#0a0a0a;">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--gold-neon);background:rgba(255,214,0,0.08);border:1px solid rgba(255,214,0,0.3);">Day 10 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 5 — Lesson 04
+     ═══════════════════════════════════════════════ -->
+<div class="slide portrait" id="slide-5">
+  <div class="bg-diagonal-lines"></div>
+  <div class="bg-circle" style="width:400px;height:400px;bottom:-150px;right:-150px;background:radial-gradient(circle,rgba(255,92,106,0.07) 0%,transparent 75%);"></div>
+
+  <div class="zone-top">
+    <span class="slide-num-pill">Lesson 04 / 10</span>
+    <div class="accent-bar"></div>
+  </div>
+
+  <div class="zone-mid">
+    <div class="lesson-card" style="border:1px solid rgba(255,92,106,0.25);box-shadow:0 0 25px rgba(255,92,106,0.08);">
+      <div class="lesson-icon-row">
+        <div class="lesson-icon">📉</div>
+        <div class="lesson-number">04</div>
+      </div>
+      <div class="lesson-title">Accuracy is a trap. Pick the right metric.</div>
+      <div class="lesson-story">I once built a fraud detection model with 97% accuracy. I was proud. Then I realised the dataset had 97% non-fraud samples — so a model that predicts "not fraud" every time would score the same.<br><br>Accuracy means nothing on imbalanced datasets. Precision, Recall, F1, AUC-ROC — these are your real gauges.</div>
+      <div class="lesson-callout" style="border-color:var(--red);color:var(--red);">
+        <span class="lesson-callout-icon">⚠️</span>
+        Always check class distribution before choosing an evaluation metric. Never trust accuracy alone.
+      </div>
+    </div>
+  </div>
+
+  <div class="zone-bottom">
+    <div class="audience-row">
+      <span class="audience-pill pill-beginner">🎓 Beginner: Learn F1 & ROC-AUC</span>
+      <span class="audience-pill pill-engineer">⚙️ Engineer: Business metric first</span>
+    </div>
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon" style="background:linear-gradient(135deg,var(--gold-neon),var(--cyan-neon));color:#0a0a0a;">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--gold-neon);background:rgba(255,214,0,0.08);border:1px solid rgba(255,214,0,0.3);">Day 10 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 6 — Lesson 05
+     ═══════════════════════════════════════════════ -->
+<div class="slide portrait" id="slide-6">
+  <div class="bg-diagonal-lines"></div>
+  <div class="bg-circle" style="width:420px;height:420px;top:-160px;right:-160px;background:radial-gradient(circle,rgba(213,0,249,0.07) 0%,transparent 75%);"></div>
+
+  <div class="zone-top">
+    <span class="slide-num-pill">Lesson 05 / 10</span>
+    <div class="accent-bar"></div>
+  </div>
+
+  <div class="zone-mid">
+    <div class="lesson-card card-glow-purple">
+      <div class="lesson-icon-row">
+        <div class="lesson-icon">🔁</div>
+        <div class="lesson-number">05</div>
+      </div>
+      <div class="lesson-title">Iteration speed is your superpower.</div>
+      <div class="lesson-story">The best ML practitioners I've seen aren't the ones with the deepest math. They're the ones who can test a hypothesis, evaluate it, and move to the next one — fast.<br><br>Your first model will be wrong. Your tenth will be better. Your fiftieth might be great. Embracing fast cycles of "build → measure → learn" is what separates momentum from stagnation.</div>
+      <div class="lesson-callout">
+        <span class="lesson-callout-icon">💡</span>
+        MLflow + lightweight experiment tracking from Day 1. You will thank yourself in Week 3.
+      </div>
+    </div>
+  </div>
+
+  <div class="zone-bottom">
+    <div class="audience-row">
+      <span class="audience-pill pill-beginner">🎓 Beginner: Ship weekly projects</span>
+      <span class="audience-pill pill-engineer">⚙️ Engineer: Track every run</span>
+    </div>
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon" style="background:linear-gradient(135deg,var(--gold-neon),var(--cyan-neon));color:#0a0a0a;">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--gold-neon);background:rgba(255,214,0,0.08);border:1px solid rgba(255,214,0,0.3);">Day 10 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 7 — Lesson 06
+     ═══════════════════════════════════════════════ -->
+<div class="slide portrait" id="slide-7">
+  <div class="bg-diagonal-lines"></div>
+  <div class="bg-circle" style="width:380px;height:380px;bottom:-140px;left:-140px;background:radial-gradient(circle,rgba(0,229,255,0.06) 0%,transparent 75%);"></div>
+
+  <div class="zone-top">
+    <span class="slide-num-pill">Lesson 06 / 10</span>
+    <div class="accent-bar"></div>
+  </div>
+
+  <div class="zone-mid">
+    <div class="lesson-card card-glow-cyan">
+      <div class="lesson-icon-row">
+        <div class="lesson-icon">🧪</div>
+        <div class="lesson-number">06</div>
+      </div>
+      <div class="lesson-title">A train/test split is not validation enough.</div>
+      <div class="lesson-story">Early on, I would split my data once — 80/20 — and call it validation. Then I started seeing models that scored 89% on my holdout set but 71% on real-world data.<br><br>A single split is susceptible to luck. K-Fold cross-validation gives you a fair, averaged picture of true generalisation. Use it from the beginning.</div>
+      <div class="lesson-callout">
+        <span class="lesson-callout-icon">💡</span>
+        StratifiedKFold for classification. TimeSeriesSplit for time-based data. Never ignore the split strategy.
+      </div>
+    </div>
+  </div>
+
+  <div class="zone-bottom">
+    <div class="audience-row">
+      <span class="audience-pill pill-beginner">🎓 Beginner: Use cross_val_score</span>
+      <span class="audience-pill pill-engineer">⚙️ Engineer: Hold-out test set is sacred</span>
+    </div>
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon" style="background:linear-gradient(135deg,var(--gold-neon),var(--cyan-neon));color:#0a0a0a;">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--gold-neon);background:rgba(255,214,0,0.08);border:1px solid rgba(255,214,0,0.3);">Day 10 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 8 — Lesson 07
+     ═══════════════════════════════════════════════ -->
+<div class="slide portrait" id="slide-8">
+  <div class="bg-diagonal-lines"></div>
+  <div class="bg-circle" style="width:400px;height:400px;top:-150px;right:-150px;background:radial-gradient(circle,rgba(255,184,48,0.07) 0%,transparent 75%);"></div>
+
+  <div class="zone-top">
+    <span class="slide-num-pill">Lesson 07 / 10</span>
+    <div class="accent-bar"></div>
+  </div>
+
+  <div class="zone-mid">
+    <div class="lesson-card card-glow-gold">
+      <div class="lesson-icon-row">
+        <div class="lesson-icon">📦</div>
+        <div class="lesson-number">07</div>
+      </div>
+      <div class="lesson-title">A model in a notebook is not a product.</div>
+      <div class="lesson-story">The hardest lesson I learned: getting 90% accuracy in a Jupyter notebook is the easy part. Deploying that model to serve 1,000 requests per second, monitoring for drift, handling edge cases, and keeping it updated — that's the real job.<br><br>Deployment is a completely different engineering discipline. Start learning it early.</div>
+      <div class="lesson-callout">
+        <span class="lesson-callout-icon">💡</span>
+        Flask/FastAPI → Docker → a cloud endpoint. That is the MVP deployment stack every ML engineer should know.
+      </div>
+    </div>
+  </div>
+
+  <div class="zone-bottom">
+    <div class="audience-row">
+      <span class="audience-pill pill-beginner">🎓 Beginner: Deploy one small API</span>
+      <span class="audience-pill pill-engineer">⚙️ Engineer: Own your deployment</span>
+    </div>
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon" style="background:linear-gradient(135deg,var(--gold-neon),var(--cyan-neon));color:#0a0a0a;">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--gold-neon);background:rgba(255,214,0,0.08);border:1px solid rgba(255,214,0,0.3);">Day 10 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 9 — Lesson 08
+     ═══════════════════════════════════════════════ -->
+<div class="slide portrait" id="slide-9">
+  <div class="bg-diagonal-lines"></div>
+  <div class="bg-circle" style="width:380px;height:380px;bottom:-140px;right:-140px;background:radial-gradient(circle,rgba(57,255,20,0.06) 0%,transparent 75%);"></div>
+
+  <div class="zone-top">
+    <span class="slide-num-pill">Lesson 08 / 10</span>
+    <div class="accent-bar"></div>
+  </div>
+
+  <div class="zone-mid">
+    <div class="lesson-card card-glow-green">
+      <div class="lesson-icon-row">
+        <div class="lesson-icon">🔍</div>
+        <div class="lesson-number">08</div>
+      </div>
+      <div class="lesson-title">Understanding your data is a skill, not a step.</div>
+      <div class="lesson-story">EDA — Exploratory Data Analysis — used to feel like a checkbox to me. "Plot a few histograms, check correlations, done." But the more projects I did, the more I realised: every interesting model finding was first discovered visually, during EDA.<br><br>Your data tells a story. Your job is to read it before you start modelling.</div>
+      <div class="lesson-callout">
+        <span class="lesson-callout-icon">💡</span>
+        Ask: What is the shape? Where are the outliers? Is there leakage? Does this distribution make sense? Before. Every. Model.
+      </div>
+    </div>
+  </div>
+
+  <div class="zone-bottom">
+    <div class="audience-row">
+      <span class="audience-pill pill-beginner">🎓 Beginner: Seaborn pairplots</span>
+      <span class="audience-pill pill-engineer">⚙️ Engineer: ydata-profiling</span>
+    </div>
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon" style="background:linear-gradient(135deg,var(--gold-neon),var(--cyan-neon));color:#0a0a0a;">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--gold-neon);background:rgba(255,214,0,0.08);border:1px solid rgba(255,214,0,0.3);">Day 10 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 10 — Lesson 09
+     ═══════════════════════════════════════════════ -->
+<div class="slide portrait" id="slide-10">
+  <div class="bg-diagonal-lines"></div>
+  <div class="bg-circle" style="width:400px;height:400px;top:-150px;left:-150px;background:radial-gradient(circle,rgba(213,0,249,0.07) 0%,transparent 75%);"></div>
+
+  <div class="zone-top">
+    <span class="slide-num-pill">Lesson 09 / 10</span>
+    <div class="accent-bar"></div>
+  </div>
+
+  <div class="zone-mid">
+    <div class="lesson-card card-glow-purple">
+      <div class="lesson-icon-row">
+        <div class="lesson-icon">💾</div>
+        <div class="lesson-number">09</div>
+      </div>
+      <div class="lesson-title">Track every experiment or you will repeat your mistakes.</div>
+      <div class="lesson-story">I once spent 3 days re-discovering a hyperparameter configuration I had already tested and discarded a week earlier — because I didn't log it properly. Never again.<br><br>Experiment tracking isn't optional. It's how you build on your past self instead of fighting it. Your future self will be furious if you skip this.</div>
+      <div class="lesson-callout">
+        <span class="lesson-callout-icon">💡</span>
+        MLflow, Weights &amp; Biases, or even a simple CSV log. Something is infinitely better than nothing.
+      </div>
+    </div>
+  </div>
+
+  <div class="zone-bottom">
+    <div class="audience-row">
+      <span class="audience-pill pill-beginner">🎓 Beginner: Log params + metrics</span>
+      <span class="audience-pill pill-engineer">⚙️ Engineer: MLflow from Day 1</span>
+    </div>
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon" style="background:linear-gradient(135deg,var(--gold-neon),var(--cyan-neon));color:#0a0a0a;">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--gold-neon);background:rgba(255,214,0,0.08);border:1px solid rgba(255,214,0,0.3);">Day 10 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 11 — Lesson 10
+     ═══════════════════════════════════════════════ -->
+<div class="slide portrait" id="slide-11">
+  <div class="bg-diagonal-lines"></div>
+  <div class="bg-circle" style="width:420px;height:420px;bottom:-160px;right:-160px;background:radial-gradient(circle,rgba(255,214,0,0.07) 0%,transparent 75%);"></div>
+
+  <div class="zone-top">
+    <span class="slide-num-pill">Lesson 10 / 10</span>
+    <div class="accent-bar"></div>
+  </div>
+
+  <div class="zone-mid">
+    <div class="lesson-card card-glow-gold">
+      <div class="lesson-icon-row">
+        <div class="lesson-icon">🤝</div>
+        <div class="lesson-number">10</div>
+      </div>
+      <div class="lesson-title">Building in public accelerates learning 10×.</div>
+      <div class="lesson-story">I was afraid to share my work publicly for months. "It's not good enough." "People will judge." But the day I started posting my projects, experiments, and lessons — the feedback, connections, and opportunities I received completely changed my trajectory.<br><br>Your imperfect project shared today beats a perfect project hidden forever.</div>
+      <div class="lesson-callout">
+        <span class="lesson-callout-icon">💡</span>
+        Push every project to GitHub. Write one LinkedIn post about what you learned. The compounding effect is real.
+      </div>
+    </div>
+  </div>
+
+  <div class="zone-bottom">
+    <div class="audience-row">
+      <span class="audience-pill pill-beginner">🎓 Beginner: Post your first project</span>
+      <span class="audience-pill pill-engineer">⚙️ Engineer: Write, share, teach</span>
+    </div>
+  </div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon" style="background:linear-gradient(135deg,var(--gold-neon),var(--cyan-neon));color:#0a0a0a;">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--gold-neon);background:rgba(255,214,0,0.08);border:1px solid rgba(255,214,0,0.3);">Day 10 / 60</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 12 — CTA / Recap
+     ═══════════════════════════════════════════════ -->
+<div class="slide portrait" id="slide-12" style="align-items:center;justify-content:center;text-align:center;">
+  <div class="bg-diagonal-lines"></div>
+  <div class="bg-circle" style="width:500px;height:500px;bottom:-200px;left:-200px;background:radial-gradient(circle,rgba(255,214,0,0.09) 0%,transparent 75%);"></div>
+  <div class="bg-circle" style="width:400px;height:400px;top:-160px;right:-160px;background:radial-gradient(circle,rgba(0,229,255,0.06) 0%,transparent 75%);"></div>
+
+  <div style="display:flex;flex-direction:column;gap:36px;align-items:center;">
+
+    <div class="cta-question" style="background:linear-gradient(135deg,#FFD600,#00E5FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+      💬 What would<br>you add?
+    </div>
+
+    <p style="font-family:var(--font-body);font-size:20px;color:var(--text-sub);line-height:1.7;max-width:820px;">
+      These 10 lessons took me months to learn the hard way.<br>
+      <strong style="color:var(--text);">Drop your #11 in the comments below.</strong><br>
+      Let's build this list together. 👇
+    </p>
+
+    <div class="card-glass card-glow-gold" style="padding:20px 28px;max-width:840px;text-align:left;">
+      <div style="font-family:var(--font-heading);font-size:20px;font-weight:700;color:var(--text);margin-bottom:10px;">Today's 10 at a glance:</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 20px;font-family:var(--font-body);font-size:14px;color:var(--text-sub);line-height:1.6;">
+        <span>🗃️ 01 — Data beats algorithms</span>
+        <span>🧪 06 — Cross-validation matters</span>
+        <span>📏 02 — Simple models first</span>
+        <span>📦 07 — Notebooks ≠ products</span>
+        <span>🧹 03 — 80% is data prep</span>
+        <span>🔍 08 — EDA is a real skill</span>
+        <span>📉 04 — Accuracy is a trap</span>
+        <span>💾 09 — Track experiments always</span>
+        <span>🔁 05 — Iteration is your edge</span>
+        <span>🤝 10 — Build in public</span>
+      </div>
+    </div>
+
+    <div class="hashtag-row" style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
+      <span class="hashtag-pill">#MachineLearning</span>
+      <span class="hashtag-pill">#MLTips</span>
+      <span class="hashtag-pill">#VinodBavage</span>
+      <span class="hashtag-pill">#DataScience</span>
+    </div>
+  </div>
+
+  <div style="font-family:var(--font-heading);font-size:60px;font-weight:800;color:rgba(255,255,255,0.025);letter-spacing:0.1em;text-transform:uppercase;margin-top:36px;">Vinod Bavage</div>
+  <div style="width:100%;height:6px;background:linear-gradient(90deg,var(--gold-neon),var(--cyan-neon),var(--purple-neon));border-radius:999px;margin-top:18px;margin-bottom:18px;"></div>
+
+  <div class="brand-strip">
+    <div class="brand-strip-left">
+      <div class="vb-hex-icon" style="background:linear-gradient(135deg,var(--gold-neon),var(--cyan-neon));color:#0a0a0a;">VB</div>
+      <div class="brand-strip-name">
+        <span class="brand-strip-name-main">Vinod Bavage</span>
+        <span class="brand-strip-name-sub">Machine Learning · AI</span>
+      </div>
+    </div>
+    <div class="brand-strip-right">
+      <span class="badge-github">&lt;/&gt; vinodbavage31</span>
+      <span class="badge-counter" style="color:var(--gold-neon);background:rgba(255,214,0,0.08);border:1px solid rgba(255,214,0,0.3);">Day 10 / 60</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

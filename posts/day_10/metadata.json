@@ -1,0 +1,10 @@
+{
+  "day": 10,
+  "date_label": "Day 10",
+  "topic": "10 Things I Wish I Knew Before Starting ML",
+  "headline": "10 things I wish I knew before starting ML. Real lessons. Not textbook advice.",
+  "category": "Machine Learning Career & Mindset",
+  "caption": "When I started my ML journey, I had no idea what I was getting into.\n\nThe tutorials made it look easy. The reality was... different.\n\nAfter months of building, breaking, and rebuilding real ML projects, here are 10 raw, honest lessons nobody teaches you upfront — for beginners AND experienced engineers.\n\nSlide through. I promise at least one of these will hit you.\n\n💬 What's the one thing YOU wish you knew before starting ML? Drop it below 👇",
+  "hashtags": ["#MachineLearning", "#VinodBavage", "#MLBeginners", "#DataScience", "#AIEngineering", "#CareerInAI"],
+  "next_day_teaser": "Preventing Data Leakage: The silent killer hiding inside your pipeline"
+}

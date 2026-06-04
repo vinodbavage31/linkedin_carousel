@@ -1,0 +1,10 @@
+{
+  "day": 11,
+  "date_label": "Day 11",
+  "topic": "Linear Regression Explained (with a Salary Example)",
+  "headline": "Linear Regression Explained with a Salary Example: Every ML engineer must nail this. Here's the visual way.",
+  "category": "ML Fundamentals",
+  "caption": "Linear Regression is the first model every Machine Learning engineer learns.\n\nBut do you truly understand it visually?\n\nIn today's post, we break down Linear Regression using a simple, intuitive Salary Example.\n\nHere is what you will learn:\n\n1️⃣ What it actually predicts (continuous output)\n2️⃣ The equation broken down (w × Experience + b)\n3️⃣ Visualizing the line (and understanding prediction error)\n4️⃣ Gradient Descent intuition (how it learns the line)\n5️⃣ Exactly when you should use it\n\nSwipe through for the visual guide! ➡️\n\n💬 What was the first regression model you ever built? Let me know in the comments! 👇",
+  "hashtags": ["#MachineLearning", "#VinodBavage", "#DataScience", "#LinearRegression", "#AIEducation", "#Algorithms"],
+  "next_day_teaser": "Logistic Regression: Predicting binary choices with probability"
+}

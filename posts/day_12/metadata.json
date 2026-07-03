@@ -1,0 +1,10 @@
+{
+  "day": 12,
+  "date_label": "Day 12",
+  "topic": "Logistic Regression (It's not actually regression)",
+  "headline": "Logistic Regression – it's not actually regression. The name is misleading. The concept is powerful.",
+  "category": "ML Fundamentals",
+  "caption": "Don't let the name fool you. Logistic Regression is a CLASSIFIER, not a regression model.\n\nWhile Linear Regression predicts continuous values (like salaries), Logistic Regression predicts the probability of an event happening (Yes/No, Spam/Not Spam, True/False).\n\nIn today's post, we break down Logistic Regression visually:\n\n1️⃣ Classification vs Regression (the core difference)\n2️⃣ The Sigmoid Function (mapping infinity to 0 and 1)\n3️⃣ Thresholding (how probability becomes a decision)\n4️⃣ Spam Filter Analogy (applying it to real life)\n5️⃣ Scikit-Learn implementation in 5 lines of code\n\nSwipe through for the full visual breakdown! ➡️\n\n💬 Have you ever made the mistake of thinking Logistic Regression was for predicting numeric values? Let's discuss below 👇",
+  "hashtags": ["#MachineLearning", "#VinodBavage", "#DataScience", "#LogisticRegression", "#AIEducation", "#Algorithms"],
+  "next_day_teaser": "Evaluations: Precision, Recall, and the F1-Score"
+}

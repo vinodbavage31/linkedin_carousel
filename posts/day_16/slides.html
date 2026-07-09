@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap');
+
+        :root {
+            --blue: #2563EB;
+            --purple: #7C3AED;
+            --green: #10B981;
+            --red: #EF4444;
+            --yellow: #F59E0B;
+            --bg: #FFFFFF;
+            --card: #F8FAFC;
+            --border: #E2E8F0;
+            --text: #0F172A;
+            --text-muted: #64748B;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg);
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+        }
+
+        .slide {
+            background-color: var(--bg);
+            background-image: radial-gradient(#E2E8F0 1px, transparent 1px);
+            background-size: 24px 24px;
+            color: var(--text);
+            width: 1080px;
+            height: 1350px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Decorative premium backgrounds */
+        .bg-decorator {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: 0;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .bg-top {
+            width: 600px;
+            height: 600px;
+            background: var(--blue);
+            top: -200px;
+            right: -100px;
+        }
+
+        .bg-bottom {
+            width: 500px;
+            height: 500px;
+            background: var(--purple);
+            bottom: -100px;
+            left: -100px;
+        }
+
+        .infographic {
+            flex: 1;
+            padding: 40px 56px 24px 56px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 1;
+            position: relative;
+        }
+
+        h1,
+        h2,
+        h3,
+        p,
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            box-shadow: 0 4px 20px -5px rgba(15, 23, 42, 0.05);
+            padding: 16px;
+        }
+
+        .badge {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--blue);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+            display: inline-block;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .header p {
+            font-size: 18px;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .header-badge {
+            background: rgba(124, 58, 237, 0.1);
+            color: var(--purple);
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 13px;
+            display: inline-block;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .section-title::before {
+            content: '';
+            display: block;
+            width: 16px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--blue), var(--purple));
+            border-radius: 2px;
+        }
+
+        /* Main Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 16px;
+            flex: 1;
+        }
+
+        .span-1 {
+            grid-column: span 1;
+        }
+
+        .span-2 {
+            grid-column: span 2;
+        }
+
+        .span-3 {
+            grid-column: span 3;
+        }
+
+        .span-4 {
+            grid-column: span 4;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide">
+        <div class="bg-decorator bg-top"></div>
+        <div class="bg-decorator bg-bottom"></div>
+        <div class="infographic">
+
+            <div class="header">
+                <h1>Support Vector Machines (SVM) ⚔️</h1>
+                <p><span style="color:var(--text); font-weight:800;">The Underrated Powerhouse:</span> This algorithm
+                    still dominates many small dataset problems.</p>
+                <div class="header-badge">Day 16 of 100 Days of Machine Learning</div>
+            </div>
+
+            <div class="main-grid">
+
+                <!-- S1: What is SVM? -->
+                <div class="span-2" style="display:flex; flex-direction:column;">
+                    <div class="section-title">What is SVM?</div>
+                    <div class="card" style="flex:1; display:flex; gap:12px; background:white;">
+                        <div
+                            style="flex:1; font-size:13px; line-height:1.5; color:var(--text); font-weight:500; border-left: 4px solid var(--blue); padding-left: 12px; display:flex; flex-direction:column; justify-content:center;">
+                            SVM finds the optimal boundary (<b>hyperplane</b>) that separates different classes with the
+                            <strong>maximum possible margin</strong>.
+                        </div>
+                        <div
+                            style="flex:1; background:var(--card); border-radius:12px; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;">
+                            <svg width="100%" height="80" viewBox="0 0 100 80">
+                                <!-- Blue Class (top left) -->
+                                <circle cx="20" cy="30" r="4" fill="var(--blue)" />
+                                <circle cx="35" cy="20" r="4" fill="var(--blue)" />
+                                <circle cx="45" cy="40" r="4" fill="var(--blue)" />
+                                <!-- Red/Purple Class (bottom right) -->
+                                <circle cx="65" cy="65" r="4" fill="var(--purple)" />
+                                <circle cx="85" cy="70" r="4" fill="var(--purple)" />
+                                <circle cx="80" cy="50" r="4" fill="var(--purple)" />
+
+                                <!-- Support Vectors -->
+                                <circle cx="45" cy="40" r="7" fill="none" stroke="var(--blue)" />
+                                <circle cx="80" cy="50" r="7" fill="none" stroke="var(--purple)" />
+                                <circle cx="65" cy="65" r="7" fill="none" stroke="var(--purple)" />
+
+                                <!-- Hyperplane -->
+                                <line x1="8" y1="80" x2="100" y2="10" stroke="var(--text)" stroke-width="2" />
+
+                                <!-- Margin lines -->
+                                <line x1="0" y1="55" x2="85" y2="-8" stroke="var(--text-muted)" stroke-width="1"
+                                    stroke-dasharray="3,3" />
+                                <line x1="30" y1="95" x2="120" y2="25" stroke="var(--text-muted)" stroke-width="1"
+                                    stroke-dasharray="3,3" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- S2: Margin Concept -->
+                <div class="span-2" style="display:flex; flex-direction:column;">
+                    <div class="section-title">Margin Concept</div>
+                    <div class="card" style="flex:1; display:flex; flex-direction:column; gap:12px; background:white;">
+                        <div style="display:flex; gap:12px; justify-content:center; flex:1;">
+                            <div
+                                style="text-align:center; flex:1; background:var(--card); border:1px solid rgba(239, 68, 68, 0.3); border-radius:12px; padding:10px;">
+                                <div style="font-size:12px; font-weight:700; color:var(--red); margin-bottom:6px;">Small
+                                    Margin ❌</div>
+                                <svg width="80" height="40">
+                                    <circle cx="20" cy="15" r="3" fill="var(--blue)" />
+                                    <circle cx="60" cy="25" r="3" fill="var(--green)" />
+                                    <!-- Narrow margin -->
+                                    <line x1="10" y1="40" x2="70" y2="0" stroke="var(--text)" stroke-width="1.5" />
+                                    <line x1="15" y1="40" x2="75" y2="0" stroke="var(--text-muted)"
+                                        stroke-dasharray="2,2" />
+                                    <line x1="5" y1="40" x2="65" y2="0" stroke="var(--text-muted)"
+                                        stroke-dasharray="2,2" />
+                                </svg>
+                            </div>
+                            <div
+                                style="text-align:center; flex:1; background:var(--card); border:1px solid rgba(16, 185, 129, 0.3); border-radius:12px; padding:10px;">
+                                <div style="font-size:12px; font-weight:700; color:var(--green); margin-bottom:6px;">
+                                    Large Margin ✅</div>
+                                <svg width="80" height="40">
+                                    <circle cx="20" cy="10" r="3" fill="var(--blue)" />
+                                    <circle cx="60" cy="30" r="3" fill="var(--green)" />
+                                    <!-- Wide margin -->
+                                    <line x1="10" y1="40" x2="70" y2="0" stroke="var(--text)" stroke-width="1.5" />
+                                    <line x1="25" y1="40" x2="85" y2="0" stroke="var(--text-muted)"
+                                        stroke-dasharray="2,2" />
+                                    <line x1="-5" y1="40" x2="55" y2="0" stroke="var(--text-muted)"
+                                        stroke-dasharray="2,2" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div
+                            style="font-size:12px; line-height:1.4; color:var(--text); font-weight:500; text-align:center;">
+                            Larger margins usually lead to <strong style="color:var(--green)">better
+                                generalization</strong>.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- S3: Kernel Trick -->
+                <div class="span-2" style="display:flex; flex-direction:column;">
+                    <div class="section-title">The Kernel Trick 🪄</div>
+                    <div class="card" style="flex:1; display:flex; flex-direction:column; gap:12px; background:white;">
+                        <div style="font-size:13px; line-height:1.4; color:var(--text); font-weight:500;">
+                            If data cannot be separated in 2D, SVM <strong style="color:var(--purple)">projects it into
+                                a higher dimension</strong> where separation becomes possible!
+                        </div>
+                        <div style="display:flex; gap:12px; align-items:center; justify-content:center; flex:1;">
+                            <div
+                                style="background:var(--card); border:1px solid var(--border); border-radius:8px; padding:8px;">
+                                <svg width="50" height="50" viewBox="0 0 50 50">
+                                    <circle cx="25" cy="25" r="2" fill="var(--red)" />
+                                    <circle cx="20" cy="20" r="2" fill="var(--red)" />
+                                    <circle cx="28" cy="22" r="2" fill="var(--red)" />
+                                    <circle cx="22" cy="28" r="2" fill="var(--red)" />
+                                    <circle cx="10" cy="10" r="2" fill="var(--blue)" />
+                                    <circle cx="40" cy="10" r="2" fill="var(--blue)" />
+                                    <circle cx="10" cy="40" r="2" fill="var(--blue)" />
+                                    <circle cx="40" cy="40" r="2" fill="var(--blue)" />
+                                    <circle cx="25" cy="5" r="2" fill="var(--blue)" />
+                                </svg>
+                                <div style="text-align:center; font-size:10px; font-weight:600; margin-top:4px;">2D
+                                    (Non-separable)</div>
+                            </div>
+                            <div style="font-size:18px; color:var(--border); font-weight:bold;">→</div>
+                            <div
+                                style="background:var(--card); border:1px solid var(--border); border-radius:8px; padding:8px;">
+                                <svg width="50" height="50" viewBox="0 0 50 50">
+                                    <path d="M 5,35 Q 25,50 45,35" fill="none" stroke="var(--red)" stroke-width="2" />
+                                    <circle cx="25" cy="42" r="2" fill="var(--red)" />
+                                    <path d="M 5,15 Q 25,30 45,15" fill="none" stroke="var(--blue)" stroke-width="2" />
+                                    <circle cx="15" cy="20" r="2" fill="var(--blue)" />
+                                    <circle cx="35" cy="20" r="2" fill="var(--blue)" />
+                                    <line x1="5" y1="28" x2="45" y2="28" stroke="var(--text)" stroke-width="1.5"
+                                        stroke-dasharray="2,2" />
+                                </svg>
+                                <div style="text-align:center; font-size:10px; font-weight:600; margin-top:4px;">3D
+                                    (Separable)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- S4: SVM vs Deep Learning -->
+                <div class="span-2" style="display:flex; flex-direction:column;">
+                    <div class="section-title">When SVM Beats Deep Learning</div>
+                    <div class="card"
+                        style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:12px; background:white;">
+                        <ul
+                            style="list-style:none; font-size:13px; line-height:1.8; color:var(--text); font-weight:600; display:grid; grid-template-columns: 1fr 1fr; gap:x-8px; padding-left:4px;">
+                            <li><span style="color:var(--green)">✅</span> Small datasets</li>
+                            <li><span style="color:var(--green)">✅</span> High-dimensional data</li>
+                            <li><span style="color:var(--green)">✅</span> Text classification</li>
+                            <li><span style="color:var(--green)">✅</span> Limited compute</li>
+                            <li style="grid-column: span 2;"><span style="color:var(--green)">✅</span> Clear decision
+                                boundaries</li>
+                        </ul>
+                        <div
+                            style="background: rgba(37, 99, 235, 0.05); border-left: 3px solid var(--blue); padding: 8px 12px; font-size: 11px; font-weight: 500; border-radius: 4px;">
+                            Deep Learning needs massive data. <strong style="color:var(--blue)">SVM often shines when
+                                data is limited.</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- S5: Interview Tips -->
+                <div class="span-4" style="display:flex; flex-direction:column;">
+                    <div class="card"
+                        style="background:linear-gradient(135deg, rgba(37,99,235,0.05), rgba(124,58,237,0.1)); border:1px solid rgba(124,58,237,0.3); padding:20px; display:flex; gap:20px; align-items:center;">
+                        <div style="width:140px; text-align:center;">
+                            <div style="font-size:32px; margin-bottom:8px;">🎯</div>
+                            <div style="font-size:16px; font-weight:800; color:var(--purple); line-height:1.2;">
+                                Interview<br>Tips</div>
+                        </div>
+                        <div style="flex:1;">
+                            <ul
+                                style="list-style:none; font-size:14px; line-height:1.8; color:var(--text); font-weight:600; display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+                                <li><span style="color:var(--purple)">1.</span> What is a <strong>hyperplane</strong>?
+                                </li>
+                                <li><span style="color:var(--purple)">2.</span> What is the <strong>kernel
+                                        trick</strong>?</li>
+                                <li><span style="color:var(--purple)">3.</span> Why is <strong>feature scaling</strong>
+                                    important in SVM?</li>
+                                <li><span style="color:var(--purple)">4.</span> Difference between
+                                    <strong>Linear</strong> and <strong>RBF</strong> kernels?</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TIP BANNER -->
+            <div
+                style="background: linear-gradient(90deg, rgba(245, 158, 11, 0.05), rgba(245, 158, 11, 0.15)); border: 1px solid rgba(245, 158, 11, 0.3); padding: 16px 24px; border-radius: 16px; display: flex; align-items: center; gap: 16px; margin-bottom: 24px;">
+                <div
+                    style="font-size: 24px; background: var(--yellow); width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2); flex-shrink: 0;">
+                    💡</div>
+                <div style="font-size: 15px; font-weight: 500; color: var(--text); line-height: 1.5;">
+                    <span style="color:var(--yellow); font-weight:700;">Pro Tip:</span> If your dataset is small and
+                    feature-rich, try SVM before jumping to deep learning models.
+                </div>
+            </div>
+
+            <!-- FOOTER -->
+            <div
+                style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 20px; font-size: 13px; font-weight: 600; color: var(--text-muted);">
+                <div style="display:flex; flex-direction:column; gap:4px;">
+                    <div style="font-weight:700; color:var(--text); font-size:15px;">Vinod Bavage | AI Engineer</div>
+                    <div>Building in Public → 100 Days of Machine Learning</div>
+                    <div>50+ Projects in AI, ML & Web Development</div>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:6px; align-items:flex-end;">
+                    <div style="display:flex; align-items:center; gap:6px;">
+                        <span style="color:var(--text);">GitHub:</span> github.com/vinodbavage31
+                    </div>
+                    <div style="display:flex; align-items:center; gap:6px;">
+                        <span style="color:var(--text);">Portfolio:</span> vinodbavage.vercel.app
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

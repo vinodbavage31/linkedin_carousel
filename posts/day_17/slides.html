@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap');
+
+        :root {
+            --blue: #2563EB;
+            --purple: #7C3AED;
+            --green: #10B981;
+            --red: #EF4444;
+            --yellow: #F59E0B;
+            --bg: #FFFFFF;
+            --card: #F8FAFC;
+            --border: #E2E8F0;
+            --text: #0F172A;
+            --text-muted: #64748B;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg);
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+        }
+
+        .slide {
+            background-color: var(--bg);
+            background-image: radial-gradient(#E2E8F0 1px, transparent 1px);
+            background-size: 24px 24px;
+            color: var(--text);
+            width: 1080px;
+            height: 1350px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Decorative premium backgrounds */
+        .bg-decorator {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: 0;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .bg-top {
+            width: 600px;
+            height: 600px;
+            background: var(--blue);
+            top: -200px;
+            right: -100px;
+        }
+
+        .bg-bottom {
+            width: 500px;
+            height: 500px;
+            background: var(--purple);
+            bottom: -100px;
+            left: -100px;
+        }
+
+        .infographic {
+            flex: 1;
+            padding: 40px 56px 24px 56px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 1;
+            position: relative;
+        }
+
+        h1,
+        h2,
+        h3,
+        p,
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            box-shadow: 0 4px 20px -5px rgba(15, 23, 42, 0.05);
+            padding: 16px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .header p {
+            font-size: 18px;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .section-title::before {
+            content: '';
+            display: block;
+            width: 16px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--blue), var(--purple));
+            border-radius: 2px;
+        }
+
+        /* Main Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 16px;
+            flex: 1;
+        }
+
+        .span-1 {
+            grid-column: span 1;
+        }
+
+        .span-2 {
+            grid-column: span 2;
+        }
+
+        .span-3 {
+            grid-column: span 3;
+        }
+
+        .span-4 {
+            grid-column: span 4;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide">
+        <div class="bg-decorator bg-top"></div>
+        <div class="bg-decorator bg-bottom"></div>
+        <div class="infographic">
+
+            <div class="header">
+                <h1>How Machines Group Without Labels</h1>
+                <p>Unsupervised learning in action: customer segmentation walkthrough.</p>
+            </div>
+
+            <div class="main-grid">
+
+                <!-- Section 1: What is K-Means? -->
+                <div class="span-2" style="display:flex; flex-direction:column;">
+                    <div class="section-title">Section 1 &mdash; What is K-Means?</div>
+                    <div class="card" style="flex:1; display:flex; flex-direction:column; gap:12px; background:white;">
+                        <div
+                            style="font-size:13.5px; line-height:1.5; color:var(--text); font-weight:500; border-left: 4px solid var(--blue); padding-left: 12px;">
+                            K-Means is an <strong>unsupervised learning algorithm</strong> that groups similar data
+                            points into distinct clusters without using labels.
+                        </div>
+                        <div
+                            style="flex:1; background:var(--card); border-radius:12px; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; overflow:hidden;">
+                            <svg width="240" height="120" viewBox="0 0 240 120">
+                                <!-- Cluster 1 (Left, Blue) -->
+                                <circle cx="50" cy="65" r="30" fill="rgba(37,99,235,0.08)" stroke="var(--blue)"
+                                    stroke-width="1.5" stroke-dasharray="4,4" />
+                                <circle cx="45" cy="50" r="4.5" fill="var(--blue)" />
+                                <circle cx="55" cy="45" r="4.5" fill="var(--blue)" />
+                                <circle cx="40" cy="65" r="4.5" fill="var(--blue)" />
+                                <circle cx="65" cy="55" r="4.5" fill="var(--blue)" />
+                                <circle cx="50" cy="70" r="4.5" fill="var(--blue)" />
+                                <circle cx="60" cy="75" r="4.5" fill="var(--blue)" />
+
+                                <!-- Cluster 2 (Middle, Purple) -->
+                                <circle cx="120" cy="70" r="30" fill="rgba(124,58,237,0.08)" stroke="var(--purple)"
+                                    stroke-width="1.5" stroke-dasharray="4,4" />
+                                <circle cx="115" cy="55" r="4.5" fill="var(--purple)" />
+                                <circle cx="125" cy="80" r="4.5" fill="var(--purple)" />
+                                <circle cx="135" cy="70" r="4.5" fill="var(--purple)" />
+                                <circle cx="105" cy="85" r="4.5" fill="var(--purple)" />
+                                <circle cx="120" cy="90" r="4.5" fill="var(--purple)" />
+
+                                <!-- Cluster 3 (Right, Green) -->
+                                <circle cx="190" cy="50" r="30" fill="rgba(16,185,129,0.08)" stroke="var(--green)"
+                                    stroke-width="1.5" stroke-dasharray="4,4" />
+                                <circle cx="180" cy="35" r="4.5" fill="var(--green)" />
+                                <circle cx="195" cy="40" r="4.5" fill="var(--green)" />
+                                <circle cx="185" cy="55" r="4.5" fill="var(--green)" />
+                                <circle cx="205" cy="45" r="4.5" fill="var(--green)" />
+                                <circle cx="190" cy="70" r="4.5" fill="var(--green)" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Centroid Concept -->
+                <div class="span-2" style="display:flex; flex-direction:column;">
+                    <div class="section-title">Section 2 &mdash; Centroid Concept</div>
+                    <div class="card" style="flex:1; display:flex; flex-direction:column; gap:8px; background:white;">
+                        <div style="display:flex; justify-content:space-between; flex:1; gap:8px;">
+                            <!-- Init -->
+                            <div
+                                style="flex:1; text-align:center; background:var(--card); border:1px solid var(--border); border-radius:10px; padding:12px 4px;">
+                                <div
+                                    style="font-size:11px; font-weight:700; margin-bottom:8px; color:var(--text-muted)">
+                                    1. Random Init</div>
+                                <svg width="80" height="70" viewBox="0 0 80 70">
+                                    <circle cx="20" cy="20" r="3" fill="var(--text-muted)" />
+                                    <circle cx="60" cy="50" r="3" fill="var(--text-muted)" />
+                                    <circle cx="25" cy="60" r="3" fill="var(--text-muted)" />
+                                    <circle cx="65" cy="25" r="3" fill="var(--text-muted)" />
+                                    <!-- Centroids (stars/distinct points) -->
+                                    <polygon points="40,5 42,10 47,10 43,14 45,19 40,16 35,19 37,14 33,10 38,10"
+                                        fill="var(--blue)" />
+                                    <polygon points="30,35 32,40 37,40 33,44 35,49 30,46 25,49 27,44 23,40 28,40"
+                                        fill="var(--purple)" />
+                                </svg>
+                            </div>
+                            <!-- Assign -->
+                            <div
+                                style="flex:1; text-align:center; background:var(--card); border:1px solid var(--border); border-radius:10px; padding:12px 4px;">
+                                <div
+                                    style="font-size:11px; font-weight:700; margin-bottom:8px; color:var(--text-muted)">
+                                    2. Assign Points</div>
+                                <svg width="80" height="70" viewBox="0 0 80 70">
+                                    <!-- Points assigned based on distance -->
+                                    <circle cx="20" cy="20" r="3" fill="var(--blue)" />
+                                    <circle cx="65" cy="25" r="3" fill="var(--blue)" />
+                                    <circle cx="60" cy="50" r="3" fill="var(--purple)" />
+                                    <circle cx="25" cy="60" r="3" fill="var(--purple)" />
+                                    <!-- Centroids -->
+                                    <polygon points="40,5 42,10 47,10 43,14 45,19 40,16 35,19 37,14 33,10 38,10"
+                                        fill="var(--blue)" />
+                                    <polygon points="30,35 32,40 37,40 33,44 35,49 30,46 25,49 27,44 23,40 28,40"
+                                        fill="var(--purple)" />
+                                    <!-- Lines -->
+                                    <line x1="20" y1="20" x2="40" y2="12" stroke="var(--blue)" stroke-width="0.75"
+                                        stroke-dasharray="2,2" />
+                                    <line x1="65" y1="25" x2="40" y2="12" stroke="var(--blue)" stroke-width="0.75"
+                                        stroke-dasharray="2,2" />
+                                    <line x1="60" y1="50" x2="30" y2="42" stroke="var(--purple)" stroke-width="0.75"
+                                        stroke-dasharray="2,2" />
+                                    <line x1="25" y1="60" x2="30" y2="42" stroke="var(--purple)" stroke-width="0.75"
+                                        stroke-dasharray="2,2" />
+                                </svg>
+                            </div>
+                            <!-- Update -->
+                            <div
+                                style="flex:1; text-align:center; background:var(--card); border:1px solid var(--border); border-radius:10px; padding:12px 4px;">
+                                <div
+                                    style="font-size:11px; font-weight:700; margin-bottom:8px; color:var(--text-muted)">
+                                    3. Move & Stable</div>
+                                <svg width="80" height="70" viewBox="0 0 80 70">
+                                    <circle cx="20" cy="20" r="3" fill="var(--blue)" />
+                                    <circle cx="65" cy="25" r="3" fill="var(--blue)" />
+                                    <circle cx="60" cy="50" r="3" fill="var(--purple)" />
+                                    <circle cx="25" cy="60" r="3" fill="var(--purple)" />
+                                    <!-- Centroids moved to center of mass -->
+                                    <polygon
+                                        points="42.5,22.5 44.5,27.5 49.5,27.5 45.5,31.5 47.5,36.5 42.5,33.5 37.5,36.5 39.5,31.5 35.5,27.5 40.5,27.5"
+                                        fill="var(--blue)" />
+                                    <polygon
+                                        points="42.5,50 44.5,55 49.5,55 45.5,59 47.5,64 42.5,61 37.5,64 39.5,59 35.5,55 40.5,55"
+                                        fill="var(--purple)" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div
+                            style="font-size:12.5px; line-height:1.4; color:var(--text); font-weight:500; text-align:center;">
+                            Centroids <strong style="color:var(--text)">iteratively move</strong> toward cluster centers
+                            until assignments stabilize.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 3: Choosing K -->
+                <div class="span-2" style="display:flex; flex-direction:column;">
+                    <div class="section-title">Section 3 &mdash; Choosing K</div>
+                    <div class="card" style="flex:1; display:flex; flex-direction:column; gap:12px; background:white;">
+                        <div
+                            style="font-size:13.5px; line-height:1.4; color:var(--text); font-weight:500; text-align:center;">
+                            Choosing the correct K is critical. Incorrect values lead to poor segmentation.
+                        </div>
+                        <div style="display:flex; gap:12px; justify-content:center; flex:1;">
+                            <div
+                                style="text-align:center; flex:1; background:var(--card); border:1px solid rgba(239, 68, 68, 0.3); border-radius:12px; padding:12px 10px; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+                                <div style="font-size:12px; font-weight:700; color:var(--red); margin-bottom:8px;">Too
+                                    Few (Under)</div>
+                                <svg width="90" height="55" viewBox="0 0 90 55">
+                                    <circle cx="20" cy="25" r="3.5" fill="var(--blue)" />
+                                    <circle cx="25" cy="15" r="3.5" fill="var(--blue)" />
+                                    <circle cx="30" cy="35" r="3.5" fill="var(--blue)" />
+
+                                    <circle cx="65" cy="20" r="3.5" fill="var(--blue)" />
+                                    <circle cx="75" cy="25" r="3.5" fill="var(--blue)" />
+                                    <circle cx="70" cy="40" r="3.5" fill="var(--blue)" />
+                                    <!-- One big circle grouping them -->
+                                    <ellipse cx="45" cy="25" rx="40" ry="22" fill="none" stroke="var(--blue)"
+                                        stroke-width="1.5" stroke-dasharray="3,3" />
+                                </svg>
+                            </div>
+                            <div
+                                style="text-align:center; flex:1; background:var(--card); border:1px solid rgba(239, 68, 68, 0.3); border-radius:12px; padding:12px 10px; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+                                <div style="font-size:12px; font-weight:700; color:var(--red); margin-bottom:8px;">Too
+                                    Many (Over)</div>
+                                <svg width="90" height="55" viewBox="0 0 90 55">
+                                    <circle cx="20" cy="20" r="3" fill="var(--blue)" />
+                                    <circle cx="25" cy="12" r="3" fill="var(--blue)" />
+                                    <ellipse cx="22" cy="16" rx="10" ry="12" fill="none" stroke="var(--blue)"
+                                        stroke-width="1.5" stroke-dasharray="2,2" />
+
+                                    <circle cx="30" cy="32" r="3" fill="var(--purple)" />
+                                    <ellipse cx="30" cy="32" rx="7" ry="7" fill="none" stroke="var(--purple)"
+                                        stroke-width="1.5" stroke-dasharray="2,2" />
+
+                                    <circle cx="60" cy="20" r="3" fill="var(--green)" />
+                                    <circle cx="70" cy="25" r="3" fill="var(--green)" />
+                                    <ellipse cx="65" cy="22" rx="12" ry="8" fill="none" stroke="var(--green)"
+                                        stroke-width="1.5" stroke-dasharray="2,2" />
+
+                                    <circle cx="70" cy="40" r="3" fill="var(--yellow)" />
+                                    <ellipse cx="70" cy="40" rx="7" ry="7" fill="none" stroke="var(--yellow)"
+                                        stroke-width="1.5" stroke-dasharray="2,2" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 4: Elbow Method -->
+                <div class="span-2" style="display:flex; flex-direction:column;">
+                    <div class="section-title">Section 4 &mdash; Elbow Method</div>
+                    <div class="card"
+                        style="flex:1; display:flex; flex-direction:column; gap:16px; background:white; justify-content:center;">
+                        <div style="font-size:13.5px; line-height:1.5; color:var(--text); font-weight:500;">
+                            Shows how inertia (within-cluster distance) decreases as K increases. Choose K where
+                            additional clusters provide <strong>diminishing improvements</strong>.
+                        </div>
+                        <div
+                            style="flex:1; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px; display:flex; justify-content:center; align-items:center;">
+                            <svg width="220" height="120" viewBox="0 0 220 120">
+                                <!-- Axes -->
+                                <line x1="25" y1="100" x2="200" y2="100" stroke="var(--text-muted)"
+                                    stroke-width="1.5" />
+                                <line x1="25" y1="100" x2="25" y2="10" stroke="var(--text-muted)" stroke-width="1.5" />
+
+                                <!-- Curve -->
+                                <path d="M 40,20 L 70,70 L 100,85 L 130,92 L 160,95 L 190,97" fill="none"
+                                    stroke="var(--blue)" stroke-width="3" />
+
+                                <!-- Points -->
+                                <circle cx="40" cy="20" r="3.5" fill="var(--blue)" />
+                                <circle cx="70" cy="70" r="5" fill="var(--purple)" stroke="white" stroke-width="2" />
+                                <circle cx="100" cy="85" r="3.5" fill="var(--blue)" />
+                                <circle cx="130" cy="92" r="3.5" fill="var(--blue)" />
+                                <circle cx="160" cy="95" r="3.5" fill="var(--blue)" />
+                                <circle cx="190" cy="97" r="3.5" fill="var(--blue)" />
+
+                                <!-- Label formatting -->
+                                <text x="70" y="55" font-family="sans-serif" font-size="11" font-weight="bold"
+                                    fill="var(--purple)" text-anchor="middle">Optimal K</text>
+                                <line x1="70" y1="70" x2="70" y2="100" stroke="var(--purple)" stroke-width="1.5"
+                                    stroke-dasharray="3,3" />
+
+                                <text x="15" y="70" font-family="sans-serif" font-size="10" fill="var(--text-muted)"
+                                    transform="rotate(-90 15 70)">Inertia</text>
+                                <text x="110" y="115" font-family="sans-serif" font-size="10" fill="var(--text-muted)"
+                                    text-anchor="middle">Number of Clusters (K)</text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 5: Real-World Use Case and Limitations -->
+                <div class="span-4" style="display:flex; flex-direction:column;">
+                    <div class="section-title">Section 5 &mdash; Real-World Use Case & Limitations</div>
+                    <div class="card"
+                        style="flex:1; background:linear-gradient(135deg, rgba(37,99,235,0.05), rgba(124,58,237,0.05)); border:1px solid rgba(124,58,237,0.2); display:flex; gap:24px; padding:24px;">
+
+                        <!-- Use Case Box -->
+                        <div
+                            style="flex:1; border-right:1px solid var(--border); padding-right:24px; display:flex; flex-direction:column; justify-content:center;">
+                            <div
+                                style="font-size:16px; font-weight:800; color:var(--blue); margin-bottom:14px; display:flex; align-items:center; gap:8px;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                                Customer Segmentation
+                            </div>
+                            <ul
+                                style="list-style-type:none; padding-left:0; font-size:14px; line-height:1.8; color:var(--text); font-weight:500; display:flex; flex-direction:column; gap:8px;">
+                                <li style="display:flex; gap:8px; align-items:flex-start;">
+                                    <div style="color:var(--blue); font-size:18px; margin-top:-2px;">&bull;</div>
+                                    <div><strong>High-value customers:</strong> Frequent & large spends</div>
+                                </li>
+                                <li style="display:flex; gap:8px; align-items:flex-start;">
+                                    <div style="color:var(--blue); font-size:18px; margin-top:-2px;">&bull;</div>
+                                    <div><strong>Budget customers:</strong> Deal-seekers focusing on value</div>
+                                </li>
+                                <li style="display:flex; gap:8px; align-items:flex-start;">
+                                    <div style="color:var(--blue); font-size:18px; margin-top:-2px;">&bull;</div>
+                                    <div><strong>Occasional buyers:</strong> Low overall engagement</div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Limitations Box -->
+                        <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+                            <div
+                                style="font-size:16px; font-weight:800; color:var(--red); margin-bottom:14px; display:flex; align-items:center; gap:8px;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                                    </path>
+                                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                </svg>
+                                Limitations
+                            </div>
+                            <ul
+                                style="list-style-type:none; padding:0; font-size:13.5px; line-height:1.7; color:var(--text); font-weight:500; display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                                <li
+                                    style="background:white; padding:8px 12px; border-radius:8px; border:1px solid var(--border);">
+                                    Requires choosing <strong>K</strong> beforehand</li>
+                                <li
+                                    style="background:white; padding:8px 12px; border-radius:8px; border:1px solid var(--border);">
+                                    Sensitive to <strong>outliers</strong></li>
+                                <li
+                                    style="background:white; padding:8px 12px; border-radius:8px; border:1px solid var(--border);">
+                                    Assumes <strong>spherical</strong> clusters</li>
+                                <li
+                                    style="background:white; padding:8px 12px; border-radius:8px; border:1px solid var(--border);">
+                                    Results depend on <strong>initialization</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- FOOTER -->
+            <div
+                style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 24px; font-size: 14px; font-weight: 600; color: var(--text-muted); margin-top: 10px;">
+                <div style="display:flex; flex-direction:column; gap:4px;">
+                    <div style="font-weight:800; color:var(--text); font-size:16px; letter-spacing:-0.5px;">Vinod Bavage
+                        <span style="font-weight:600; color:var(--text-muted); font-size:14px; margin-left:4px;">| AI
+                            Engineer</span></div>
+                    <div>50+ Projects in AI, Machine Learning, and Web Development</div>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:6px; align-items:flex-end;">
+                    <div style="display:flex; align-items:center; gap:6px;">
+                        <span style="color:var(--text);">GitHub:</span> github.com/vinodbavage31
+                    </div>
+                    <div style="display:flex; align-items:center; gap:6px;">
+                        <span style="color:var(--text);">Portfolio:</span> vinodbavage.vercel.app
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

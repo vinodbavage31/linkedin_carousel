@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap');
+
+        :root {
+            --blue: #2563EB;
+            --purple: #7C3AED;
+            --green: #10B981;
+            --red: #EF4444;
+            --yellow: #F59E0B;
+            --bg: #FFFFFF;
+            --card: #F8FAFC;
+            --border: #E2E8F0;
+            --text: #0F172A;
+            --text-muted: #64748B;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg);
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+        }
+
+        .slide {
+            background-color: var(--bg);
+            background-image: radial-gradient(#E2E8F0 1px, transparent 1px);
+            background-size: 24px 24px;
+            color: var(--text);
+            width: 1080px;
+            height: 1350px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Decorative premium backgrounds */
+        .bg-decorator {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: 0;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .bg-top {
+            width: 600px;
+            height: 600px;
+            background: var(--blue);
+            top: -200px;
+            right: -100px;
+        }
+
+        .bg-bottom {
+            width: 500px;
+            height: 500px;
+            background: var(--purple);
+            bottom: -100px;
+            left: -100px;
+        }
+
+        .infographic {
+            flex: 1;
+            padding: 40px 56px 24px 56px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 1;
+            position: relative;
+        }
+
+        h1,
+        h2,
+        h3,
+        p,
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            box-shadow: 0 4px 20px -5px rgba(15, 23, 42, 0.05);
+            padding: 16px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            position: relative;
+            margin-bottom: 32px;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 46px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 18px;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 12px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .section-title::before {
+            content: '';
+            display: block;
+            width: 16px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--blue), var(--purple));
+            border-radius: 2px;
+        }
+
+        /* Main Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 24px;
+            flex: 1;
+        }
+
+        .span-1 {
+            grid-column: span 1;
+        }
+
+        .span-2 {
+            grid-column: span 2;
+        }
+
+        .span-3 {
+            grid-column: span 3;
+        }
+
+        .span-4 {
+            grid-column: span 4;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide">
+        <div class="bg-decorator bg-top"></div>
+        <div class="bg-decorator bg-bottom"></div>
+        <div class="infographic">
+
+            <div class="header">
+                <div
+                    style="font-size: 16px; font-weight: 700; color: var(--blue); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px;">
+                    The algorithm that reads emails</div>
+                <h1>Naive Bayes</h1>
+                <p>Spam filters. Sentiment analysis. One formula behind it all.</p>
+            </div>
+
+            <div class="main-grid">
+
+                <!-- Section 1: Bayes Theorem Visual -->
+                <div class="span-4" style="display:flex; flex-direction:column;">
+                    <div class="section-title">Bayes Theorem Visual</div>
+                    <div class="card"
+                        style="flex:1; display:flex; flex-direction:column; background:white; justify-content:center; align-items:center; padding: 24px;">
+                        <div
+                            style="display:flex; justify-content: center; align-items: center; gap: 24px; width: 100%;">
+                            <div
+                                style="flex: 1; background: var(--card); border: 2px solid var(--blue); border-radius: 12px; padding: 16px; text-align: center;">
+                                <div style="font-size: 18px; font-weight: 800; color: var(--blue); margin-bottom: 4px;">
+                                    Prior Belief</div>
+                                <div style="font-size: 13px; color: var(--text-muted); font-weight: 500;">What we know
+                                    before</div>
+                            </div>
+                            <div style="font-size: 32px; font-weight: bold; color: var(--text-muted);">+</div>
+                            <div
+                                style="flex: 1; background: var(--card); border: 2px solid var(--purple); border-radius: 12px; padding: 16px; text-align: center;">
+                                <div
+                                    style="font-size: 18px; font-weight: 800; color: var(--purple); margin-bottom: 4px;">
+                                    New Evidence</div>
+                                <div style="font-size: 13px; color: var(--text-muted); font-weight: 500;">New data
+                                    arrives</div>
+                            </div>
+                            <div style="font-size: 32px; font-weight: bold; color: var(--text-muted);">→</div>
+                            <div
+                                style="flex: 1; background: rgba(16, 185, 129, 0.1); border: 2px solid var(--green); border-radius: 12px; padding: 16px; text-align: center;">
+                                <div
+                                    style="font-size: 18px; font-weight: 800; color: var(--green); margin-bottom: 4px;">
+                                    Updated Probability</div>
+                                <div style="font-size: 13px; color: var(--text-muted); font-weight: 500;">Our new belief
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Why is it called "Naive"? -->
+                <div class="span-2" style="display:flex; flex-direction:column;">
+                    <div class="section-title">Why is it called "Naive"?</div>
+                    <div class="card" style="flex:1; display:flex; flex-direction:column; gap:16px; background:white;">
+                        <div style="font-size:14px; line-height:1.5; color:var(--text); font-weight:500;">
+                            Naive Bayes assumes all features are <strong style="color:var(--blue)">completely
+                                independent</strong> from each other.
+                        </div>
+                        <div
+                            style="background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; flex:1;">
+                            <div
+                                style="font-size:12px; font-weight:700; color:var(--text-muted); margin-bottom:8px; text-transform:uppercase;">
+                                Example: Spam Detection</div>
+                            <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
+                                <div
+                                    style="background:rgba(37,99,235,0.1); color:var(--blue); padding:6px 12px; border-radius:8px; font-weight:600; font-size:13px;">
+                                    "free"</div>
+                                <div
+                                    style="background:rgba(124,58,237,0.1); color:var(--purple); padding:6px 12px; border-radius:8px; font-weight:600; font-size:13px;">
+                                    "offer"</div>
+                                <div
+                                    style="background:rgba(16,185,129,0.1); color:var(--green); padding:6px 12px; border-radius:8px; font-weight:600; font-size:13px;">
+                                    "winner"</div>
+                            </div>
+                            <div
+                                style="font-size:12px; line-height:1.4; color:var(--text); font-weight:500; text-align:center;">
+                                The algorithm treats these words as independent signals.
+                            </div>
+                        </div>
+                        <div
+                            style="background: rgba(239, 68, 68, 0.05); border-left: 3px solid var(--red); padding: 8px 12px; font-size: 12px; font-weight: 600; border-radius: 4px; color:var(--text);">
+                            This assumption is often wrong but surprisingly effective.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 3: Text Classification Example -->
+                <div class="span-2" style="display:flex; flex-direction:column;">
+                    <div class="section-title">Text Classification Example</div>
+                    <div class="card" style="flex:1; display:flex; flex-direction:column; gap:16px; background:white;">
+                        <div
+                            style="background:var(--card); border:1px solid var(--border); padding:16px; border-radius:12px;">
+                            <div
+                                style="font-size:12px; font-weight:700; color:var(--text-muted); margin-bottom:4px; text-transform:uppercase;">
+                                Incoming Email</div>
+                            <div style="font-size:16px; font-weight:700; color:var(--text); font-style:italic;">
+                                "Congratulations! You won a free iPhone."
+                            </div>
+                        </div>
+                        <div style="display:flex; flex-direction:column; gap:8px; flex:1; justify-content:center;">
+                            <div style="display:flex; align-items:center; gap:8px;">
+                                <div style="font-size:20px; color:var(--border); font-weight:bold;">↳</div>
+                                <div style="font-size:14px; font-weight:600; color:var(--text);">"Congratulations" <span
+                                        style="color:var(--text-muted); font-weight:400; font-size:12px;">(+Spam
+                                        Probability)</span></div>
+                            </div>
+                            <div style="display:flex; align-items:center; gap:8px;">
+                                <div style="font-size:20px; color:var(--border); font-weight:bold;">↳</div>
+                                <div style="font-size:14px; font-weight:600; color:var(--text);">"won" <span
+                                        style="color:var(--text-muted); font-weight:400; font-size:12px;">(+Spam
+                                        Probability)</span></div>
+                            </div>
+                            <div style="display:flex; align-items:center; gap:8px;">
+                                <div style="font-size:20px; color:var(--border); font-weight:bold;">↳</div>
+                                <div style="font-size:14px; font-weight:600; color:var(--text);">"free" <span
+                                        style="color:var(--text-muted); font-weight:400; font-size:12px;">(++Spam
+                                        Probability)</span></div>
+                            </div>
+                        </div>
+                        <div
+                            style="background:rgba(239, 68, 68, 0.1); border:1px solid rgba(239, 68, 68, 0.3); padding:12px; border-radius:8px; display:flex; justify-content:space-between; align-items:center;">
+                            <div style="font-size:13px; font-weight:600; color:var(--text);">Prediction:</div>
+                            <div style="font-size:16px; font-weight:800; color:var(--red);">SPAM</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 4: When Naive Bayes Performs Surprisingly Well -->
+                <div class="span-2" style="display:flex; flex-direction:column;">
+                    <div class="section-title">When It Outperforms</div>
+                    <div class="card"
+                        style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:16px; background:white;">
+                        <ul
+                            style="list-style:none; font-size:14px; line-height:2; color:var(--text); font-weight:600; display:grid; grid-template-columns: 1fr; gap:4px; padding-left:12px;">
+                            <li style="display:flex; align-items:center; gap:8px;">
+                                <div style="width:6px; height:6px; border-radius:50%; background:var(--blue);"></div>
+                                Spam filtering
+                            </li>
+                            <li style="display:flex; align-items:center; gap:8px;">
+                                <div style="width:6px; height:6px; border-radius:50%; background:var(--blue);"></div>
+                                Sentiment analysis
+                            </li>
+                            <li style="display:flex; align-items:center; gap:8px;">
+                                <div style="width:6px; height:6px; border-radius:50%; background:var(--blue);"></div>
+                                News categorization
+                            </li>
+                            <li style="display:flex; align-items:center; gap:8px;">
+                                <div style="width:6px; height:6px; border-radius:50%; background:var(--blue);"></div>
+                                Document classification
+                            </li>
+                            <li style="display:flex; align-items:center; gap:8px;">
+                                <div style="width:6px; height:6px; border-radius:50%; background:var(--blue);"></div>
+                                Small datasets
+                            </li>
+                            <li style="display:flex; align-items:center; gap:8px;">
+                                <div style="width:6px; height:6px; border-radius:50%; background:var(--blue);"></div>
+                                High-dimensional text data
+                            </li>
+                        </ul>
+                        <div
+                            style="background: rgba(37, 99, 235, 0.05); border-left: 3px solid var(--blue); padding: 12px; font-size: 12px; font-weight: 500; border-radius: 4px;">
+                            <strong style="color:var(--blue)">Naive Bayes often beats more complex models</strong> on
+                            text-based problems.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 5: Code Example -->
+                <div class="span-2" style="display:flex; flex-direction:column;">
+                    <div class="section-title">Implementation in Python</div>
+                    <div class="card"
+                        style="flex:1; display:flex; flex-direction:column; background:linear-gradient(135deg, rgba(15,23,42,0.9), rgba(15,23,42,1)); padding:0; overflow:hidden;">
+                        <!-- Terminal Header -->
+                        <div
+                            style="background:rgba(255,255,255,0.1); padding:10px 16px; display:flex; gap:6px; align-items:center;">
+                            <div style="width:10px; height:10px; border-radius:50%; background:#EF4444;"></div>
+                            <div style="width:10px; height:10px; border-radius:50%; background:#F59E0B;"></div>
+                            <div style="width:10px; height:10px; border-radius:50%; background:#10B981;"></div>
+                            <div
+                                style="margin-left:10px; font-size:12px; color:rgba(255,255,255,0.6); font-family:monospace;">
+                                naive_bayes.py</div>
+                        </div>
+                        <!-- Code Content -->
+                        <div
+                            style="padding:20px; font-family:monospace; font-size:13px; line-height:1.7; color:#E2E8F0; flex:1; display:flex; flex-direction:column; justify-content:center;">
+                            <div><span style="color:#C678DD;">from</span> sklearn.naive_bayes <span
+                                    style="color:#C678DD;">import</span> MultinomialNB</div>
+                            <div style="margin-top:12px;">model = MultinomialNB()</div>
+                            <div>model.fit(X_train, y_train)</div>
+                            <div style="margin-top:12px;">predictions = model.predict(X_test)</div>
+                        </div>
+                        <div
+                            style="background: rgba(255,255,255,0.05); border-top: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; font-size: 12px; font-weight: 500; color:var(--text-muted); display:flex; justify-content:space-between; align-items:center; text-transform:uppercase; letter-spacing:1px;">
+                            <span style="color:#60A5FA;">Train</span>
+                            <span style="color:#A78BFA;">→</span>
+                            <span style="color:#34D399;">Predict</span>
+                            <span style="color:#A78BFA;">→</span>
+                            <span style="color:#F472B6;">Classify</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- FOOTER -->
+            <div
+                style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 20px; font-size: 13px; font-weight: 600; color: var(--text-muted);">
+                <div style="display:flex; flex-direction:column; gap:4px;">
+                    <div style="font-weight:700; color:var(--text); font-size:15px;">Vinod Bavage | AI Engineer</div>
+                    <div>50+ Projects in AI, Machine Learning, and Web Development</div>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:6px; align-items:flex-end;">
+                    <div style="display:flex; align-items:center; gap:6px;">
+                        <span style="color:var(--text);">GitHub:</span> github.com/vinodbavage31
+                    </div>
+                    <div style="display:flex; align-items:center; gap:6px;">
+                        <span style="color:var(--text);">Portfolio:</span> vinodbavage.vercel.app
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

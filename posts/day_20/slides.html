@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap');
+
+        :root {
+            --blue: #2563EB;
+            --purple: #7C3AED;
+            --green: #10B981;
+            --red: #EF4444;
+            --yellow: #F59E0B;
+            --bg: #FFFFFF;
+            --card: #F8FAFC;
+            --border: #E2E8F0;
+            --text: #0F172A;
+            --text-muted: #64748B;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg);
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+        }
+
+        .slide {
+            background-color: var(--bg);
+            background-image: radial-gradient(#E2E8F0 1px, transparent 1px);
+            background-size: 24px 24px;
+            color: var(--text);
+            width: 1080px;
+            height: 1350px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Decorative premium backgrounds */
+        .bg-decorator {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: 0;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .bg-top {
+            width: 600px;
+            height: 600px;
+            background: var(--blue);
+            top: -200px;
+            right: -100px;
+        }
+
+        .bg-bottom {
+            width: 500px;
+            height: 500px;
+            background: var(--purple);
+            bottom: -100px;
+            left: -100px;
+        }
+
+        .infographic {
+            flex: 1;
+            padding: 36px 56px 24px 56px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 1;
+            position: relative;
+        }
+
+        h1,
+        h2,
+        h3,
+        p,
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            box-shadow: 0 4px 20px -5px rgba(15, 23, 42, 0.05);
+            padding: 16px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .header h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--blue);
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 16px;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .section-title::before {
+            content: '';
+            display: block;
+            width: 16px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--blue), var(--purple));
+            border-radius: 2px;
+        }
+
+        /* Main Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 16px;
+            flex: 1;
+        }
+
+        .span-1 {
+            grid-column: span 1;
+        }
+
+        .span-2 {
+            grid-column: span 2;
+        }
+
+        .span-3 {
+            grid-column: span 3;
+        }
+
+        .span-4 {
+            grid-column: span 4;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide">
+        <div class="bg-decorator bg-top"></div>
+        <div class="bg-decorator bg-bottom"></div>
+        <div class="infographic">
+
+            <div class="header">
+                <h1>Which Algorithm Should You Use?</h1>
+                <h2>A Recruiter-Ready Machine Learning Cheat Sheet</h2>
+                <p>Stop memorizing. Start understanding the decision map.</p>
+            </div>
+
+            <div class="main-grid">
+
+                <!-- Section 1 : Problem Type Matrix -->
+                <div class="span-2" style="display:flex; flex-direction:column;">
+                    <div class="section-title">Section 1 &mdash; Problem Type Matrix</div>
+                    <div class="card" style="flex:1; display:flex; flex-direction:column; gap:12px; background:white;">
+                        <div
+                            style="display:flex; flex-direction:column; gap:10px; height: 100%; justify-content: space-between;">
+
+                            <!-- Classification -->
+                            <div
+                                style="background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px; display:flex; align-items:center; gap: 12px;">
+                                <div style="font-size:13px; font-weight:700; color:var(--blue); width: 85px;">
+                                    Classification</div>
+                                <div style="display:flex; flex-wrap:wrap; gap:6px; flex:1;">
+                                    <span
+                                        style="background:rgba(37,99,235,0.1); color:var(--blue); padding:4px 8px; border-radius:6px; font-size:11px; font-weight:600;">Logistic
+                                        Reg</span>
+                                    <span
+                                        style="background:rgba(37,99,235,0.1); color:var(--blue); padding:4px 8px; border-radius:6px; font-size:11px; font-weight:600;">Decision
+                                        Tree</span>
+                                    <span
+                                        style="background:rgba(37,99,235,0.1); color:var(--blue); padding:4px 8px; border-radius:6px; font-size:11px; font-weight:600;">Random
+                                        Forest</span>
+                                    <span
+                                        style="background:rgba(37,99,235,0.1); color:var(--blue); padding:4px 8px; border-radius:6px; font-size:11px; font-weight:600;">SVM</span>
+                                    <span
+                                        style="background:rgba(37,99,235,0.1); color:var(--blue); padding:4px 8px; border-radius:6px; font-size:11px; font-weight:600;">Naive
+                                        Bayes</span>
+                                </div>
+                            </div>
+
+                            <!-- Regression -->
+                            <div
+                                style="background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px; display:flex; align-items:center; gap: 12px;">
+                                <div style="font-size:13px; font-weight:700; color:var(--green); width: 85px;">
+                                    Regression</div>
+                                <div style="display:flex; flex-wrap:wrap; gap:6px; flex:1;">
+                                    <span
+                                        style="background:rgba(16,185,129,0.1); color:var(--green); padding:4px 8px; border-radius:6px; font-size:11px; font-weight:600;">Linear
+                                        Reg</span>
+                                    <span
+                                        style="background:rgba(16,185,129,0.1); color:var(--green); padding:4px 8px; border-radius:6px; font-size:11px; font-weight:600;">Decision
+                                        Tree</span>
+                                    <span
+                                        style="background:rgba(16,185,129,0.1); color:var(--green); padding:4px 8px; border-radius:6px; font-size:11px; font-weight:600;">Random
+                                        Forest</span>
+                                </div>
+                            </div>
+
+                            <!-- Clustering -->
+                            <div
+                                style="background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px; display:flex; align-items:center; gap: 12px;">
+                                <div style="font-size:13px; font-weight:700; color:var(--purple); width: 85px;">
+                                    Clustering</div>
+                                <div style="display:flex; flex-wrap:wrap; gap:6px; flex:1;">
+                                    <span
+                                        style="background:rgba(124,58,237,0.1); color:var(--purple); padding:4px 8px; border-radius:6px; font-size:11px; font-weight:600;">K-Means</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Choose Based on Data Size -->
+                <div class="span-2" style="display:flex; flex-direction:column;">
+                    <div class="section-title">Section 2 &mdash; Choose Based on Data Size</div>
+                    <div class="card" style="flex:1; display:flex; flex-direction:column; gap:12px; background:white;">
+                        <div
+                            style="display:flex; flex-direction:column; gap:10px; height: 100%; justify-content: space-between;">
+
+                            <!-- Small -->
+                            <div
+                                style="display:flex; align-items:center; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px 16px;">
+                                <div style="width:110px; display:flex; flex-direction:column;">
+                                    <div style="font-size:13px; font-weight:700; color:var(--text);">Small Dataset</div>
+                                    <div style="font-size:10px; font-weight:600; color:var(--text-muted);">(&lt; 10k
+                                        rows)</div>
+                                </div>
+                                <div style="flex:1; display:flex; gap:8px; flex-wrap:wrap;">
+                                    <span
+                                        style="font-size:11px; color:var(--text); background:white; border:1px solid var(--border); padding:4px 8px; border-radius:12px; font-weight:600;">SVM</span>
+                                    <span
+                                        style="font-size:11px; color:var(--text); background:white; border:1px solid var(--border); padding:4px 8px; border-radius:12px; font-weight:600;">Naive
+                                        Bayes</span>
+                                    <span
+                                        style="font-size:11px; color:var(--text); background:white; border:1px solid var(--border); padding:4px 8px; border-radius:12px; font-weight:600;">Decision
+                                        Tree</span>
+                                </div>
+                            </div>
+
+                            <!-- Medium -->
+                            <div
+                                style="display:flex; align-items:center; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px 16px;">
+                                <div style="width:110px; display:flex; flex-direction:column;">
+                                    <div style="font-size:13px; font-weight:700; color:var(--text);">Medium Dataset
+                                    </div>
+                                    <div style="font-size:10px; font-weight:600; color:var(--text-muted);">(10k - 100k
+                                        rows)</div>
+                                </div>
+                                <div style="flex:1; display:flex; gap:8px; flex-wrap:wrap;">
+                                    <span
+                                        style="font-size:11px; color:var(--text); background:white; border:1px solid var(--border); padding:4px 8px; border-radius:12px; font-weight:600;">Random
+                                        Forest</span>
+                                    <span
+                                        style="font-size:11px; color:var(--text); background:white; border:1px solid var(--border); padding:4px 8px; border-radius:12px; font-weight:600;">Gradient
+                                        Boosting</span>
+                                </div>
+                            </div>
+
+                            <!-- Large -->
+                            <div
+                                style="display:flex; align-items:center; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px 16px;">
+                                <div style="width:110px; display:flex; flex-direction:column;">
+                                    <div style="font-size:13px; font-weight:700; color:var(--text);">Large Dataset</div>
+                                    <div style="font-size:10px; font-weight:600; color:var(--text-muted);">(&gt; 100k
+                                        rows)</div>
+                                </div>
+                                <div style="flex:1; display:flex; gap:8px; flex-wrap:wrap;">
+                                    <span
+                                        style="font-size:11px; color:var(--text); background:white; border:1px solid var(--border); padding:4px 8px; border-radius:12px; font-weight:600;">XGBoost</span>
+                                    <span
+                                        style="font-size:11px; color:var(--text); background:white; border:1px solid var(--border); padding:4px 8px; border-radius:12px; font-weight:600;">LightGBM</span>
+                                    <span
+                                        style="font-size:11px; color:var(--text); background:white; border:1px solid var(--border); padding:4px 8px; border-radius:12px; font-weight:600;">Deep
+                                        Learning</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 3: Interpretability vs Accuracy -->
+                <div class="span-2" style="display:flex; flex-direction:column;">
+                    <div class="section-title">Section 3 &mdash; Interpretability vs Accuracy</div>
+                    <div class="card" style="flex:1; display:flex; flex-direction:column; gap:12px; background:white;">
+                        <div style="font-size:12.5px; line-height:1.4; color:var(--text); font-weight:500;">
+                            <strong>Rule of thumb:</strong> Interpretability decreases as model complexity increases.
+                        </div>
+                        <div
+                            style="background:var(--card); border:1px solid var(--border); border-radius:12px; flex:1; position:relative; overflow:hidden; min-height:160px;">
+                            <svg width="100%" height="100%" viewBox="0 0 400 200"
+                                style="position:absolute; top:0; left:0; width:100%; height:100%;">
+                                <!-- Y Axis (Interpretability) -->
+                                <line x1="40" y1="170" x2="40" y2="20" stroke="var(--border)" stroke-width="2" />
+                                <!-- X Axis (Accuracy/Complexity) -->
+                                <line x1="40" y1="170" x2="370" y2="170" stroke="var(--border)" stroke-width="2" />
+
+                                <text x="205" y="193" font-size="12" font-family="sans-serif" fill="var(--text-muted)"
+                                    text-anchor="middle" font-weight="700">Accuracy & Complexity &rarr;</text>
+                                <text x="20" y="95" font-size="12" font-family="sans-serif" fill="var(--text-muted)"
+                                    text-anchor="middle" font-weight="700"
+                                    transform="rotate(-90 20 95)">Interpretability &rarr;</text>
+
+                                <!-- Background Trend Line -->
+                                <path d="M 60 40 Q 200 100 360 150" fill="none" stroke="var(--border)"
+                                    stroke-dasharray="4,4" stroke-width="2" />
+
+                                <!-- Points -->
+                                <!-- Linear Regression -->
+                                <circle cx="80" cy="50" r="5" fill="var(--blue)" />
+                                <text x="90" y="54" font-size="11" font-family="sans-serif" fill="var(--text)"
+                                    font-weight="700">Linear Reg</text>
+
+                                <!-- Decision Tree -->
+                                <circle cx="130" cy="70" r="5" fill="var(--blue)" />
+                                <text x="140" y="74" font-size="11" font-family="sans-serif" fill="var(--text)"
+                                    font-weight="700">Decision Tree</text>
+
+                                <!-- Logistic Regression -->
+                                <circle cx="100" cy="30" r="5" fill="var(--blue)" />
+                                <text x="110" y="34" font-size="11" font-family="sans-serif" fill="var(--text)"
+                                    font-weight="700">Logistic Reg</text>
+
+                                <!-- Random Forest -->
+                                <circle cx="210" cy="110" r="5" fill="var(--purple)" />
+                                <text x="220" y="114" font-size="11" font-family="sans-serif" fill="var(--text)"
+                                    font-weight="700">Random Forest</text>
+
+                                <!-- SVM -->
+                                <circle cx="250" cy="125" r="5" fill="var(--purple)" />
+                                <text x="260" y="129" font-size="11" font-family="sans-serif" fill="var(--text)"
+                                    font-weight="700">SVM</text>
+
+                                <!-- XGBoost -->
+                                <circle cx="300" cy="140" r="5" fill="var(--red)" />
+                                <text x="310" y="144" font-size="11" font-family="sans-serif" fill="var(--text)"
+                                    font-weight="700">XGBoost</text>
+
+                                <!-- Deep Learning -->
+                                <circle cx="340" cy="160" r="5" fill="var(--red)" />
+                                <text x="340" y="150" font-size="11" font-family="sans-serif" fill="var(--text)"
+                                    font-weight="700" text-anchor="middle">Deep Learning</text>
+
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 4: Speed vs Accuracy -->
+                <div class="span-2" style="display:flex; flex-direction:column;">
+                    <div class="section-title">Section 4 &mdash; Speed vs Accuracy</div>
+                    <div class="card" style="flex:1; display:flex; flex-direction:column; gap:12px; background:white;">
+                        <div
+                            style="display:flex; flex-direction:column; gap:10px; height: 100%; justify-content: space-between;">
+
+                            <!-- Fast Training -->
+                            <div
+                                style="display:flex; flex-direction:column; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px;">
+                                <div
+                                    style="display:flex; justify-content:space-between; margin-bottom:10px; align-items: center;">
+                                    <div
+                                        style="font-size:13px; font-weight:700; color:var(--text); display:flex; align-items:center; gap:6px;">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" style="color:var(--green)">
+                                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                                        </svg>
+                                        Fast Training
+                                    </div>
+                                    <div style="font-size:11px; font-weight:600; color:var(--text-muted);">Lower
+                                        Capacity</div>
+                                </div>
+                                <div style="display:flex; gap:8px;">
+                                    <span
+                                        style="font-size:11px; background:white; border:1px solid var(--border); padding:4px 8px; border-radius:12px; font-weight:600;">Naive
+                                        Bayes</span>
+                                    <span
+                                        style="font-size:11px; background:white; border:1px solid var(--border); padding:4px 8px; border-radius:12px; font-weight:600;">Logistic
+                                        Reg</span>
+                                </div>
+                            </div>
+
+                            <!-- Balanced -->
+                            <div
+                                style="display:flex; flex-direction:column; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px;">
+                                <div
+                                    style="display:flex; justify-content:space-between; margin-bottom:10px; align-items: center;">
+                                    <div
+                                        style="font-size:13px; font-weight:700; color:var(--text); display:flex; align-items:center; gap:6px;">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" style="color:var(--blue)">
+                                            <path d="M12 2v20"></path>
+                                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                        </svg>
+                                        Balanced
+                                    </div>
+                                    <div style="font-size:11px; font-weight:600; color:var(--text-muted);">Good Default
+                                    </div>
+                                </div>
+                                <div style="display:flex; gap:8px;">
+                                    <span
+                                        style="font-size:11px; background:white; border:1px solid var(--border); padding:4px 8px; border-radius:12px; font-weight:600;">Decision
+                                        Tree</span>
+                                    <span
+                                        style="font-size:11px; background:white; border:1px solid var(--border); padding:4px 8px; border-radius:12px; font-weight:600;">Random
+                                        Forest</span>
+                                </div>
+                            </div>
+
+                            <!-- Highest Accuracy -->
+                            <div
+                                style="display:flex; flex-direction:column; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px;">
+                                <div
+                                    style="display:flex; justify-content:space-between; margin-bottom:10px; align-items: center;">
+                                    <div
+                                        style="font-size:13px; font-weight:700; color:var(--text); display:flex; align-items:center; gap:6px;">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" style="color:var(--purple)">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <polyline points="12 16 16 12 12 8"></polyline>
+                                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                                        </svg>
+                                        Highest Accuracy
+                                    </div>
+                                    <div style="font-size:11px; font-weight:600; color:var(--text-muted);">Slower
+                                        Training</div>
+                                </div>
+                                <div style="display:flex; gap:8px;">
+                                    <span
+                                        style="font-size:11px; background:white; border:1px solid var(--border); padding:4px 8px; border-radius:12px; font-weight:600;">XGBoost</span>
+                                    <span
+                                        style="font-size:11px; background:white; border:1px solid var(--border); padding:4px 8px; border-radius:12px; font-weight:600;">Deep
+                                        Learning</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 5: Printable Cheat Sheet -->
+                <div class="span-4" style="display:flex; flex-direction:column;">
+                    <div class="section-title">Section 5 &mdash; Printable Cheat Sheet</div>
+                    <div class="card"
+                        style="flex:1; background:linear-gradient(135deg, rgba(37,99,235,0.05), rgba(124,58,237,0.05)); border:1px solid rgba(124,58,237,0.2); padding:16px 24px; display:flex; flex-direction:column; justify-content:center;">
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+
+                            <!-- Left Column -->
+                            <div style="display:flex; flex-direction:column; gap:8px;">
+                                <!-- Header for Left Col -->
+                                <div
+                                    style="display:flex; border-bottom: 2px solid var(--border); padding-bottom:6px; margin-bottom:4px;">
+                                    <div style="flex:1; font-size:13px; font-weight:700; color:var(--text);">If you
+                                        need...</div>
+                                    <div style="flex:1; font-size:13px; font-weight:700; color:var(--text);">Use...
+                                    </div>
+                                </div>
+
+                                <div
+                                    style="display:flex; padding:6px 0; border-bottom: 1px solid rgba(226, 232, 240, 0.5);">
+                                    <div style="flex:1; font-size:13px; color:var(--text-muted); font-weight:600;">Easy
+                                        to explain</div>
+                                    <div style="flex:1; font-size:13px; color:var(--blue); font-weight:700;">Decision
+                                        Tree</div>
+                                </div>
+                                <div
+                                    style="display:flex; padding:6px 0; border-bottom: 1px solid rgba(226, 232, 240, 0.5);">
+                                    <div style="flex:1; font-size:13px; color:var(--text-muted); font-weight:600;">High
+                                        accuracy</div>
+                                    <div style="flex:1; font-size:13px; color:var(--purple); font-weight:700;">Random
+                                        Forest</div>
+                                </div>
+                                <div
+                                    style="display:flex; padding:6px 0; border-bottom: 1px solid rgba(226, 232, 240, 0.5);">
+                                    <div style="flex:1; font-size:13px; color:var(--text-muted); font-weight:600;">Small
+                                        dataset</div>
+                                    <div style="flex:1; font-size:13px; color:var(--green); font-weight:700;">SVM</div>
+                                </div>
+                                <div style="display:flex; padding:6px 0;">
+                                    <div style="flex:1; font-size:13px; color:var(--text-muted); font-weight:600;">Text
+                                        classification</div>
+                                    <div style="flex:1; font-size:13px; color:var(--blue); font-weight:700;">Naive Bayes
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right Column -->
+                            <div style="display:flex; flex-direction:column; gap:8px;">
+                                <!-- Header for Right Col -->
+                                <div
+                                    style="display:flex; border-bottom: 2px solid var(--border); padding-bottom:6px; margin-bottom:4px;">
+                                    <div style="flex:1; font-size:13px; font-weight:700; color:var(--text);">If you
+                                        need...</div>
+                                    <div style="flex:1; font-size:13px; font-weight:700; color:var(--text);">Use...
+                                    </div>
+                                </div>
+
+                                <div
+                                    style="display:flex; padding:6px 0; border-bottom: 1px solid rgba(226, 232, 240, 0.5);">
+                                    <div style="flex:1; font-size:13px; color:var(--text-muted); font-weight:600;">
+                                        Customer segmentation</div>
+                                    <div style="flex:1; font-size:13px; color:var(--purple); font-weight:700;">K-Means
+                                    </div>
+                                </div>
+                                <div
+                                    style="display:flex; padding:6px 0; border-bottom: 1px solid rgba(226, 232, 240, 0.5);">
+                                    <div style="flex:1; font-size:13px; color:var(--text-muted); font-weight:600;">Deep
+                                        learning baseline</div>
+                                    <div style="flex:1; font-size:13px; color:var(--green); font-weight:700;">Gradient
+                                        Descent</div>
+                                </div>
+                                <div style="display:flex; padding:6px 0;">
+                                    <div style="flex:1; font-size:13px; color:var(--text-muted); font-weight:600;">Fast
+                                        baseline</div>
+                                    <div style="flex:1; font-size:13px; color:var(--blue); font-weight:700;">Logistic
+                                        Regression</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- FOOTER -->
+            <div
+                style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 24px; font-size: 14px; font-weight: 600; color: var(--text-muted); margin-top: 6px;">
+                <div style="display:flex; flex-direction:column; gap:4px;">
+                    <div style="font-weight:800; color:var(--text); font-size:16px; letter-spacing:-0.5px;">Vinod Bavage
+                        <span style="font-weight:600; color:var(--text-muted); font-size:14px; margin-left:4px;">| AI
+                            Engineer</span>
+                    </div>
+                    <div>50+ Projects in AI, Machine Learning & Web Development</div>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:6px; align-items:flex-end;">
+                    <div style="display:flex; align-items:center; gap:6px;">
+                        <span style="color:var(--text);">GitHub:</span> github.com/vinodbavage31
+                    </div>
+                    <div style="display:flex; align-items:center; gap:6px;">
+                        <span style="color:var(--text);">Portfolio:</span> vinodbavage.vercel.app
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
